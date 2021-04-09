@@ -16,7 +16,7 @@ class BlogDetails extends Component {
       <View style={styles.mainView}>
         <Text style={styles.mainHeadingText}>Welcome to RoundUp!</Text>
         <View style={styles.descView}>
-          <Text style={[styles.descText, {marginBottom: '25%'}]}>
+          <Text style={[styles.descText]}>
             Through 5 questions, we will understand your investment goals and
             risk preferences better, and this allows us to recommend the best
             portfolio to suit your needs.

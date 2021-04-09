@@ -25,6 +25,7 @@ export default StyleSheet.create({
     width: Dimensions.get('window').width - 35,
     marginTop: '10%',
     height: '30%',
+    alignItems: 'center'
   },
   bottomTray: {
     width: Dimensions.get('window').width / 1,
