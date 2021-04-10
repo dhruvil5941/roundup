@@ -10,13 +10,17 @@ import {
   ScrollView,
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-import styles from '../WelcomeScreen/styles';
+import styles from './styles';
+import * as colors from '../../asset/colors';
 
 class Userfinancesquestion extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedLanguage: '',
+      selectedStatus: '',
+      selectedIncome: '',
+      // selectedGoal: '',
+      // selectedPeriod: '',
       dropdownData: '',
     };
   }
@@ -43,38 +47,27 @@ class Userfinancesquestion extends Component {
       .catch(error => console.log('error', error));
   };
 
+  SetSelectedValue = () => {};
+
   render() {
     const {dropdownData} = this.state;
     console.log(dropdownData.QuestionsList);
     return (
-      <View style={{flex: 1, backgroundColor: '#FFF'}}>
+      <View style={styles.mainView}>
         <StatusBar
           animated={true}
-          backgroundColor="#1FAD9E"
+          backgroundColor={colors.themeColor}
           translucent={true}
           barStyle="light-content"
           hidden={false}
         />
-        <ScrollView style={{marginBottom: '20%', flex: 1}}>
+        <ScrollView style={styles.scrollView}>
           <View>
-            <Text
-              style={{
-                fontWeight: '700',
-                fontSize: 18,
-                marginTop: '5%',
-                textAlign: 'center',
-              }}>
-              Your finances and goals
-            </Text>
-            <View
-              style={{
-                width: Dimensions.get('window').width - 35,
-                marginTop: '2%',
-                alignSelf: 'center',
-              }}>
-              <Text
-                style={{fontSize: 14, color: '#808080', textAlign: 'center'}}>
-                  Tell us a little about your current financial situation so we can recommend the best investment portfolio for you.
+            <Text style={styles.mainHeadingText}>Your finances and goals</Text>
+            <View style={styles.discView}>
+              <Text style={styles.discText}>
+                Tell us a little about your current financial situation so we
+                can recommend the best investment portfolio for you.
               </Text>
             </View>
 
@@ -82,28 +75,13 @@ class Userfinancesquestion extends Component {
               data={dropdownData.QuestionsList}
               renderItem={({item}) => (
                 <>
-                  <Text
-                    style={{
-                      fontWeight: '700',
-                      fontSize: 14,
-                      marginTop: '6%',
-                      marginStart: '4%',
-                    }}>
-                    {item.Question}
-                  </Text>
-                  <View
-                    style={{
-                      width: Dimensions.get('window').width - 35,
-                      borderWidth: 0.3,
-                      borderRadius: 4,
-                      alignSelf: 'center',
-                      marginTop: '2%',
-                    }}>
+                  <Text style={styles.queTitle}>{item.Question}</Text>
+                  <View style={styles.pickerView}>
                     <Picker
-                      selectedValue={this.state.selectedLanguage}
+                      selectedValue={this.state[item.id + '_str']}
                       placeholder={{label: 'Select...'}}
-                      onValueChange={(itemValue, itemIndex) =>
-                        this.setState({selectedLanguage: itemValue})
+                      onValueChange={(itemValue) =>
+                        this.setState({[item.id + '_str']: itemValue})
                       }>
                       <Picker.Item label="Select..." value="Select..." />
                       {item.Options.map(option => {
@@ -118,21 +96,9 @@ class Userfinancesquestion extends Component {
           </View>
         </ScrollView>
         <TouchableOpacity
-          style={{
-            width: Dimensions.get('window').width / 1.2,
-            height: '5%',
-            backgroundColor: '#1FAD9E',
-            borderRadius: 25,
-            justifyContent: 'center',
-            borderWidth: 0.3,
-            position: 'absolute',
-            bottom: '5%',
-            alignSelf: 'center',
-          }}
+          style={styles.BtnView}
           onPress={() => this.props.navigation.navigate('Landing')}>
-          <Text style={{textAlign: 'center', fontWeight: '700', color: '#FFF'}}>
-            NEXT
-          </Text>
+          <Text style={styles.BtnText}>NEXT</Text>
         </TouchableOpacity>
       </View>
     );
