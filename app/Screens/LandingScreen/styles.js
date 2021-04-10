@@ -12,7 +12,7 @@ export default StyleSheet.create({
     color: colors.titleTextColor,
     fontSize: 22,
     fontWeight: 'bold',
-    fontFamily: 'SFProText',
+    // fontFamily: 'SFProText',
   },
   logInBtn: {
     width: Dimensions.get('window').width / 1.2,
@@ -25,7 +25,7 @@ export default StyleSheet.create({
   logInBtnText: {
     textAlign: 'center',
     fontWeight: '700',
-    fontFamily: 'SFProText',
+    // fontFamily: 'SFProText',
   },
   signUpBtn: {
     width: Dimensions.get('window').width / 1.2,

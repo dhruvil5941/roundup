@@ -21,6 +21,7 @@ function NavigatorStack() {
           fontWeight: 'bold',
           fontSize: 23,
         },
+        headerBackTitleVisible: false,
       }}>
       <Stack.Screen
         name="Landing"
@@ -40,7 +41,9 @@ function NavigatorStack() {
       <Stack.Screen
         name="Userfinancesquestion"
         component={Userfinancesquestion}
-        options={{title: 'RoundUp'}}
+        options={{
+          title: 'RoundUp',
+        }}
       />
     </Stack.Navigator>
   );

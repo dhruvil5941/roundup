@@ -4,13 +4,14 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Dimensions,
+  StyleSheet,
   StatusBar,
   FlatList,
   ScrollView,
   ActivityIndicator,
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
+import RNPickerSelect from 'react-native-picker-select';
 import styles from './styles';
 import * as colors from '../../asset/colors';
 
@@ -36,7 +37,7 @@ class Userfinancesquestion extends Component {
     //https://roundup.free.beeceptor.com/v1/questions
 
     fetch(
-      'https://run.mocky.io/v3/eea8369e-a940-4263-bb85-f5103be8ae1d',
+      'https://run.mocky.io/v3/1c5dd4f7-8b4e-40b2-84c7-d7d6ab447808',
       requestOptions,
     )
       .then(response => response.text())
@@ -52,7 +53,24 @@ class Userfinancesquestion extends Component {
 
   render() {
     const {dropdownData} = this.state;
-    console.log(dropdownData.QuestionsList);
+    const placeholder = {
+      label: 'Select',
+      value: null,
+    };
+    // const sports =
+    //   dropdownData &&
+    //   dropdownData.QuestionsList.map(item =>
+    //     item.map(option => {
+    //       return [
+    //         {
+    //           label: option,
+    //           value: option,
+    //         },
+    //       ];
+    //     }),
+    //   );
+    // console.log(sports);
+    console.log(dropdownData);
     return (
       <View style={styles.mainView}>
         <StatusBar
@@ -62,7 +80,7 @@ class Userfinancesquestion extends Component {
           barStyle="light-content"
           hidden={false}
         />
-        <ScrollView style={styles.scrollView}>
+        {/*<ScrollView style={styles.scrollView}>*/}
           <View>
             <Text style={styles.mainHeadingText}>Your finances and goals</Text>
             <View style={styles.discView}>
@@ -71,36 +89,62 @@ class Userfinancesquestion extends Component {
                 can recommend the best investment portfolio for you.
               </Text>
             </View>
+
             {dropdownData.QuestionsList == undefined ? (
               <View style={{marginTop: '30%'}}>
                 <ActivityIndicator size="large" color={colors.themeColor} />
               </View>
             ) : (
-              <FlatList
-                data={dropdownData.QuestionsList}
-                renderItem={({item}) => (
-                  <>
-                    <Text style={styles.queTitle}>{item.Question}</Text>
-                    <View style={styles.pickerView}>
-                      <Picker
-                        selectedValue={this.state[item.id + '_str']}
-                        placeholder={{label: 'Select...'}}
-                        onValueChange={itemValue =>
-                          this.setState({[item.id + '_str']: itemValue})
-                        }>
-                        <Picker.Item label="Select..." value="Select..." />
-                        {item.Options.map(option => {
-                          return <Picker.Item label={option} value={option} />;
-                        })}
-                      </Picker>
-                    </View>
-                  </>
-                )}
-                keyExtractor={item => item.id}
-              />
+              <View>
+                <FlatList
+                  data={dropdownData.QuestionsList}
+                  renderItem={({item}) => (
+                    <>
+                      <Text style={styles.queTitle}>{item.Question}</Text>
+                      <View style={styles.pickerView}>
+                        <RNPickerSelect
+                          placeholder={placeholder}
+                          items={item.Options.map(option => option)}
+                          onValueChange={itemValue =>
+                            this.setState({[item.id + '_str']: itemValue})
+                          }
+                          style={{
+                            ...pickerSelectStyles,
+                            iconContainer: {
+                              top: 20,
+                              right: 12,
+                            },
+                          }}
+                          value={this.state[item.id + '_str']}
+                          useNativeAndroidPickerStyle={false}
+                          textInputProps={{underlineColor: 'yellow'}}
+                          Icon={() => {
+                            return (
+                              <View
+                                style={{
+                                  backgroundColor: 'transparent',
+                                  borderTopWidth: 10,
+                                  borderTopColor: 'gray',
+                                  borderRightWidth: 10,
+                                  borderRightColor: 'transparent',
+                                  borderLeftWidth: 10,
+                                  borderLeftColor: 'transparent',
+                                  width: 0,
+                                  height: 0,
+                                }}
+                              />
+                            );
+                          }}
+                        />
+                      </View>
+                    </>
+                  )}
+                  keyExtractor={item => item.id}
+                />
+              </View>
             )}
           </View>
-        </ScrollView>
+        {/*</ScrollView>*/}
         <TouchableOpacity
           style={styles.BtnView}
           onPress={() => this.props.navigation.navigate('Landing')}>
@@ -111,4 +155,26 @@ class Userfinancesquestion extends Component {
   }
 }
 
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 4,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 0.5,
+    borderColor: 'purple',
+    borderRadius: 8,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+});
 export default Userfinancesquestion;
