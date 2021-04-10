@@ -8,6 +8,7 @@ import {
   StatusBar,
   FlatList,
   ScrollView,
+  ActivityIndicator,
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import styles from './styles';
@@ -70,29 +71,34 @@ class Userfinancesquestion extends Component {
                 can recommend the best investment portfolio for you.
               </Text>
             </View>
-
-            <FlatList
-              data={dropdownData.QuestionsList}
-              renderItem={({item}) => (
-                <>
-                  <Text style={styles.queTitle}>{item.Question}</Text>
-                  <View style={styles.pickerView}>
-                    <Picker
-                      selectedValue={this.state[item.id + '_str']}
-                      placeholder={{label: 'Select...'}}
-                      onValueChange={(itemValue) =>
-                        this.setState({[item.id + '_str']: itemValue})
-                      }>
-                      <Picker.Item label="Select..." value="Select..." />
-                      {item.Options.map(option => {
-                        return <Picker.Item label={option} value={option} />;
-                      })}
-                    </Picker>
-                  </View>
-                </>
-              )}
-              keyExtractor={item => item.id}
-            />
+            {dropdownData.QuestionsList == undefined ? (
+              <View style={{marginTop: '30%'}}>
+                <ActivityIndicator size="large" color={colors.themeColor} />
+              </View>
+            ) : (
+              <FlatList
+                data={dropdownData.QuestionsList}
+                renderItem={({item}) => (
+                  <>
+                    <Text style={styles.queTitle}>{item.Question}</Text>
+                    <View style={styles.pickerView}>
+                      <Picker
+                        selectedValue={this.state[item.id + '_str']}
+                        placeholder={{label: 'Select...'}}
+                        onValueChange={itemValue =>
+                          this.setState({[item.id + '_str']: itemValue})
+                        }>
+                        <Picker.Item label="Select..." value="Select..." />
+                        {item.Options.map(option => {
+                          return <Picker.Item label={option} value={option} />;
+                        })}
+                      </Picker>
+                    </View>
+                  </>
+                )}
+                keyExtractor={item => item.id}
+              />
+            )}
           </View>
         </ScrollView>
         <TouchableOpacity

@@ -37,7 +37,7 @@ export default StyleSheet.create({
   },
   BtnView: {
     width: Dimensions.get('window').width / 1.2,
-    height: '5%',
+    height: '8%',
     backgroundColor: '#1FAD9E',
     borderRadius: 25,
     justifyContent: 'center',
