@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
 import {
-  Button,
   View,
   Text,
-  Dimensions,
   Image,
   TouchableOpacity,
 } from 'react-native';
 import styles from './styles';
-import onboarding from '../../asset/Images/onboarding_image2.jpg';
+import onboarding from '../../assets/images/onboarding_image2.jpg';
 
-class BlogDetails extends Component {
+class OnboardingScreenTwo extends Component {
   render() {
     return (
       <View style={styles.mainView}>
@@ -42,4 +40,4 @@ class BlogDetails extends Component {
   }
 }
 
-export default BlogDetails;
+export default OnboardingScreenTwo;

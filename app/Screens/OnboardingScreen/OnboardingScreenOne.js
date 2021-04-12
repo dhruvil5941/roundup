@@ -8,9 +8,9 @@ import {
   ScrollView,
 } from 'react-native';
 import styles from './styles';
-import * as colors from '../../asset/colors';
-import onboarding from '../../asset/Images/onboarding_image1.jpg';
-class Welcome extends Component {
+import * as colors from '../../assets/colors';
+import onboarding from '../../assets/images/onboarding_image1.jpg';
+class OnboardingScreenOne extends Component {
   render() {
     return (
       <View style={styles.mainView}>
@@ -53,4 +53,4 @@ class Welcome extends Component {
   }
 }
 
-export default Welcome;
+export default OnboardingScreenOne;

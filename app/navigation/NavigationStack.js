@@ -1,10 +1,10 @@
 import React from 'react';
 
 import {createStackNavigator} from '@react-navigation/stack';
-import BlogDetails from '../Screens/WelcomeScreen/BlogDetails';
-import Welcome from '../Screens/WelcomeScreen/Welcome';
-import Landing from '../Screens/LandingScreen';
-import Userfinancesquestion from '../Screens/UserFinancesQuestion';
+import OnboardingScreenTwo from '../screens/OnboardingScreen/OnboardingScreenTwo';
+import OnboardingScreenOne from '../screens/OnboardingScreen/OnboardingScreenOne';
+import Landing from '../screens/LandingScreen';
+import Userfinancesquestion from '../screens/UserFinancesQuestion';
 
 const Stack = createStackNavigator();
 
@@ -29,13 +29,13 @@ function NavigatorStack() {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="Welcome"
-        component={Welcome}
+        name="OnboardingScreenOne"
+        component={OnboardingScreenOne}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="BlogDetails"
-        component={BlogDetails}
+        name="OnboardingScreenTwo"
+        component={OnboardingScreenTwo}
         options={{headerShown: false}}
       />
       <Stack.Screen
@@ -49,31 +49,3 @@ function NavigatorStack() {
   );
 }
 export default NavigatorStack;
-// export default function App() {
-//     return (
-//         <NavigationContainer>
-//             <NavStack />
-//         </NavigationContainer>
-//     );
-// }
-//
-// const styles = StyleSheet.create({
-//     sectionContainer: {
-//         marginTop: 32,
-//         paddingHorizontal: 24,
-//     },
-//     sectionTitle: {
-//         fontSize: 24,
-//         fontWeight: '600',
-//     },
-//     sectionDescription: {
-//         marginTop: 8,
-//         fontSize: 18,
-//         fontWeight: '400',
-//     },
-//     highlight: {
-//         fontWeight: '700',
-//     },
-// });
-
-// export default App;

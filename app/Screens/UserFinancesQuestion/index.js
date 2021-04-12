@@ -1,19 +1,16 @@
 import React, {Component} from 'react';
 import {
-  Image,
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
   StatusBar,
   FlatList,
-  ScrollView,
   ActivityIndicator,
 } from 'react-native';
-import {Picker} from '@react-native-picker/picker';
 import RNPickerSelect from 'react-native-picker-select';
 import styles from './styles';
-import * as colors from '../../asset/colors';
+import * as colors from '../../assets/colors';
 
 class Userfinancesquestion extends Component {
   constructor(props) {

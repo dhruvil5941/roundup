@@ -6,7 +6,7 @@ import {
   StatusBar,
 } from 'react-native';
 import styles from './styles';
-import * as colors from '../../asset/colors';
+import * as colors from '../../assets/colors';
 
 class Landing extends Component {
   render() {
