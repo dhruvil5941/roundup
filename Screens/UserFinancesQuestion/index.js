@@ -165,7 +165,7 @@ class Userfinancesquestion extends Component {
             alignSelf: 'center',
           }}
           onPress={() =>
-            this.props.navigation.navigate('createaccount')
+            this.props.navigation.navigate('Conservative')
           }>
           <Text style={{textAlign: 'center', fontWeight: '700', color: '#FFF'}}>
             NEXT

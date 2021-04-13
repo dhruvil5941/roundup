@@ -1,20 +1,13 @@
 import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import BlogDetails from './Screens/WelcomeScreen/BlogDetails';
 import Blogone from './Screens/WelcomeScreen/Blogone';
 import createaccount from './Screens/WelcomeScreen/createaccount';
 import Userfinancesquestion from './Screens/UserFinancesQuestion';
+import Conservative from './Screens/Portfolio/Conservative';
+import Risky from './Screens/Portfolio/Risky';
 
 const Stack = createStackNavigator();
 
@@ -50,6 +43,16 @@ function NavStack() {
       <Stack.Screen
         name="Userfinancesquestion"
         component={Userfinancesquestion}
+        options={{title: 'RoundUp'}}
+      />
+      <Stack.Screen
+        name="Conservative"
+        component={Conservative}
+        options={{title: 'RoundUp'}}
+      />
+      <Stack.Screen
+        name="Risky"
+        component={Risky}
         options={{title: 'RoundUp'}}
       />
     </Stack.Navigator>
