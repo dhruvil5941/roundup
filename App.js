@@ -8,8 +8,56 @@ import createaccount from './Screens/WelcomeScreen/createaccount';
 import Userfinancesquestion from './Screens/UserFinancesQuestion';
 import Conservative from './Screens/Portfolio/Conservative';
 import Risky from './Screens/Portfolio/Risky';
+import Home from './Screens/Home';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+function TabStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerTitleAlign: 'center',
+        headerStyle: {
+          backgroundColor: '#1FAD9E',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          fontSize: 23,
+        },
+      }}>
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function TabBar() {
+  return (
+    <Tab.Navigator
+      initialRouteName="Feed"
+      tabBarOptions={{
+        activeTintColor: '#42f44b',
+      }}>
+      <Tab.Screen
+        name="TabStack"
+        component={TabStack}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({color, size}) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
 
 function NavStack() {
   return (
@@ -55,6 +103,7 @@ function NavStack() {
         component={Risky}
         options={{title: 'RoundUp'}}
       />
+      <Stack.Screen name="Home" component={Home} options={{title: 'RoundUp'}} />
     </Stack.Navigator>
   );
 }
