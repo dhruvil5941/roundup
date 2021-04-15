@@ -41,7 +41,7 @@ class Home extends Component {
     };
 
     fetch(
-      'https://run.mocky.io/v3/1eee4eb9-0a50-4635-8b80-394e5d15da94',
+      'https://run.mocky.io/v3/1270953b-9720-4099-a72d-7da5e4211e60',
       requestOptions,
     )
       .then(response => response.text())
@@ -56,6 +56,7 @@ class Home extends Component {
 
   render() {
     console.log('HOME', this.state.homeData);
+    const {homeData} = this.state;
     return (
       <View
         style={{
@@ -88,7 +89,7 @@ class Home extends Component {
               marginTop: '3%',
               textAlign: 'center',
             }}>
-            $2,541.87
+            ${homeData.accountValue}
           </Text>
           <View
             style={{
@@ -113,7 +114,7 @@ class Home extends Component {
                 fontSize: 13,
                 fontWeight: '600',
               }}>
-              +$124.25(5.14%)
+              {homeData.totalGain}
             </Text>
           </View>
           <View
