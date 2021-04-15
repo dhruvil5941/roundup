@@ -10,7 +10,52 @@ import {
 import Pie from 'react-native-pie';
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      homeData: '',
+    };
+  }
+
+  componentDidMount() {
+    this.getPortfolioData();
+  }
+  getPortfolioData = () => {
+    // var requestOptions = {
+    //   method: 'POST',
+    // };
+    //
+    // fetch(
+    //   'https://run.mocky.io/v3/dc3797e5-f83a-4d08-a313-7bc9cf7ea024',
+    //   requestOptions,
+    // )
+    //   .then(response => response.text())
+    //   .then(result => {
+    //     // if (result.status === 200) {
+    //     this.setState({portfolioData: JSON.parse(result)});
+    //     // }
+    //   })
+    //   .catch(error => console.log('error', error));
+    var requestOptions = {
+      method: 'POST',
+    };
+
+    fetch(
+      'https://run.mocky.io/v3/1eee4eb9-0a50-4635-8b80-394e5d15da94',
+      requestOptions,
+    )
+      .then(response => response.text())
+      .then(
+        result => {
+          this.setState({homeData: JSON.parse(result)});
+        },
+        // console.log('data', result),
+      )
+      .catch(error => console.log('error', error));
+  };
+
   render() {
+    console.log('HOME', this.state.homeData);
     return (
       <View
         style={{
