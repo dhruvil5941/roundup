@@ -6,11 +6,43 @@ import {
   Dimensions,
   StatusBar,
   ScrollView,
+  FlatList,
 } from 'react-native';
 import Pie from 'react-native-pie';
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      homeData: '',
+    };
+  }
+
+  componentDidMount() {
+    this.getPortfolioData();
+  }
+  getPortfolioData = () => {
+    var requestOptions = {
+      method: 'POST',
+    };
+
+    fetch(
+      'https://run.mocky.io/v3/1270953b-9720-4099-a72d-7da5e4211e60',
+      requestOptions,
+    )
+      .then(response => response.text())
+      .then(
+        result => {
+          this.setState({homeData: JSON.parse(result)});
+        },
+        // console.log('data', result),
+      )
+      .catch(error => console.log('error', error));
+  };
+
   render() {
+    console.log('HOME', this.state.homeData);
+    const {homeData} = this.state;
     return (
       <View
         style={{
@@ -43,7 +75,7 @@ class Home extends Component {
               marginTop: '3%',
               textAlign: 'center',
             }}>
-            $2,541.87
+            ${homeData.accountValue}
           </Text>
           <View
             style={{
@@ -68,7 +100,7 @@ class Home extends Component {
                 fontSize: 13,
                 fontWeight: '600',
               }}>
-              +$124.25(5.14%)
+              {homeData.totalGain}
             </Text>
           </View>
           <View
@@ -202,266 +234,37 @@ class Home extends Component {
             }}>
             Recurring Contribution
           </Text>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: '3%',
-              width: Dimensions.get('window').width - 70,
-              alignSelf: 'center',
-            }}>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 14,
-                fontWeight: 'bold',
-                textAlign: 'center',
-              }}>
-              Recurring Contribution
-            </Text>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 13,
-                fontWeight: '500',
-              }}>
-              +$124.25
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: '3%',
-              width: Dimensions.get('window').width - 70,
-              alignSelf: 'center',
-            }}>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 14,
-                fontWeight: 'bold',
-                textAlign: 'center',
-              }}>
-              LAZADA
-            </Text>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 13,
-                fontWeight: '500',
-              }}>
-              +$3.80
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: '3%',
-              width: Dimensions.get('window').width - 70,
-              alignSelf: 'center',
-            }}>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 14,
-                fontWeight: 'bold',
-                textAlign: 'center',
-              }}>
-              Grab
-            </Text>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 13,
-                fontWeight: '500',
-              }}>
-              +$0.25
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: '3%',
-              width: Dimensions.get('window').width - 70,
-              alignSelf: 'center',
-            }}>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 14,
-                fontWeight: 'bold',
-                textAlign: 'center',
-              }}>
-              Netflix Monthly Subscription
-            </Text>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 13,
-                fontWeight: '500',
-              }}>
-              +$100.25
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: '3%',
-              width: Dimensions.get('window').width - 70,
-              alignSelf: 'center',
-            }}>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 14,
-                fontWeight: 'bold',
-                textAlign: 'center',
-              }}>
-              LAZADA
-            </Text>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 13,
-                fontWeight: '500',
-              }}>
-              +$3.80
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: '3%',
-              width: Dimensions.get('window').width - 70,
-              alignSelf: 'center',
-            }}>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 14,
-                fontWeight: 'bold',
-                textAlign: 'center',
-              }}>
-              Grab
-            </Text>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 13,
-                fontWeight: '500',
-              }}>
-              +$0.25
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: '3%',
-              width: Dimensions.get('window').width - 70,
-              alignSelf: 'center',
-            }}>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 14,
-                fontWeight: 'bold',
-                textAlign: 'center',
-              }}>
-              Netflix Monthly Subscription
-            </Text>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 13,
-                fontWeight: '500',
-              }}>
-              +$100.25
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: '3%',
-              width: Dimensions.get('window').width - 70,
-              alignSelf: 'center',
-            }}>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 14,
-                fontWeight: 'bold',
-                textAlign: 'center',
-              }}>
-              LAZADA
-            </Text>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 13,
-                fontWeight: '500',
-              }}>
-              +$3.80
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: '3%',
-              width: Dimensions.get('window').width - 70,
-              alignSelf: 'center',
-            }}>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 14,
-                fontWeight: 'bold',
-                textAlign: 'center',
-              }}>
-              Grab
-            </Text>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 13,
-                fontWeight: '500',
-              }}>
-              +$0.25
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: '3%',
-              width: Dimensions.get('window').width - 70,
-              alignSelf: 'center',
-            }}>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 14,
-                fontWeight: 'bold',
-                textAlign: 'center',
-              }}>
-              Netflix Monthly Subscription
-            </Text>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 13,
-                fontWeight: '500',
-              }}>
-              +$100.25
-            </Text>
-          </View>
+          <FlatList
+            data={homeData.contributions}
+            renderItem={({item}) => (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginTop: '3%',
+                  width: Dimensions.get('window').width - 70,
+                  alignSelf: 'center',
+                }}>
+                <Text
+                  style={{
+                    color: '#000',
+                    fontSize: 14,
+                    fontWeight: 'bold',
+                    textAlign: 'center',
+                  }}>
+                  {item.name}
+                </Text>
+                <Text
+                  style={{
+                    color: '#000',
+                    fontSize: 13,
+                    fontWeight: '500',
+                  }}>
+                  +{item.amount}
+                </Text>
+              </View>
+            )}
+          />
           <View
             style={{
               width: Dimensions.get('window').width / 1.8,

@@ -41,7 +41,7 @@ class Conservative extends Component {
     super(props);
     this.state = {
       currentPosition: 0,
-      portfolioData: '',
+      portfolioData: [],
     };
   }
 
@@ -49,27 +49,12 @@ class Conservative extends Component {
     this.getPortfolioData();
   }
   getPortfolioData = () => {
-    // var requestOptions = {
-    //   method: 'POST',
-    // };
-    //
-    // fetch(
-    //   'https://run.mocky.io/v3/dc3797e5-f83a-4d08-a313-7bc9cf7ea024',
-    //   requestOptions,
-    // )
-    //   .then(response => response.text())
-    //   .then(result => {
-    //     // if (result.status === 200) {
-    //     this.setState({portfolioData: JSON.parse(result)});
-    //     // }
-    //   })
-    //   .catch(error => console.log('error', error));
     var requestOptions = {
       method: 'POST',
     };
 
     fetch(
-      'https://run.mocky.io/v3/1eee4eb9-0a50-4635-8b80-394e5d15da94',
+      'https://run.mocky.io/v3/53ff188d-5f59-4513-8bfb-7e2924f42795',
       requestOptions,
     )
       .then(response => response.text())
@@ -81,6 +66,15 @@ class Conservative extends Component {
       )
       .catch(error => console.log('error', error));
   };
+
+  // property = (percentage, color) => {
+  //   const {portfolioData} = this.state;
+  //   return portfolioData.data.chartData.map(item => {
+  //     let percentage: item.option;
+  //     let color: item.color;
+  //     console.log(percentage);
+  //   });
+  // };
 
   render() {
     console.log('portfolioData', this.state.portfolioData);
@@ -98,73 +92,61 @@ class Conservative extends Component {
           barStyle="light-content"
           hidden={false}
         />
-        <FlatList
-          data={portfolioData.data}
-          renderItem={({item}) => (
-            <>
-              <View style={{position: 'relative', flex: 1, marginTop: '52%'}}>
-                <StepIndicator
-                  stepCount={item.length}
-                  customStyles={indicatorStyles}
-                  currentPosition={this.state.currentPosition}
-                />
-              </View>
-              <View style={{position: 'absolute', flex: 1}}>
-                <Swiper
-                  style={{flexGrow: 1}}
-                  loop={false}
-                  index={this.state.currentPosition}
-                  autoplay={false}
-                  onIndexChanged={page => {
-                    this.setState({currentPosition: page});
-                  }}>
-                  <>
+        <View style={{position: 'relative', flex: 1, marginTop: '52%'}}>
+          <StepIndicator
+            stepCount={1}
+            customStyles={indicatorStyles}
+            currentPosition={this.state.currentPosition}
+          />
+        </View>
+        <View style={{position: 'absolute', flex: 1}}>
+          <Swiper
+            style={{flexGrow: 1}}
+            loop={false}
+            index={this.state.currentPosition}
+            autoplay={false}
+            onIndexChanged={page => {
+              this.setState({currentPosition: page});
+            }}>
+            <FlatList
+              data={portfolioData.data}
+              renderItem={({item}) => (
+                <>
+                  <Text
+                    style={{
+                      color: '#000',
+                      fontSize: 18,
+                      fontWeight: '600',
+                      textAlign: 'center',
+                      marginTop: '3%',
+                    }}>
+                    Portfolio Recommended
+                  </Text>
+                  <View style={{alignItems: 'center', marginTop: '5%'}}>
+                    <Pie
+                      radius={50}
+                      sections={[
+                        {
+                          percentage: 57,
+                          color: 'green',
+                        },
+                      ]}
+                      dividerSize={7}
+                      strokeCap={'butt'}
+                    />
+                  </View>
+                  <View style={{marginStart: '5%', marginTop: '3%'}}>
                     <Text
                       style={{
                         color: '#000',
                         fontSize: 18,
                         fontWeight: '600',
-                        textAlign: 'center',
-                        marginTop: '3%',
                       }}>
-                      Portfolio Recommended
+                      Risk Level
                     </Text>
-                    <View style={{alignItems: 'center', marginTop: '5%'}}>
-                      <Pie
-                        radius={50}
-                        sections={[
-                          {
-                            percentage: 10,
-                            color: '#C70039',
-                          },
-                          {
-                            percentage: 20,
-                            color: '#44CD40',
-                          },
-                          {
-                            percentage: 30,
-                            color: '#404FCD',
-                          },
-                          {
-                            percentage: 40,
-                            color: '#EBD22F',
-                          },
-                        ]}
-                        dividerSize={7}
-                        strokeCap={'butt'}
-                      />
-                    </View>
-                    <View style={{marginStart: '5%', marginTop: '3%'}}>
-                      <Text
-                        style={{
-                          color: '#000',
-                          fontSize: 18,
-                          fontWeight: '600',
-                        }}>
-                        Risk Level
-                      </Text>
-                    </View>
-                    <View style={{marginTop: '20%', flex: 1}}>
+                  </View>
+                  <ScrollView>
+                    <View style={{marginTop: '20%',}}>
                       <Text
                         style={{
                           color: '#1FAD9E',
@@ -179,32 +161,30 @@ class Conservative extends Component {
                           width: Dimensions.get('window').width - 25,
                           alignSelf: 'center',
                           marginTop: '5%',
-                          height: '45%',
+                          height: '75%',
                         }}>
-                        <ScrollView>
-                          {item.portfolioType.map(data => {
-                            return (
-                              <View
+                        {item.portfolioType.map(data => {
+                          return (
+                            <View
+                              style={{
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                marginTop: '5%',
+                              }}>
+                              <Text
                                 style={{
-                                  flexDirection: 'row',
-                                  justifyContent: 'space-between',
-                                  alignItems: 'center',
-                                  marginTop: '5%',
+                                  width: Dimensions.get('window').width / 1.5,
+                                  fontSize: 16,
                                 }}>
-                                <Text
-                                  style={{
-                                    width: Dimensions.get('window').width / 1.5,
-                                    fontSize: 16,
-                                  }}>
-                                  {data.name}
-                                </Text>
-                                <Text style={{fontSize: 16}}>
-                                  {data.percentage}
-                                </Text>
-                              </View>
-                            );
-                          })}
-                        </ScrollView>
+                                {data.name}
+                              </Text>
+                              <Text style={{fontSize: 16}}>
+                                {data.percentage}
+                              </Text>
+                            </View>
+                          );
+                        })}
                       </View>
                       <TouchableOpacity
                         style={{
@@ -213,11 +193,10 @@ class Conservative extends Component {
                           backgroundColor: '#1FAD9E',
                           borderRadius: 25,
                           justifyContent: 'center',
-                          position: 'relative',
                           alignSelf: 'center',
                           marginTop: '5%',
-                          bottom: 0,
-                          flex: 0,
+                            positions: 'absolute',
+                            flex: 1
                         }}
                         onPress={() => this.props.navigation.navigate('Home')}>
                         <Text
@@ -237,11 +216,8 @@ class Conservative extends Component {
                           backgroundColor: '#1FAD9E',
                           borderRadius: 25,
                           justifyContent: 'center',
-                          position: 'relative',
                           alignSelf: 'center',
                           marginTop: '5%',
-                          bottom: 0,
-                          flex: 0,
                         }}>
                         <Text
                           style={{
@@ -254,12 +230,12 @@ class Conservative extends Component {
                         </Text>
                       </TouchableOpacity>
                     </View>
-                  </>
-                </Swiper>
-              </View>
-            </>
-          )}
-        />
+                  </ScrollView>
+                </>
+              )}
+            />
+          </Swiper>
+        </View>
       </View>
     );
   }
