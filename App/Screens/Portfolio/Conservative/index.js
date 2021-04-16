@@ -52,7 +52,7 @@ class Conservative extends Component {
     var requestOptions = {
       method: 'POST',
     };
-
+    // https://run.mocky.io/v3/53ff188d-5f59-4513-8bfb-7e2924f42795
     fetch(
       'https://run.mocky.io/v3/53ff188d-5f59-4513-8bfb-7e2924f42795',
       requestOptions,
@@ -92,61 +92,61 @@ class Conservative extends Component {
           barStyle="light-content"
           hidden={false}
         />
-        <View style={{position: 'relative', flex: 1, marginTop: '52%'}}>
-          <StepIndicator
-            stepCount={1}
-            customStyles={indicatorStyles}
-            currentPosition={this.state.currentPosition}
-          />
-        </View>
-        <View style={{position: 'absolute', flex: 1}}>
-          <Swiper
-            style={{flexGrow: 1}}
-            loop={false}
-            index={this.state.currentPosition}
-            autoplay={false}
-            onIndexChanged={page => {
-              this.setState({currentPosition: page});
-            }}>
-            <FlatList
-              data={portfolioData.data}
-              renderItem={({item}) => (
-                <>
-                  <Text
-                    style={{
-                      color: '#000',
-                      fontSize: 18,
-                      fontWeight: '600',
-                      textAlign: 'center',
-                      marginTop: '3%',
-                    }}>
-                    Portfolio Recommended
-                  </Text>
-                  <View style={{alignItems: 'center', marginTop: '5%'}}>
-                    <Pie
-                      radius={50}
-                      sections={[
-                        {
-                          percentage: 57,
-                          color: 'green',
-                        },
-                      ]}
-                      dividerSize={7}
-                      strokeCap={'butt'}
-                    />
-                  </View>
-                  <View style={{marginStart: '5%', marginTop: '3%'}}>
+        <ScrollView>
+          <View style={{position: 'relative', marginTop: '52%'}}>
+            <StepIndicator
+              stepCount={1}
+              customStyles={indicatorStyles}
+              currentPosition={this.state.currentPosition}
+            />
+          </View>
+          <View style={{position: 'absolute', flex: 1}}>
+            <Swiper
+              style={{flexGrow: 1}}
+              loop={false}
+              index={this.state.currentPosition}
+              autoplay={false}
+              onIndexChanged={page => {
+                this.setState({currentPosition: page});
+              }}>
+              <FlatList
+                data={portfolioData.data}
+                renderItem={({item}) => (
+                  <>
                     <Text
                       style={{
                         color: '#000',
                         fontSize: 18,
                         fontWeight: '600',
+                        textAlign: 'center',
+                        marginTop: '3%',
                       }}>
-                      Risk Level
+                      Portfolio Recommended
                     </Text>
-                  </View>
-                  <ScrollView>
-                    <View style={{marginTop: '20%',}}>
+                    <View style={{alignItems: 'center', marginTop: '5%'}}>
+                      <Pie
+                        radius={50}
+                        sections={[
+                          {
+                            percentage: 57,
+                            color: 'green',
+                          },
+                        ]}
+                        dividerSize={7}
+                        strokeCap={'butt'}
+                      />
+                    </View>
+                    <View style={{marginStart: '5%', marginTop: '3%'}}>
+                      <Text
+                        style={{
+                          color: '#000',
+                          fontSize: 18,
+                          fontWeight: '600',
+                        }}>
+                        Risk Level
+                      </Text>
+                    </View>
+                    <View style={{marginTop: '20%'}}>
                       <Text
                         style={{
                           color: '#1FAD9E',
@@ -161,7 +161,7 @@ class Conservative extends Component {
                           width: Dimensions.get('window').width - 25,
                           alignSelf: 'center',
                           marginTop: '5%',
-                          height: '75%',
+                          height: '55%',
                         }}>
                         {item.portfolioType.map(data => {
                           return (
@@ -195,8 +195,6 @@ class Conservative extends Component {
                           justifyContent: 'center',
                           alignSelf: 'center',
                           marginTop: '5%',
-                            positions: 'absolute',
-                            flex: 1
                         }}
                         onPress={() => this.props.navigation.navigate('Home')}>
                         <Text
@@ -230,12 +228,12 @@ class Conservative extends Component {
                         </Text>
                       </TouchableOpacity>
                     </View>
-                  </ScrollView>
-                </>
-              )}
-            />
-          </Swiper>
-        </View>
+                  </>
+                )}
+              />
+            </Swiper>
+          </View>
+        </ScrollView>
       </View>
     );
   }

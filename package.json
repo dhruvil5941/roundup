@@ -19,6 +19,7 @@
     "react": "17.0.1",
     "react-minimal-pie-chart": "^8.2.0",
     "react-native": "0.64.0",
+    "react-native-fast-image": "^8.3.4",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-pie": "^1.1.2",
     "react-native-pie-chart": "^1.0.13",
