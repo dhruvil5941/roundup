@@ -45,7 +45,7 @@ class OnboardingScreenOne extends Component {
         <View style={styles.bottomTray} />
         <TouchableOpacity
           style={styles.bottomTrayBtn}
-          onPress={() => this.props.navigation.navigate('BlogDetails')}>
+          onPress={() => this.props.navigation.navigate('OnboardingScreenTwo')}>
           <Text style={styles.bottomTrayBtnText}>NEXT</Text>
         </TouchableOpacity>
       </View>

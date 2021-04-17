@@ -1,10 +1,5 @@
 import React, {Component} from 'react';
-import {
-  TouchableOpacity,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import {TouchableOpacity, View, Text, StatusBar} from 'react-native';
 import styles from './styles';
 import * as colors from '../../assets/colors';
 
@@ -22,12 +17,12 @@ class Landing extends Component {
         <Text style={styles.mainHeadingText}>RoundUp</Text>
         <TouchableOpacity
           style={styles.logInBtn}
-          onPress={() => this.props.navigation.navigate('Welcome')}>
+          onPress={() => this.props.navigation.navigate('OnboardingScreenOne')}>
           <Text style={styles.logInBtnText}>LOG IN</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.signUpBtn}
-          onPress={() => this.props.navigation.navigate('Welcome')}>
+          onPress={() => this.props.navigation.navigate('OnboardingScreenOne')}>
           <Text style={styles.signUpBtnText}>CREATE AN ACCOUNT</Text>
         </TouchableOpacity>
       </View>

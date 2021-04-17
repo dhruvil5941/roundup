@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
-import NavigatorStack from './navigation/NavigationStack';
-import {NavigationContainer} from '@react-navigation/native';
+import NavigatorStack from './navigation/StackNavigation';
 class App extends Component {
   render() {
     return (
-      <NavigationContainer>
         <NavigatorStack />
-      </NavigationContainer>
     );
   }
 }

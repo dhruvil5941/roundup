@@ -5,7 +5,7 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFF',
   },
-  stepperView: {position: 'relative', marginTop: '52%'},
+  stepperView: {marginTop: '5%' },
   swiperView: {position: 'absolute', flex: 1},
   titleText: {
     color: '#000',
@@ -30,7 +30,6 @@ export default StyleSheet.create({
     width: Dimensions.get('window').width - 25,
     alignSelf: 'center',
     marginTop: '5%',
-    height: '55%',
   },
   portfolioTypesList: {
     flexDirection: 'row',
@@ -44,13 +43,12 @@ export default StyleSheet.create({
   },
   buttonView: {
     width: Dimensions.get('window').width / 1.2,
-    height: '7%',
+    height: 35,
     backgroundColor: '#1FAD9E',
     borderRadius: 25,
     justifyContent: 'center',
     alignSelf: 'center',
     marginTop: '5%',
-    flex: 1,
   },
   buttonText: {
     textAlign: 'center',

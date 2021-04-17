@@ -12,7 +12,8 @@ class TabBarIcons extends Component {
         style={styles.iconStyle}
         source={this.props.icon}
         resizeMode={'contain'}
-        tintColor={this.props.focused ? 'green' : '#808080'}
+        tintColor={this.props.focused ? '#76d0e7a1' : '#808080'}
+        // activeBackgroundColor={this.props.focused ? '#76d0e7a1' : '#FFF'}
       />
     );
   }

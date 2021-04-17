@@ -1,19 +1,114 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import BlogDetails from '../Screens/WelcomeScreen/BlogDetails';
-import Blogone from '../Screens/WelcomeScreen/Blogone';
-import createaccount from '../Screens/WelcomeScreen/createaccount';
 import Userfinancesquestion from '../Screens/UserFinancesQuestion';
 import Conservative from '../Screens/Portfolio/Conservative';
-import Risky from '../Screens/Portfolio/Risky';
 import Home from '../Screens/Home';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import TabBarIcons from '../Components/TabBarIcons';
 import Images from '../theme/Images';
+import Landing from '../Screens/LandingScreen';
+import OnboardingScreenOne from '../Screens/OnboardingScreen/OnboardingScreenOne';
+import OnboardingScreenTwo from '../Screens/OnboardingScreen/OnboardingScreenTwo';
+import SettingScreen from '../Screens/SettingScreen';
+import ResourcesScreen from '../Screens/ResourcesScreen';
+import ContributionsScreen from '../Screens/ContributionScreen';
+import TransactionsScreen from '../Screens/TransactionsScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const SettingsStack = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerTitleAlign: 'center',
+        headerStyle: {
+          backgroundColor: '#1FAD9E',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          fontSize: 23,
+        },
+      }}>
+      <Stack.Screen
+        name={'SettingScreen'}
+        component={SettingScreen}
+        options={{title: 'RoundUp'}}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const ContributionsStack = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerTitleAlign: 'center',
+        headerStyle: {
+          backgroundColor: '#1FAD9E',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          fontSize: 23,
+        },
+      }}>
+      <Stack.Screen
+        name={'ContributionsScreen'}
+        component={ContributionsScreen}
+        options={{title: 'RoundUp'}}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const TransactionsStack = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerTitleAlign: 'center',
+        headerStyle: {
+          backgroundColor: '#1FAD9E',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          fontSize: 23,
+        },
+      }}>
+      <Stack.Screen
+        name={'TransactionsScreen'}
+        component={TransactionsScreen}
+        options={{title: 'RoundUp'}}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const ResourcesStack = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerTitleAlign: 'center',
+        headerStyle: {
+          backgroundColor: '#1FAD9E',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          fontSize: 23,
+        },
+      }}>
+      <Stack.Screen
+        name={'ResourcesScreen'}
+        component={ResourcesScreen}
+        options={{title: 'RoundUp'}}
+      />
+    </Stack.Navigator>
+  );
+};
 
 const HomeStack = () => {
   return (
@@ -38,12 +133,11 @@ const HomeStack = () => {
   );
 };
 
-const tabBar = () => {
+const TabNavigation = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        activeTintColor: '#ab1f1f',
-        visible: false,
+        style: {height: 60},
       }}>
       <Tab.Screen
         name="Home"
@@ -51,7 +145,47 @@ const tabBar = () => {
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({focused}) => (
-            <TabBarIcons icon={Images.Onboarding} focused={focused} />
+            <TabBarIcons icon={Images.Tab_Home} focused={focused} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Resources"
+        component={ResourcesStack}
+        options={{
+          tabBarLabel: 'Resources',
+          tabBarIcon: ({focused}) => (
+            <TabBarIcons icon={Images.Resources} focused={focused} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Transactions"
+        component={TransactionsStack}
+        options={{
+          tabBarLabel: 'Transactions',
+          tabBarIcon: ({focused}) => (
+            <TabBarIcons icon={Images.Transactions} focused={focused} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Contributions"
+        component={ContributionsStack}
+        options={{
+          tabBarLabel: 'Contributions',
+          tabBarIcon: ({focused}) => (
+            <TabBarIcons icon={Images.Contributions} focused={focused} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={SettingsStack}
+        options={{
+          tabBarLabel: 'Settings',
+          tabBarIcon: ({focused}) => (
+            <TabBarIcons icon={Images.Setting} focused={focused} />
           ),
         }}
       />
@@ -61,9 +195,9 @@ const tabBar = () => {
 
 function NavigationStack(props) {
   return (
-    <NavigationContainer independent={true} initialRouteName="welcomeStack">
+    <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="createaccount"
+        initialRouteName="Landing"
         screenOptions={{
           headerTitleAlign: 'center',
           headerStyle: {
@@ -76,39 +210,36 @@ function NavigationStack(props) {
           },
         }}>
         <Stack.Screen
-          options={{headerShown: false, gestureEnabled: false}}
-          name="Risky"
-          component={Risky}
-        />
-        <Stack.Screen
           options={{title: 'RoundUp', gestureEnabled: false}}
-          name={'Conservative'}
+          name="Conservative"
           component={Conservative}
         />
         <Stack.Screen
-          options={{title: 'RoundUp', gestureEnabled: false}}
-          name={'Userfinancesquestion'}
+          name="Landing"
+          component={Landing}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="OnboardingScreenOne"
+          component={OnboardingScreenOne}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="OnboardingScreenTwo"
+          component={OnboardingScreenTwo}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Userfinancesquestion"
           component={Userfinancesquestion}
+          options={{
+            title: 'RoundUp',
+          }}
         />
         <Stack.Screen
           options={{headerShown: false, gestureEnabled: false}}
-          name="createaccount"
-          component={createaccount}
-        />
-        <Stack.Screen
-          options={{headerShown: false, gestureEnabled: false}}
-          name="Blogone"
-          component={Blogone}
-        />
-        <Stack.Screen
-          options={{headerShown: false, gestureEnabled: false}}
-          name="BlogDetails"
-          component={BlogDetails}
-        />
-        <Stack.Screen
-          options={{headerShown: false, gestureEnabled: false}}
-          name="tabBar"
-          component={tabBar}
+          name="Home"
+          component={TabNavigation}
         />
       </Stack.Navigator>
     </NavigationContainer>

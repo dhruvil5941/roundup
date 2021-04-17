@@ -144,7 +144,7 @@ class Userfinancesquestion extends Component {
         {/*</ScrollView>*/}
         <TouchableOpacity
           style={styles.BtnView}
-          onPress={() => this.props.navigation.navigate('Landing')}>
+          onPress={() => this.props.navigation.navigate('Conservative')}>
           <Text style={styles.BtnText}>NEXT</Text>
         </TouchableOpacity>
       </View>
