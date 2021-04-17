@@ -164,9 +164,7 @@ class Userfinancesquestion extends Component {
             bottom: '5%',
             alignSelf: 'center',
           }}
-          onPress={() =>
-            this.props.navigation.navigate('Home')
-          }>
+          onPress={() => this.props.navigation.navigate('Conservative')}>
           <Text style={{textAlign: 'center', fontWeight: '700', color: '#FFF'}}>
             NEXT
           </Text>

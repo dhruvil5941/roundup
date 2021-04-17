@@ -15,7 +15,7 @@ import Images from '../theme/Images';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const HomeStack = params => {
+const HomeStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -38,84 +38,79 @@ const HomeStack = params => {
   );
 };
 
-const welcomeStack = () => {
+const tabBar = () => {
   return (
-    <Stack.Navigator
-      initialRouteName="createaccount"
-      screenOptions={{
-        headerTitleAlign: 'center',
-        headerStyle: {
-          backgroundColor: '#1FAD9E',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-          fontSize: 23,
-        },
+    <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: '#ab1f1f',
+        visible: false,
       }}>
-      <Stack.Screen
-        options={{headerShown: false, gestureEnabled: false}}
-        name="Risky"
-        component={Risky}
+      <Tab.Screen
+        name="Home"
+        component={HomeStack}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({focused}) => (
+            <TabBarIcons icon={Images.Onboarding} focused={focused} />
+          ),
+        }}
       />
-      <Stack.Screen
-        options={{title: 'RoundUp', gestureEnabled: false}}
-        name={'Conservative'}
-        component={Conservative}
-      />
-      <Stack.Screen
-        options={{title: 'RoundUp', gestureEnabled: false}}
-        name={'Userfinancesquestion'}
-        component={Userfinancesquestion}
-      />
-      <Stack.Screen
-        options={{headerShown: false, gestureEnabled: false}}
-        name="createaccount"
-        component={createaccount}
-      />
-      <Stack.Screen
-        options={{headerShown: false, gestureEnabled: false}}
-        name="Blogone"
-        component={Blogone}
-      />
-      <Stack.Screen
-        options={{headerShown: false, gestureEnabled: false}}
-        name="BlogDetails"
-        component={BlogDetails}
-      />
-    </Stack.Navigator>
+    </Tab.Navigator>
   );
 };
 
 function NavigationStack(props) {
   return (
     <NavigationContainer independent={true} initialRouteName="welcomeStack">
-      <Tab.Navigator
-        tabBarOptions={{
-          activeTintColor: '#ab1f1f',
-          visible: false,
+      <Stack.Navigator
+        initialRouteName="createaccount"
+        screenOptions={{
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#1FAD9E',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            fontSize: 23,
+          },
         }}>
-        <Tab.Screen
-          name="welcomeStack"
-          component={welcomeStack}
-          options={{
-            tabBarVisible: false,
-            tabBarIcon: ({focused}) => (
-              <TabBarIcons icon={Images.Onboarding} focused={focused} />
-            ),
-          }}
+        <Stack.Screen
+          options={{headerShown: false, gestureEnabled: false}}
+          name="Risky"
+          component={Risky}
         />
-        <Tab.Screen
-          name="Home"
-          component={HomeStack}
-          options={{
-            tabBarLabel: 'Home',
-            tabBarIcon: ({focused}) => (
-              <TabBarIcons icon={Images.Onboarding} focused={focused} />
-            ),
-          }}
+        <Stack.Screen
+          options={{title: 'RoundUp', gestureEnabled: false}}
+          name={'Conservative'}
+          component={Conservative}
         />
-      </Tab.Navigator>
+        <Stack.Screen
+          options={{title: 'RoundUp', gestureEnabled: false}}
+          name={'Userfinancesquestion'}
+          component={Userfinancesquestion}
+        />
+        <Stack.Screen
+          options={{headerShown: false, gestureEnabled: false}}
+          name="createaccount"
+          component={createaccount}
+        />
+        <Stack.Screen
+          options={{headerShown: false, gestureEnabled: false}}
+          name="Blogone"
+          component={Blogone}
+        />
+        <Stack.Screen
+          options={{headerShown: false, gestureEnabled: false}}
+          name="BlogDetails"
+          component={BlogDetails}
+        />
+        <Stack.Screen
+          options={{headerShown: false, gestureEnabled: false}}
+          name="tabBar"
+          component={tabBar}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

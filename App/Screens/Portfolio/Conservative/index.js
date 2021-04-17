@@ -81,8 +81,7 @@ class Conservative extends Component {
     console.log('portfolioData', this.state.portfolioData);
     const {portfolioData} = this.state;
     return (
-      <View
-        style={styles.mainView}>
+      <View style={styles.mainView}>
         <StatusBar
           animated={true}
           backgroundColor="#1FAD9E"
@@ -90,94 +89,80 @@ class Conservative extends Component {
           barStyle="light-content"
           hidden={false}
         />
-        <ScrollView>
-          <View style={styles.stepperView}>
-            <StepIndicator
-              stepCount={1}
-              customStyles={indicatorStyles}
-              currentPosition={this.state.currentPosition}
-            />
-          </View>
-          <View style={styles.swiperView}>
-            <Swiper
-              style={{flexGrow: 1}}
-              loop={false}
-              index={this.state.currentPosition}
-              autoplay={false}
-              onIndexChanged={page => {
-                this.setState({currentPosition: page});
-              }}>
-              <FlatList
-                data={portfolioData.data}
-                renderItem={({item}) => (
-                  <>
-                    <Text
-                      style={styles.titleText}>
-                      Portfolio Recommended
+        <View style={styles.stepperView}>
+          <StepIndicator
+            stepCount={1}
+            customStyles={indicatorStyles}
+            currentPosition={this.state.currentPosition}
+          />
+        </View>
+        <View style={styles.swiperView}>
+          <Swiper
+            style={{flexGrow: 1}}
+            loop={false}
+            index={this.state.currentPosition}
+            autoplay={false}
+            onIndexChanged={page => {
+              this.setState({currentPosition: page});
+            }}>
+            <FlatList
+              data={portfolioData.data}
+              renderItem={({item}) => (
+                <ScrollView>
+                  <Text style={styles.titleText}>Portfolio Recommended</Text>
+                  <View style={styles.pieView}>
+                    <Pie
+                      radius={50}
+                      sections={[
+                        {
+                          percentage: 57,
+                          color: 'green',
+                        },
+                      ]}
+                      dividerSize={7}
+                      strokeCap={'butt'}
+                    />
+                  </View>
+                  <View style={{marginStart: '5%', marginTop: '3%'}}>
+                    <Text style={styles.riskText}>Risk Level</Text>
+                  </View>
+                  <View style={{marginTop: '20%'}}>
+                    <Text style={styles.portfolioName}>
+                      {item.portfolioName}
                     </Text>
-                    <View style={styles.pieView}>
-                      <Pie
-                        radius={50}
-                        sections={[
-                          {
-                            percentage: 57,
-                            color: 'green',
-                          },
-                        ]}
-                        dividerSize={7}
-                        strokeCap={'butt'}
-                      />
+                    <View style={styles.portfolioTypes}>
+                      {item.portfolioType.map(data => {
+                        return (
+                          <View style={styles.portfolioTypesList}>
+                            <Text style={styles.listName}>{data.name}</Text>
+                            <Text style={{fontSize: 16}}>
+                              {data.percentage}
+                            </Text>
+                          </View>
+                        );
+                      })}
                     </View>
-                    <View style={{marginStart: '5%', marginTop: '3%'}}>
-                      <Text
-                        style={styles.riskText}>
-                        Risk Level
-                      </Text>
-                    </View>
-                    <View style={{marginTop: '20%'}}>
-                      <Text
-                        style={styles.portfolioName}>
-                        {item.portfolioName}
-                      </Text>
-                      <View
-                        style={styles.portfolioTypes}>
-                        {item.portfolioType.map(data => {
-                          return (
-                            <View
-                              style={styles.portfolioTypesList}>
-                              <Text
-                                style={styles.listName}>
-                                {data.name}
-                              </Text>
-                              <Text style={{fontSize: 16}}>
-                                {data.percentage}
-                              </Text>
-                            </View>
-                          );
-                        })}
-                      </View>
+
+                    <View style={{ position: 'relative', borderWidth: 1, marginTop: '5%' }}>
                       <TouchableOpacity
                         style={styles.buttonView}
-                        onPress={() => this.props.navigation.navigate('Home')}>
-                        <Text
-                          style={styles.buttonText}>
+                        onPress={() => this.props.navigation.navigate('tabBar')}>
+                        <Text style={styles.buttonText}>
                           Choose recommended portfolio
                         </Text>
                       </TouchableOpacity>
-                      <TouchableOpacity
-                        style={styles.buttonView}>
-                        <Text
-                          style={styles.buttonText}>
+                      <TouchableOpacity style={styles.buttonView}>
+                        <Text style={styles.buttonText}>
                           Choose another portfolio
                         </Text>
                       </TouchableOpacity>
                     </View>
-                  </>
-                )}
-              />
-            </Swiper>
-          </View>
-        </ScrollView>
+                  </View>
+                </ScrollView>
+              )}
+            />
+          </Swiper>
+        </View>
       </View>
     );
   }
