@@ -11,6 +11,7 @@ import {
 import Pie from 'react-native-pie';
 import StepIndicator from 'react-native-step-indicator';
 import Swiper from 'react-native-swiper';
+import styles from './styles';
 
 const indicatorStyles = {
   stepIndicatorSize: 25,
@@ -81,10 +82,7 @@ class Conservative extends Component {
     const {portfolioData} = this.state;
     return (
       <View
-        style={{
-          flex: 1,
-          backgroundColor: '#FFF',
-        }}>
+        style={styles.mainView}>
         <StatusBar
           animated={true}
           backgroundColor="#1FAD9E"
@@ -93,14 +91,14 @@ class Conservative extends Component {
           hidden={false}
         />
         <ScrollView>
-          <View style={{position: 'relative', marginTop: '52%'}}>
+          <View style={styles.stepperView}>
             <StepIndicator
               stepCount={1}
               customStyles={indicatorStyles}
               currentPosition={this.state.currentPosition}
             />
           </View>
-          <View style={{position: 'absolute', flex: 1}}>
+          <View style={styles.swiperView}>
             <Swiper
               style={{flexGrow: 1}}
               loop={false}
@@ -114,16 +112,10 @@ class Conservative extends Component {
                 renderItem={({item}) => (
                   <>
                     <Text
-                      style={{
-                        color: '#000',
-                        fontSize: 18,
-                        fontWeight: '600',
-                        textAlign: 'center',
-                        marginTop: '3%',
-                      }}>
+                      style={styles.titleText}>
                       Portfolio Recommended
                     </Text>
-                    <View style={{alignItems: 'center', marginTop: '5%'}}>
+                    <View style={styles.pieView}>
                       <Pie
                         radius={50}
                         sections={[
@@ -138,45 +130,23 @@ class Conservative extends Component {
                     </View>
                     <View style={{marginStart: '5%', marginTop: '3%'}}>
                       <Text
-                        style={{
-                          color: '#000',
-                          fontSize: 18,
-                          fontWeight: '600',
-                        }}>
+                        style={styles.riskText}>
                         Risk Level
                       </Text>
                     </View>
                     <View style={{marginTop: '20%'}}>
                       <Text
-                        style={{
-                          color: '#1FAD9E',
-                          fontSize: 20,
-                          fontWeight: 'bold',
-                          textAlign: 'center',
-                        }}>
+                        style={styles.portfolioName}>
                         {item.portfolioName}
                       </Text>
                       <View
-                        style={{
-                          width: Dimensions.get('window').width - 25,
-                          alignSelf: 'center',
-                          marginTop: '5%',
-                          height: '55%',
-                        }}>
+                        style={styles.portfolioTypes}>
                         {item.portfolioType.map(data => {
                           return (
                             <View
-                              style={{
-                                flexDirection: 'row',
-                                justifyContent: 'space-between',
-                                alignItems: 'center',
-                                marginTop: '5%',
-                              }}>
+                              style={styles.portfolioTypesList}>
                               <Text
-                                style={{
-                                  width: Dimensions.get('window').width / 1.5,
-                                  fontSize: 16,
-                                }}>
+                                style={styles.listName}>
                                 {data.name}
                               </Text>
                               <Text style={{fontSize: 16}}>
@@ -187,43 +157,17 @@ class Conservative extends Component {
                         })}
                       </View>
                       <TouchableOpacity
-                        style={{
-                          width: Dimensions.get('window').width / 1.2,
-                          height: '7%',
-                          backgroundColor: '#1FAD9E',
-                          borderRadius: 25,
-                          justifyContent: 'center',
-                          alignSelf: 'center',
-                          marginTop: '5%',
-                        }}
+                        style={styles.buttonView}
                         onPress={() => this.props.navigation.navigate('Home')}>
                         <Text
-                          style={{
-                            textAlign: 'center',
-                            fontWeight: '700',
-                            color: '#FFF',
-                            fontSize: 16,
-                          }}>
+                          style={styles.buttonText}>
                           Choose recommended portfolio
                         </Text>
                       </TouchableOpacity>
                       <TouchableOpacity
-                        style={{
-                          width: Dimensions.get('window').width / 1.2,
-                          height: '7%',
-                          backgroundColor: '#1FAD9E',
-                          borderRadius: 25,
-                          justifyContent: 'center',
-                          alignSelf: 'center',
-                          marginTop: '5%',
-                        }}>
+                        style={styles.buttonView}>
                         <Text
-                          style={{
-                            textAlign: 'center',
-                            fontWeight: '700',
-                            color: '#FFF',
-                            fontSize: 16,
-                          }}>
+                          style={styles.buttonText}>
                           Choose another portfolio
                         </Text>
                       </TouchableOpacity>

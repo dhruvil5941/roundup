@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {
-  TouchableOpacity,
   View,
   Text,
   Dimensions,
@@ -9,6 +8,7 @@ import {
   FlatList,
 } from 'react-native';
 import Pie from 'react-native-pie';
+import styles from './styles';
 
 class Home extends Component {
   constructor(props) {
@@ -44,11 +44,7 @@ class Home extends Component {
     console.log('HOME', this.state.homeData);
     const {homeData} = this.state;
     return (
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: '#FFF',
-        }}>
+      <View style={styles.mainView}>
         <StatusBar
           animated={true}
           backgroundColor="#1FAD9E"
@@ -57,85 +53,18 @@ class Home extends Component {
           hidden={false}
         />
         <ScrollView>
-          <Text
-            style={{
-              color: '#1FAD9E',
-              fontSize: 13,
-              fontWeight: '600',
-              marginTop: '3%',
-              textAlign: 'center',
-            }}>
-            Your Account Value
-          </Text>
-          <Text
-            style={{
-              color: 'green',
-              fontSize: 25,
-              fontWeight: 'bold',
-              marginTop: '3%',
-              textAlign: 'center',
-            }}>
-            ${homeData.accountValue}
-          </Text>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-around',
-              marginTop: '3%',
-              width: Dimensions.get('window').width / 1.5,
-              alignSelf: 'center',
-            }}>
-            <Text
-              style={{
-                color: 'green',
-                fontSize: 13,
-                fontWeight: '600',
-                textAlign: 'center',
-              }}>
-              Total Gain :
-            </Text>
-            <Text
-              style={{
-                color: 'green',
-                fontSize: 13,
-                fontWeight: '600',
-              }}>
-              {homeData.totalGain}
-            </Text>
+          <Text style={styles.accountValue}>Your Account Value</Text>
+          <Text style={styles.totalAccountValue}>${homeData.accountValue}</Text>
+          <View style={styles.totalGainView}>
+            <Text style={styles.totalGain}>Total Gain :</Text>
+            <Text style={styles.totalGainValue}>{homeData.totalGain}</Text>
           </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-around',
-              marginTop: '5%',
-              width: Dimensions.get('window').width - 25,
-              alignSelf: 'center',
-            }}>
+          <View style={styles.portfolioView}>
             <View style={{flexDirection: 'column'}}>
               <Text>Your Portfolio</Text>
-              <Text
-                style={{
-                  color: '#1FAD9E',
-                  fontSize: 15,
-                  fontWeight: '600',
-                  marginTop: '1%',
-                  textAlign: 'center',
-                }}>
-                Moderately Conservation
-              </Text>
-              <View
-                style={{
-                  width: '70%',
-                  height: 20,
-                  backgroundColor: '#1FAD9E',
-                  marginTop: '3%',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: 10,
-                }}>
-                <Text style={{fontSize: 12, color: '#FFF', fontWeight: '600'}}>
-                  Portfolio
-                </Text>
+              <Text style={styles.textModerately}>Moderately Conservation</Text>
+              <View style={styles.portfolioIndicatorView}>
+                <Text style={styles.portfolioIndicatorText}>Portfolio</Text>
               </View>
             </View>
             <View>
@@ -164,15 +93,7 @@ class Home extends Component {
               />
             </View>
           </View>
-          <View
-            style={{
-              width: Dimensions.get('window').width - 70,
-              alignSelf: 'center',
-              borderWidth: 0.3,
-              borderColor: '#808080',
-              marginTop: '5%',
-            }}
-          />
+          <View style={styles.divider} />
           <View
             style={{
               flexDirection: 'row',
@@ -181,105 +102,27 @@ class Home extends Component {
               width: Dimensions.get('window').width - 70,
               alignSelf: 'center',
             }}>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 14,
-                fontWeight: 'bold',
-                textAlign: 'center',
-              }}>
-              Recurring Contribution :
-            </Text>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 13,
-                fontWeight: '500',
-              }}>
-              +$124.25 Monthly
-            </Text>
+            <Text style={styles.recurringView}>Recurring Contribution :</Text>
+            <Text style={styles.monthlyText}>+$124.25 Monthly</Text>
           </View>
-          <View
-            style={{
-              width: Dimensions.get('window').width / 1.8,
-              alignSelf: 'flex-start',
-              height: 20,
-              backgroundColor: '#1FAD9E',
-              marginTop: '3%',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: 10,
-              marginStart: '8%',
-            }}>
-            <Text style={{fontSize: 12, color: '#FFF', fontWeight: '600'}}>
+          <View style={styles.settingsView}>
+            <Text style={styles.settingsText}>
               Recurring Contribution Settings
             </Text>
           </View>
-          <View
-            style={{
-              width: Dimensions.get('window').width - 70,
-              alignSelf: 'center',
-              borderWidth: 0.3,
-              borderColor: '#808080',
-              marginTop: '5%',
-            }}
-          />
-          <Text
-            style={{
-              fontSize: 15,
-              color: '#000',
-              fontWeight: 'bold',
-              marginTop: '2%',
-              marginStart: '9%',
-            }}>
-            Recurring Contribution
-          </Text>
+          <View style={styles.divider} />
+          <Text style={styles.contributionText}>Recurring Contribution</Text>
           <FlatList
             data={homeData.contributions}
             renderItem={({item}) => (
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  marginTop: '3%',
-                  width: Dimensions.get('window').width - 70,
-                  alignSelf: 'center',
-                }}>
-                <Text
-                  style={{
-                    color: '#000',
-                    fontSize: 14,
-                    fontWeight: 'bold',
-                    textAlign: 'center',
-                  }}>
-                  {item.name}
-                </Text>
-                <Text
-                  style={{
-                    color: '#000',
-                    fontSize: 13,
-                    fontWeight: '500',
-                  }}>
-                  +{item.amount}
-                </Text>
+              <View style={styles.stockListView}>
+                <Text style={styles.stockName}>{item.name}</Text>
+                <Text style={styles.stockPrice}>+{item.amount}</Text>
               </View>
             )}
           />
-          <View
-            style={{
-              width: Dimensions.get('window').width / 1.8,
-              alignSelf: 'flex-start',
-              height: 20,
-              backgroundColor: '#1FAD9E',
-              marginTop: '3%',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: 10,
-              marginStart: '8%',
-            }}>
-            <Text style={{fontSize: 12, color: '#FFF', fontWeight: '600'}}>
-              See More Contribution
-            </Text>
+          <View style={styles.seeMore}>
+            <Text style={styles.seeMoreText}>See More Contribution</Text>
           </View>
         </ScrollView>
       </View>
