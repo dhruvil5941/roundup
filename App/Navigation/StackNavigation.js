@@ -136,8 +136,19 @@ const HomeStack = () => {
 const TabNavigation = () => {
   return (
     <Tab.Navigator
+      initialRouteName="Home"
       tabBarOptions={{
-        style: {height: 60},
+        activeTintColor: '#000',
+        visible: true,
+        activeBackgroundColor: '#76d0e7a1',
+        style: {
+          height: 60,
+          backgroundColor: '#FFF',
+          borderTopWidth: 0,
+          borderTopColor: '#FFF',
+          elevation: 0,
+        },
+        tabStyle: {borderRadius: 24},
       }}>
       <Tab.Screen
         name="Home"
@@ -184,9 +195,7 @@ const TabNavigation = () => {
         component={SettingsStack}
         options={{
           tabBarLabel: 'Settings',
-          tabBarIcon: ({focused}) => (
-            <TabBarIcons icon={Images.Setting} focused={focused} />
-          ),
+          tabBarIcon: ({focused}) => <TabBarIcons icon={Images.Setting} />,
         }}
       />
     </Tab.Navigator>
@@ -195,7 +204,7 @@ const TabNavigation = () => {
 
 function NavigationStack(props) {
   return (
-    <NavigationContainer>
+    <NavigationContainer independent={true} initialRouteName="Landing">
       <Stack.Navigator
         initialRouteName="Landing"
         screenOptions={{
