@@ -9,13 +9,13 @@ export default StyleSheet.create({
     color: '#1FAD9E',
     fontSize: 13,
     fontWeight: '600',
-    marginTop: '3%',
+    marginTop: '5%',
     textAlign: 'center',
   },
   totalAccountValue: {
     color: '#3EA070',
-    fontSize: 25,
-    fontWeight: 'bold',
+    fontSize: 42,
+    fontWeight: '800',
     marginTop: '3%',
     textAlign: 'center',
   },
@@ -46,9 +46,9 @@ export default StyleSheet.create({
   },
   textModerately: {
     color: '#1FAD9E',
-    fontSize: 15,
-    fontWeight: '600',
-    marginTop: '1%',
+    fontSize: 16,
+    fontWeight: '700',
+    marginTop: '5%',
     textAlign: 'center',
   },
   portfolioIndicatorView: {
@@ -60,7 +60,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
   },
-  portfolioIndicatorText: {fontSize: 12, color: '#000', fontWeight: '600'},
+  portfolioIndicatorText: {fontSize: 12, color: '#000'},
   divider: {
     width: Dimensions.get('window').width - 70,
     alignSelf: 'center',
@@ -76,8 +76,7 @@ export default StyleSheet.create({
   },
   monthlyText: {
     color: '#000',
-    fontSize: 13,
-    fontWeight: '500',
+    fontSize: 14
   },
   settingsView: {
     width: Dimensions.get('window').width / 1.8,
@@ -90,7 +89,7 @@ export default StyleSheet.create({
     borderRadius: 10,
     marginStart: '8%',
   },
-  settingsText: {fontSize: 12, color: '#000', fontWeight: '600'},
+  settingsText: {fontSize: 12, color: '#000'},
   stockListView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -108,13 +107,11 @@ export default StyleSheet.create({
   stockName: {
     color: '#000',
     fontSize: 14,
-    fontWeight: 'bold',
     textAlign: 'center',
   },
   stockPrice: {
     color: '#000',
-    fontSize: 13,
-    fontWeight: '500',
+    fontSize: 14,
   },
   seeMore: {
     width: Dimensions.get('window').width / 1.8,
@@ -127,5 +124,5 @@ export default StyleSheet.create({
     borderRadius: 10,
     marginStart: '8%',
   },
-  seeMoreText: {fontSize: 12, color: '#000', fontWeight: '600'},
+  seeMoreText: {fontSize: 12, color: '#000'},
 });

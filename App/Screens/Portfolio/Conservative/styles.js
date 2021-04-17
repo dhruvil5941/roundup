@@ -10,7 +10,6 @@ export default StyleSheet.create({
   titleText: {
     color: '#000',
     fontSize: 18,
-    fontWeight: '600',
     textAlign: 'center',
     marginTop: '3%',
   },
@@ -19,6 +18,13 @@ export default StyleSheet.create({
     color: '#000',
     fontSize: 18,
     fontWeight: '600',
+  },
+  middleText: {
+    color: '#1FAD9E',
+    fontSize: 18,
+    fontWeight: '600',
+    textAlign: 'center',
+    marginTop: '3%',
   },
   portfolioName: {
     color: '#1FAD9E',

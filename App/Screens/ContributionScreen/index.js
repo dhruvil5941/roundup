@@ -5,7 +5,7 @@ class ContributionsScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>This Screen is under process</Text>
+        <Text style={styles.text}>Coming Soon</Text>
       </View>
     );
   }

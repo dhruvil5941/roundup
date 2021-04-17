@@ -57,8 +57,9 @@ class Conservative extends Component {
       method: 'POST',
     };
     // https://run.mocky.io/v3/53ff188d-5f59-4513-8bfb-7e2924f42795
+    // https://run.mocky.io/v3/26d46b38-35b7-42e9-b4de-3cb07b1fc210
     fetch(
-      'https://run.mocky.io/v3/26d46b38-35b7-42e9-b4de-3cb07b1fc210',
+      'https://run.mocky.io/v3/d3b920a7-c014-4a72-a667-81d309ea2482',
       requestOptions,
     )
       .then(response => response.text())
@@ -113,7 +114,12 @@ class Conservative extends Component {
               {portfolioData.data &&
                 portfolioData.data.map(item => (
                   <View>
-                    <Text style={styles.titleText}>Portfolio Recommended</Text>
+                    {item.isOtherPortfolio === true ? (
+                      <Text style={styles.titleText}>Portfolio Recommended</Text>
+                      ) : (
+                        <Text style={styles.titleText}>Portfolio</Text>
+                      )}
+                    
                     <View style={styles.pieView}>
                       <Pie
                         radius={50}
@@ -149,6 +155,9 @@ class Conservative extends Component {
                         currentPosition={this.state.currentPosition}
                       />
                     </View>
+                    <View style={{marginStart: '5%', marginTop: '3%'}}>
+                      <Text style={styles.middleText}>{item.portfolioName}</Text>
+                    </View>
                     <View style={styles.portfolioTypes}>
                       <FlatList
                         data={
@@ -165,8 +174,7 @@ class Conservative extends Component {
                         )}
                       />
                     </View>
-                    {portfolioData.data[this.state.currentPosition]
-                      .isOtherPortfolio === true ? (
+                    {item.isOtherPortfolio === true ? (
                       <View style={{marginTop: '15%', flex: 1}}>
                         <TouchableOpacity
                           style={styles.buttonView}
@@ -190,9 +198,11 @@ class Conservative extends Component {
                           onPress={() =>
                             this.props.navigation.navigate('Home')
                           }>
-                          <Text style={styles.buttonText}>
-                            Choose recommended portfolio
-                          </Text>
+                            {item.isOtherPortfolio === true ? (
+                      <Text style={styles.buttonText}>Choose Recommended portfolio </Text>
+                      ) : (
+                        <Text style={styles.buttonText}>Choose portfolio</Text>
+                      )}
                         </TouchableOpacity>
                       </View>
                     )}

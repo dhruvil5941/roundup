@@ -28,8 +28,9 @@ class Home extends Component {
       method: 'POST',
     };
 
+    //https://run.mocky.io/v3/1270953b-9720-4099-a72d-7da5e4211e60'
     fetch(
-      'https://run.mocky.io/v3/1270953b-9720-4099-a72d-7da5e4211e60',
+      'https://run.mocky.io/v3/bc446207-813f-4c7a-9068-f9921c2c918c',
       requestOptions,
     )
       .then(response => response.text())
@@ -64,7 +65,7 @@ class Home extends Component {
           <ScrollView>
             <Text style={styles.accountValue}>Your Account Value</Text>
             <Text style={styles.totalAccountValue}>
-              ${homeData.accountValue}
+              {homeData.accountValue}
             </Text>
             <View style={styles.totalGainView}>
               <Text style={styles.totalGain}>Total Gain :</Text>
@@ -116,7 +117,7 @@ class Home extends Component {
                 alignSelf: 'center',
               }}>
               <Text style={styles.recurringView}>Recurring Contribution :</Text>
-              <Text style={styles.monthlyText}>+$124.25 Monthly</Text>
+              <Text style={styles.monthlyText}>+$200 Monthly</Text>
             </View>
             <View style={styles.settingsView}>
               <Text style={styles.settingsText}>

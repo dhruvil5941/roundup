@@ -142,13 +142,16 @@ const TabNavigation = () => {
         visible: true,
         activeBackgroundColor: '#76d0e7a1',
         style: {
-          height: 60,
+          height: 80,
+          paddingLeft: 8,
+          paddingTop: 1,
+          marginBottom:0,
           backgroundColor: '#FFF',
           borderTopWidth: 0,
           borderTopColor: '#FFF',
           elevation: 0,
         },
-        tabStyle: {borderRadius: 24},
+        tabStyle: {borderRadius: 12},
       }}>
       <Tab.Screen
         name="Home"
@@ -157,16 +160,6 @@ const TabNavigation = () => {
           tabBarLabel: 'Home',
           tabBarIcon: ({focused}) => (
             <TabBarIcons icon={Images.Tab_Home} focused={focused} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Resources"
-        component={ResourcesStack}
-        options={{
-          tabBarLabel: 'Resources',
-          tabBarIcon: ({focused}) => (
-            <TabBarIcons icon={Images.Resources} focused={focused} />
           ),
         }}
       />
@@ -196,6 +189,16 @@ const TabNavigation = () => {
         options={{
           tabBarLabel: 'Settings',
           tabBarIcon: ({focused}) => <TabBarIcons icon={Images.Setting} />,
+        }}
+      />
+      <Tab.Screen
+        name="Resources"
+        component={ResourcesStack}
+        options={{
+          tabBarLabel: 'Resources',
+          tabBarIcon: ({focused}) => (
+            <TabBarIcons icon={Images.Resources} focused={focused} />
+          ),
         }}
       />
     </Tab.Navigator>
