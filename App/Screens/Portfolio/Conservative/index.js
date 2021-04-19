@@ -59,7 +59,7 @@ class Conservative extends Component {
     // https://run.mocky.io/v3/53ff188d-5f59-4513-8bfb-7e2924f42795
     // https://run.mocky.io/v3/26d46b38-35b7-42e9-b4de-3cb07b1fc210
     fetch(
-      'https://run.mocky.io/v3/d3b920a7-c014-4a72-a667-81d309ea2482',
+      'https://run.mocky.io/v3/377d7f52-58b8-4281-8e69-f0ca796bb377',
       requestOptions,
     )
       .then(response => response.text())
@@ -119,29 +119,12 @@ class Conservative extends Component {
                       ) : (
                         <Text style={styles.titleText}>Portfolio</Text>
                       )}
-                    
+
                     <View style={styles.pieView}>
                       <Pie
                         radius={50}
-                        sections={[
-                          {
-                            percentage: 10,
-                            color: '#C70039',
-                          },
-                          {
-                            percentage: 20,
-                            color: '#44CD40',
-                          },
-                          {
-                            percentage: 30,
-                            color: '#404FCD',
-                          },
-                          {
-                            percentage: 40,
-                            color: '#EBD22F',
-                          },
-                        ]}
-                        dividerSize={7}
+                        sections={item.chartData}
+                        dividerSize={5}
                         strokeCap={'butt'}
                       />
                     </View>
