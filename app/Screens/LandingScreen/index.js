@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {TouchableOpacity, View, Text, StatusBar} from 'react-native';
+import { View, Text, StatusBar} from 'react-native';
 import styles from './styles';
 import * as colors from '../../assets/colors';
+import Button from '../../Components/Button';
 
 class Landing extends Component {
   render() {
@@ -15,16 +16,18 @@ class Landing extends Component {
           hidden={false}
         />
         <Text style={styles.mainHeadingText}>RoundUp</Text>
-        <TouchableOpacity
-          style={styles.logInBtn}
-          onPress={() => this.props.navigation.navigate('OnboardingScreenOne')}>
-          <Text style={styles.logInBtnText}>LOG IN</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.signUpBtn}
-          onPress={() => this.props.navigation.navigate('OnboardingScreenOne')}>
-          <Text style={styles.signUpBtnText}>CREATE AN ACCOUNT</Text>
-        </TouchableOpacity>
+        <Button
+          title="LOG IN"
+          style={{marginTop: '20%'}}
+          onPress={() => this.props.navigation.navigate('OnboardingScreenOne')}
+          solidButton
+        />
+        <Button
+          title="CREATE AN ACCOUNT"
+          style={{marginTop: '5%'}}
+          onPress={() => this.props.navigation.navigate('OnboardingScreenOne')}
+          outlineButton
+        />
       </View>
     );
   }

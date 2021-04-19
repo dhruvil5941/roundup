@@ -11,6 +11,7 @@ import {
 import RNPickerSelect from 'react-native-picker-select';
 import styles from './styles';
 import * as colors from '../../assets/colors';
+import Button from '../../Components/Button';
 
 class Userfinancesquestion extends Component {
   constructor(props) {
@@ -31,8 +32,6 @@ class Userfinancesquestion extends Component {
       method: 'POST',
     };
 
-    //https://roundup.free.beeceptor.com/v1/questions
-
     fetch(
       'https://run.mocky.io/v3/1c5dd4f7-8b4e-40b2-84c7-d7d6ab447808',
       requestOptions,
@@ -51,23 +50,9 @@ class Userfinancesquestion extends Component {
   render() {
     const {dropdownData} = this.state;
     const placeholder = {
-      label: 'Select',
+      label: 'Select...',
       value: null,
     };
-    // const sports =
-    // dropdownData &&
-    // dropdownData.QuestionsList.map(item =>
-    // item.map(option => {
-    // return [
-    // {
-    // label: option,
-    // value: option,
-    // },
-    // ];
-    // }),
-    // );
-    // console.log(sports);
-    console.log(dropdownData);
     return (
       <View style={styles.mainView}>
         <StatusBar
@@ -120,11 +105,11 @@ class Userfinancesquestion extends Component {
                             <View
                               style={{
                                 backgroundColor: 'transparent',
-                                borderTopWidth: 10,
+                                borderTopWidth: 5,
                                 borderTopColor: 'gray',
-                                borderRightWidth: 10,
+                                borderRightWidth: 5,
                                 borderRightColor: 'transparent',
-                                borderLeftWidth: 10,
+                                borderLeftWidth: 5,
                                 borderLeftColor: 'transparent',
                                 width: 0,
                                 height: 0,
@@ -141,12 +126,12 @@ class Userfinancesquestion extends Component {
             </View>
           )}
         </View>
-        {/*</ScrollView>*/}
-        <TouchableOpacity
+        <Button
+          title="NEXT"
           style={styles.BtnView}
-          onPress={() => this.props.navigation.navigate('Conservative')}>
-          <Text style={styles.BtnText}>NEXT</Text>
-        </TouchableOpacity>
+          onPress={() => this.props.navigation.navigate('Conservative')}
+          newButton
+        />
       </View>
     );
   }

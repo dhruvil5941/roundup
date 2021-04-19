@@ -16,13 +16,13 @@ export default StyleSheet.create({
   pieView: {alignItems: 'center', marginTop: '5%'},
   riskText: {
     color: '#000',
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: '600',
   },
   middleText: {
     color: '#1FAD9E',
     fontSize: 18,
-    fontWeight: '600',
+    fontWeight: 'bold',
     textAlign: 'center',
     marginTop: '3%',
   },
@@ -36,12 +36,13 @@ export default StyleSheet.create({
     width: Dimensions.get('window').width - 25,
     alignSelf: 'center',
     marginTop: '5%',
+    height: '33%',
   },
   portfolioTypesList: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: '5%',
+    marginTop: '8%',
   },
   listName: {
     width: Dimensions.get('window').width / 1.5,
@@ -49,9 +50,9 @@ export default StyleSheet.create({
   },
   buttonView: {
     width: Dimensions.get('window').width / 1.2,
-    height: 35,
+    height: 45,
     backgroundColor: '#1FAD9E',
-    borderRadius: 25,
+    borderRadius: 15,
     justifyContent: 'center',
     alignSelf: 'center',
     marginTop: '5%',

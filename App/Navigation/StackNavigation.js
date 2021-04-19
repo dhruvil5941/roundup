@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Userfinancesquestion from '../Screens/UserFinancesQuestion';
@@ -142,7 +143,7 @@ const TabNavigation = () => {
         visible: true,
         activeBackgroundColor: '#76d0e7a1',
         style: {
-          height: 80,
+          height: Platform.OS === 'ios' ? 85 : 60,
           paddingLeft: 8,
           paddingTop: 1,
           marginBottom:0,

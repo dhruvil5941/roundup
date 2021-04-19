@@ -14,6 +14,7 @@ import StepIndicator from 'react-native-step-indicator';
 import Swiper from 'react-native-swiper';
 import styles from './styles';
 import * as colors from '../../../assets/colors';
+import Button from '../../../Components/Button';
 
 const indicatorStyles = {
   stepIndicatorSize: 25,
@@ -115,10 +116,12 @@ class Conservative extends Component {
                 portfolioData.data.map(item => (
                   <View>
                     {item.isOtherPortfolio === true ? (
-                      <Text style={styles.titleText}>Portfolio Recommended</Text>
-                      ) : (
-                        <Text style={styles.titleText}>Portfolio</Text>
-                      )}
+                      <Text style={styles.titleText}>
+                        Portfolio Recommended
+                      </Text>
+                    ) : (
+                      <Text style={styles.titleText}>Portfolio</Text>
+                    )}
 
                     <View style={styles.pieView}>
                       <Pie
@@ -128,7 +131,7 @@ class Conservative extends Component {
                         strokeCap={'butt'}
                       />
                     </View>
-                    <View style={{marginStart: '5%', marginTop: '3%'}}>
+                    <View style={{marginStart: '5%', marginTop: '4%'}}>
                       <Text style={styles.riskText}>Risk Level</Text>
                     </View>
                     <View style={styles.stepperView}>
@@ -139,7 +142,9 @@ class Conservative extends Component {
                       />
                     </View>
                     <View style={{marginStart: '5%', marginTop: '3%'}}>
-                      <Text style={styles.middleText}>{item.portfolioName}</Text>
+                      <Text style={styles.middleText}>
+                        {item.portfolioName}
+                      </Text>
                     </View>
                     <View style={styles.portfolioTypes}>
                       <FlatList
@@ -158,21 +163,28 @@ class Conservative extends Component {
                       />
                     </View>
                     {item.isOtherPortfolio === true ? (
-                      <View style={{marginTop: '15%', flex: 1}}>
-                        <TouchableOpacity
+                      <View
+                        style={{
+                          marginTop: '10%',
+                          flex: 1,
+                        }}>
+                        <Button
+                          title="Choose recommended portfolio"
                           style={styles.buttonView}
-                          onPress={() =>
-                            this.props.navigation.navigate('Home')
-                          }>
-                          <Text style={styles.buttonText}>
-                            Choose recommended portfolio
-                          </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.buttonView}>
-                          <Text style={styles.buttonText}>
-                            Choose another portfolio
-                          </Text>
-                        </TouchableOpacity>
+                          onPress={() => this.props.navigation.navigate('Home')}
+                          newButton
+                        />
+                        {/*<TouchableOpacity style={styles.buttonView}>*/}
+                        {/*  <Text style={styles.buttonText}>*/}
+                        {/*    Choose another portfolio*/}
+                        {/*  </Text>*/}
+                        {/*</TouchableOpacity>*/}
+                        <Button
+                          title="Choose another portfolio"
+                          style={styles.buttonView}
+                          onPress={() => this.props.navigation.navigate('Home')}
+                          newButton
+                        />
                       </View>
                     ) : (
                       <View style={{marginTop: '15%', flex: 1}}>
@@ -181,11 +193,15 @@ class Conservative extends Component {
                           onPress={() =>
                             this.props.navigation.navigate('Home')
                           }>
-                            {item.isOtherPortfolio === true ? (
-                      <Text style={styles.buttonText}>Choose Recommended portfolio </Text>
-                      ) : (
-                        <Text style={styles.buttonText}>Choose portfolio</Text>
-                      )}
+                          {item.isOtherPortfolio === true ? (
+                            <Text style={styles.buttonText}>
+                              Choose Recommended portfolio{' '}
+                            </Text>
+                          ) : (
+                            <Text style={styles.buttonText}>
+                              Choose portfolio
+                            </Text>
+                          )}
                         </TouchableOpacity>
                       </View>
                     )}
