@@ -11,11 +11,12 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 22,
     color: colors.themeColor,
-    marginTop: '15%',
+    marginTop: '20%',
+    textAlign: 'center',
   },
   descView: {
     width: Dimensions.get('window').width - 35,
-    marginTop: '10%',
+    marginTop: '20%',
   },
   descText: {
     textAlign: 'center',
@@ -23,13 +24,13 @@ export default StyleSheet.create({
   },
   imgView: {
     width: Dimensions.get('window').width - 35,
-    marginTop: '10%',
-    height: '30%',
-    alignItems: 'center'
+    marginTop: '25%',
+    height: 270,
+    alignItems: 'center',
   },
   bottomTray: {
     width: Dimensions.get('window').width / 1,
-    borderBottomWidth: 0.3,
+    borderTopWidth: 0.3,
     borderColor: colors.sparatorColor,
     position: 'absolute',
     bottom: '12%',
@@ -42,12 +43,6 @@ export default StyleSheet.create({
     elevation: 2,
   },
   bottomTrayBtn: {
-    width: Dimensions.get('window').width / 1.2,
-    height: '5%',
-    backgroundColor: colors.themeColor,
-    borderRadius: 25,
-    justifyContent: 'center',
-    borderWidth: 0.3,
     position: 'absolute',
     bottom: '5%',
   },

@@ -1,12 +1,8 @@
 import React, {Component} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import styles from './styles';
 import onboarding from '../../assets/images/onboarding_image2.jpg';
+import Button from '../../Components/Button';
 
 class OnboardingScreenTwo extends Component {
   render() {
@@ -28,13 +24,12 @@ class OnboardingScreenTwo extends Component {
           />
         </View>
         <View style={styles.bottomTray} />
-        <TouchableOpacity
+        <Button
+          title="NEXT"
           style={styles.bottomTrayBtn}
-          onPress={() =>
-            this.props.navigation.navigate('Userfinancesquestion')
-          }>
-          <Text style={styles.bottomTrayBtnText}>NEXT</Text>
-        </TouchableOpacity>
+          onPress={() => this.props.navigation.navigate('Userfinancesquestion')}
+          newButton
+        />
       </View>
     );
   }
