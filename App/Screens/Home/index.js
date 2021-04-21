@@ -27,28 +27,22 @@ class Home extends Component {
     var requestOptions = {
       method: 'POST',
     };
-
-    //https://run.mocky.io/v3/1270953b-9720-4099-a72d-7da5e4211e60'
     fetch(
       'https://run.mocky.io/v3/bc446207-813f-4c7a-9068-f9921c2c918c',
       requestOptions,
     )
       .then(response => response.text())
-      .then(
-        result => {
-          this.setState({homeData: JSON.parse(result)});
-        },
-        // console.log('data', result),
-      )
+      .then(result => {
+        this.setState({homeData: JSON.parse(result)});
+      })
       .catch(error => console.log('error', error));
   };
 
   render() {
-    console.log('HOME', this.state.homeData);
     const {homeData} = this.state;
     if (!homeData) {
       return (
-        <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+        <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
           <ActivityIndicator size="large" color={colors.themeColor} />
         </View>
       );

@@ -174,11 +174,6 @@ class Conservative extends Component {
                           onPress={() => this.props.navigation.navigate('Home')}
                           newButton
                         />
-                        {/*<TouchableOpacity style={styles.buttonView}>*/}
-                        {/*  <Text style={styles.buttonText}>*/}
-                        {/*    Choose another portfolio*/}
-                        {/*  </Text>*/}
-                        {/*</TouchableOpacity>*/}
                         <Button
                           title="Choose another portfolio"
                           style={styles.buttonView}

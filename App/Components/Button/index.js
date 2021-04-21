@@ -29,14 +29,14 @@ const Button = props => {
           backgroundColor: backgroundColor ? '#1FAD9E' : '#FFF',
         },
         newButton && {
-          backgroundColor: backgroundColor ? '#FFFFFF' : '#1FAD9E',
+          backgroundColor: backgroundColor ? backgroundColor : '#1FAD9E',
         },
       ]}
       onPress={onPress}>
       <Text
         style={[
           styles.buttonText,
-          outlineButton && {color: textColor ? '#000' : '#FFFFFF'},
+          outlineButton && {color: textColor ? textColor : '#FFFFFF'},
           solidButton && {color: textColor ? '#FFF' : '#000'},
           newButton && {color: textColor ? '#000' : '#FFF'},
           textStyle,
