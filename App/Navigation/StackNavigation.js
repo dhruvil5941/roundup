@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import {Platform} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Userfinancesquestion from '../Screens/UserFinancesQuestion';
@@ -142,11 +142,15 @@ const TabNavigation = () => {
         activeTintColor: '#000',
         visible: true,
         activeBackgroundColor: '#76d0e7a1',
+        labelStyle: {
+          fontSize: 11,
+          marginTop: -15,
+        },
         style: {
           height: Platform.OS === 'ios' ? 85 : 60,
           paddingLeft: 8,
-          paddingTop: 1,
-          marginBottom:0,
+          paddingTop: 0,
+          marginBottom: 0,
           backgroundColor: '#FFF',
           borderTopWidth: 0,
           borderTopColor: '#FFF',
