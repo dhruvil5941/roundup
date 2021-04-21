@@ -123,6 +123,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
     marginStart: '8%',
+    bottom: '1%'
   },
   seeMoreText: {fontSize: 12, color: '#000'},
 });

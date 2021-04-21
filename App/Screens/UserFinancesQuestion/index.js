@@ -81,7 +81,7 @@ class Userfinancesquestion extends Component {
               <FlatList
                 data={dropdownData.QuestionsList}
                 renderItem={({item}) => (
-                  <>
+                  <View style={{ marginBottom: '2%' }}>
                     <Text style={styles.queTitle}>{item.Question}</Text>
                     <View style={styles.pickerView}>
                       <RNPickerSelect
@@ -119,7 +119,7 @@ class Userfinancesquestion extends Component {
                         }}
                       />
                     </View>
-                  </>
+                  </View>
                 )}
                 keyExtractor={item => item.id}
               />
@@ -143,7 +143,7 @@ const pickerSelectStyles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 10,
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: '#BDBDBD',
     borderRadius: 4,
     color: 'black',
     paddingRight: 30, // to ensure the text is never behind the icon
@@ -153,7 +153,7 @@ const pickerSelectStyles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 8,
     borderWidth: 0.5,
-    borderColor: 'purple',
+    borderColor: '#BDBDBD',
     borderRadius: 8,
     color: 'black',
     paddingRight: 30, // to ensure the text is never behind the icon

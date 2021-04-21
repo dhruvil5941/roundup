@@ -5,8 +5,8 @@ export default StyleSheet.create({
   buttonStyle: {
     justifyContent: 'center',
     borderRadius: 25,
-    height: '5%',
-    width: Dimensions.get('window').width / 1.2,
+    height: 45,
+    width: Dimensions.get('window').width / 1.4,
   },
   buttonText: {
     textAlign: 'center',

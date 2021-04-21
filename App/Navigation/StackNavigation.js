@@ -144,7 +144,8 @@ const TabNavigation = () => {
         activeBackgroundColor: '#76d0e7a1',
         labelStyle: {
           fontSize: 11,
-          marginTop: -15,
+          marginBottom: 10,
+          marginTop: -10,
         },
         style: {
           height: Platform.OS === 'ios' ? 85 : 60,

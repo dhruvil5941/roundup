@@ -3,7 +3,6 @@ import {
   TouchableOpacity,
   View,
   Text,
-  Dimensions,
   StatusBar,
   ScrollView,
   FlatList,
@@ -57,36 +56,20 @@ class Conservative extends Component {
     var requestOptions = {
       method: 'POST',
     };
-    // https://run.mocky.io/v3/53ff188d-5f59-4513-8bfb-7e2924f42795
-    // https://run.mocky.io/v3/26d46b38-35b7-42e9-b4de-3cb07b1fc210
     fetch(
       'https://run.mocky.io/v3/377d7f52-58b8-4281-8e69-f0ca796bb377',
       requestOptions,
     )
       .then(response => response.text())
-      .then(
-        result => {
-          this.setState({portfolioData: JSON.parse(result)});
-        },
-        // console.log('data', result),
-      )
+      .then(result => {
+        this.setState({portfolioData: JSON.parse(result)});
+      })
       .catch(error => console.log('error', error));
   };
 
-  // property = (percentage, color) => {
-  //   const {portfolioData} = this.state;
-  //   return portfolioData.data.chartData.map(item => {
-  //     let percentage: item.option;
-  //     let color: item.color;
-  //     console.log(percentage);
-  //   });
-  // };
-
   render() {
-    console.log('portfolioData', this.state.portfolioData);
     const {portfolioData} = this.state;
     const count = portfolioData.data && portfolioData.data.length;
-    console.log('count', count);
     if (!portfolioData.data) {
       return (
         <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
@@ -96,113 +79,113 @@ class Conservative extends Component {
     } else {
       return (
         <View style={styles.mainView}>
-          <StatusBar
-            animated={true}
-            backgroundColor="#1FAD9E"
-            translucent={true}
-            barStyle="light-content"
-            hidden={false}
-          />
           <View style={styles.swiperView}>
-            <Swiper
-              style={{flexGrow: 1}}
-              loop={false}
-              index={this.state.currentPosition}
-              autoplay={false}
-              onIndexChanged={page => {
-                this.setState({currentPosition: page});
-              }}>
-              {portfolioData.data &&
-                portfolioData.data.map(item => (
-                  <View>
-                    {item.isOtherPortfolio === true ? (
-                      <Text style={styles.titleText}>
-                        Portfolio Recommended
-                      </Text>
-                    ) : (
-                      <Text style={styles.titleText}>Portfolio</Text>
-                    )}
+            <ScrollView>
+              <Swiper
+                style={{flexGrow: 1}}
+                loop={false}
+                index={this.state.currentPosition}
+                autoplay={false}
+                onIndexChanged={page => {
+                  this.setState({currentPosition: page});
+                }}>
+                {portfolioData.data &&
+                  portfolioData.data.map(item => (
+                    <View>
+                      {item.isOtherPortfolio === true ? (
+                        <Text style={styles.titleText}>
+                          Portfolio Recommended
+                        </Text>
+                      ) : (
+                        <Text style={styles.titleText}>Portfolio</Text>
+                      )}
 
-                    <View style={styles.pieView}>
-                      <Pie
-                        radius={50}
-                        sections={item.chartData}
-                        dividerSize={5}
-                        strokeCap={'butt'}
-                      />
-                    </View>
-                    <View style={{marginStart: '5%', marginTop: '4%'}}>
-                      <Text style={styles.riskText}>Risk Level</Text>
-                    </View>
-                    <View style={styles.stepperView}>
-                      <StepIndicator
-                        stepCount={count}
-                        customStyles={indicatorStyles}
-                        currentPosition={this.state.currentPosition}
-                      />
-                    </View>
-                    <View style={{marginStart: '5%', marginTop: '3%'}}>
-                      <Text style={styles.middleText}>
-                        {item.portfolioName}
-                      </Text>
-                    </View>
-                    <View style={styles.portfolioTypes}>
-                      <FlatList
-                        data={
-                          portfolioData.data[this.state.currentPosition]
-                            .portfolioType
-                        }
-                        renderItem={({item}) => (
-                          <View style={styles.portfolioTypesList}>
-                            <Text style={styles.listName}>{item.name}</Text>
-                            <Text style={{fontSize: 16}}>
-                              {item.percentage}
-                            </Text>
-                          </View>
-                        )}
-                      />
-                    </View>
-                    {item.isOtherPortfolio === true ? (
-                      <View
-                        style={{
-                          marginTop: '10%',
-                          flex: 1,
-                        }}>
-                        <Button
-                          title="Choose recommended portfolio"
-                          style={styles.buttonView}
-                          onPress={() => this.props.navigation.navigate('Home')}
-                          newButton
-                        />
-                        <Button
-                          title="Choose another portfolio"
-                          style={styles.buttonView}
-                          onPress={() => this.props.navigation.navigate('Home')}
-                          newButton
+                      <View style={styles.pieView}>
+                        <Pie
+                          radius={50}
+                          sections={item.chartData}
+                          dividerSize={5}
+                          strokeCap={'butt'}
                         />
                       </View>
-                    ) : (
-                      <View style={{marginTop: '15%', flex: 1}}>
-                        <TouchableOpacity
-                          style={styles.buttonView}
-                          onPress={() =>
-                            this.props.navigation.navigate('Home')
-                          }>
-                          {item.isOtherPortfolio === true ? (
-                            <Text style={styles.buttonText}>
-                              Choose Recommended portfolio{' '}
-                            </Text>
-                          ) : (
-                            <Text style={styles.buttonText}>
-                              Choose portfolio
-                            </Text>
+                      <View style={{marginStart: '5%', marginTop: '4%'}}>
+                        <Text style={styles.riskText}>Risk Level</Text>
+                      </View>
+                      <View style={styles.stepperView}>
+                        <StepIndicator
+                          stepCount={count}
+                          customStyles={indicatorStyles}
+                          currentPosition={this.state.currentPosition}
+                        />
+                      </View>
+                      <View style={{marginStart: '5%', marginTop: '3%'}}>
+                        <Text style={styles.middleText}>
+                          {item.portfolioName}
+                        </Text>
+                      </View>
+                      <View style={styles.portfolioTypes}>
+                        <FlatList
+                          data={
+                            portfolioData.data[this.state.currentPosition]
+                              .portfolioType
+                          }
+                          renderItem={({item}) => (
+                            <View style={styles.portfolioTypesList}>
+                              <Text style={styles.listName}>{item.name}</Text>
+                              <Text style={{fontSize: 16}}>
+                                {item.percentage}
+                              </Text>
+                            </View>
                           )}
-                        </TouchableOpacity>
+                        />
                       </View>
-                    )}
-                  </View>
-                ))}
-            </Swiper>
+                      {item.isOtherPortfolio === true ? (
+                        <View
+                          style={{
+                            marginTop: '10%',
+                            flex: 1,
+                            bottom: '4%'
+                          }}>
+                          <Button
+                            title="Choose recommended portfolio"
+                            style={styles.buttonView}
+                            onPress={() =>
+                              this.props.navigation.navigate('Home')
+                            }
+                            newButton
+                          />
+                          <Button
+                            title="Choose another portfolio"
+                            style={styles.buttonView}
+                            onPress={() =>
+                              this.props.navigation.navigate('Home')
+                            }
+                            newButton
+                          />
+                        </View>
+                      ) : (
+                        <View style={{marginTop: '15%', flex: 1, bottom: '4%'}}>
+                          <TouchableOpacity
+                            style={styles.buttonView}
+                            onPress={() =>
+                              this.props.navigation.navigate('Home')
+                            }>
+                            {item.isOtherPortfolio === true ? (
+                              <Text style={styles.buttonText}>
+                                Choose Recommended portfolio{' '}
+                              </Text>
+                            ) : (
+                              <Text style={styles.buttonText}>
+                                Choose portfolio
+                              </Text>
+                            )}
+                          </TouchableOpacity>
+                        </View>
+                      )}
+                    </View>
+                  ))}
+              </Swiper>
+            </ScrollView>
           </View>
         </View>
       );
