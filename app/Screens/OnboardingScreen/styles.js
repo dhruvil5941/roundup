@@ -28,6 +28,13 @@ export default StyleSheet.create({
     alignSelf: 'center',
     marginTop: '15%',
   },
+  newimgView: {
+    marginTop: '18%',
+    flex: 1,
+    height: Dimensions.get('window').height / 2.3,
+    width: Dimensions.get('window').width - 35,
+    alignSelf: 'center',
+  },
   bottomTray: {
     borderTopWidth: 0.3,
     borderColor: colors.sparatorColor,
