@@ -5,23 +5,18 @@ import {
   Text,
   StatusBar,
   ScrollView,
+  Dimensions,
 } from 'react-native';
 import styles from './styles';
 import * as colors from '../../assets/colors';
 import onboarding from '../../assets/images/onboarding_image1.jpg';
 import Button from '../../Components/Button';
+
 class OnboardingScreenOne extends Component {
   render() {
     return (
       <View style={styles.mainView}>
-        <StatusBar
-          animated={true}
-          backgroundColor={colors.white}
-          translucent={true}
-          barStyle="dark-content"
-          hidden={false}
-        />
-        <ScrollView style={{ flex: 1 }}>
+        <ScrollView>
           <Text style={styles.mainHeadingText}>Welcome to RoundUp!</Text>
           <View style={styles.descView}>
             <Text style={[styles.descText, {marginBottom: '5%'}]}>
@@ -35,21 +30,27 @@ class OnboardingScreenOne extends Component {
               recommended for you.
             </Text>
           </View>
-            <View style={styles.imgView}>
-                <Image
-                    source={onboarding}
-                    resizemode={'contain'}
-                    style={{width: '100%', height: '100%'}}
-                />
-            </View>
+          <View style={styles.imgView}>
+            <Image
+              source={onboarding}
+              resizemode={'contain'}
+              style={{width: '100%', height: '100%'}}
+            />
+          </View>
+          <View
+            style={styles.bottomTray}
+          />
+          <View>
+            <Button
+              title="NEXT"
+              style={styles.bottomTrayBtn}
+              onPress={() =>
+                this.props.navigation.navigate('OnboardingScreenTwo')
+              }
+              newButton
+            />
+          </View>
         </ScrollView>
-        <View style={styles.bottomTray} />
-        <Button
-          title="NEXT"
-          style={styles.bottomTrayBtn}
-          onPress={() => this.props.navigation.navigate('OnboardingScreenTwo')}
-          newButton
-        />
       </View>
     );
   }

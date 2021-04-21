@@ -4,7 +4,6 @@ import * as colors from '../../assets/colors';
 export default StyleSheet.create({
   mainView: {
     flex: 1,
-    alignItems: 'center',
     backgroundColor: colors.white,
   },
   mainHeadingText: {
@@ -16,7 +15,8 @@ export default StyleSheet.create({
   },
   descView: {
     width: Dimensions.get('window').width - 35,
-    marginTop: '20%',
+    marginTop: '10%',
+    alignSelf: 'center',
   },
   descText: {
     textAlign: 'center',
@@ -24,28 +24,23 @@ export default StyleSheet.create({
   },
   imgView: {
     width: Dimensions.get('window').width - 35,
-    marginTop: '25%',
-    height: 270,
-    alignItems: 'center',
+    height: Dimensions.get('window').height / 2.8,
+    alignSelf: 'center',
+    marginTop: '15%',
   },
   bottomTray: {
-    width: Dimensions.get('window').width / 1,
     borderTopWidth: 0.3,
     borderColor: colors.sparatorColor,
-    position: 'absolute',
-    bottom: '12%',
+    marginTop: '15%',
     shadowOffset: {
       width: 0,
-      height: -2,
+      height: 0,
     },
     shadowColor: colors.black,
     shadowOpacity: 1.0,
     elevation: 2,
   },
-  bottomTrayBtn: {
-    position: 'absolute',
-    bottom: '5%',
-  },
+  bottomTrayBtn: {marginTop: '6%', alignSelf: 'center', height: 40},
   bottomTrayBtnText: {
     textAlign: 'center',
     fontWeight: '700',
