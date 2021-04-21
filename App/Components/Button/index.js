@@ -24,6 +24,7 @@ const Button = props => {
         outlineButton && {
           borderWidth: 0.5,
           borderColor: outlineColor ? '#000' : '#f5f5f5',
+            backgroundColor: backgroundColor ? backgroundColor : '#1FAD9E',
         },
         solidButton && {
           backgroundColor: backgroundColor ? '#1FAD9E' : '#FFF',

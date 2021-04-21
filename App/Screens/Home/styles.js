@@ -76,7 +76,7 @@ export default StyleSheet.create({
   },
   monthlyText: {
     color: '#000',
-    fontSize: 14
+    fontSize: 14,
   },
   settingsView: {
     width: Dimensions.get('window').width / 1.8,
@@ -123,7 +123,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
     marginStart: '8%',
-    bottom: '1%'
+    bottom: '1%',
   },
   seeMoreText: {fontSize: 12, color: '#000'},
 });

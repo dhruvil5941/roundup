@@ -17,18 +17,19 @@ class OnboardingScreenTwo extends Component {
               portfolio to suit your needs
             </Text>
           </View>
-          <View
-            style={styles.newimgView}>
+          <View style={styles.newimgView}>
             <Image
               source={onboarding}
               resizemode={'contain'}
               style={{width: '100%', height: '100%'}}
             />
           </View>
+        </ScrollView>
+        <View style={{marginBottom: '6%', position: 'relative'}}>
           <View style={styles.bottomTray} />
           <View>
             <Button
-              title="NEXT"
+              title="Next"
               style={styles.bottomTrayBtn}
               onPress={() =>
                 this.props.navigation.navigate('Userfinancesquestion')
@@ -36,7 +37,7 @@ class OnboardingScreenTwo extends Component {
               newButton
             />
           </View>
-        </ScrollView>
+        </View>
       </View>
     );
   }

@@ -127,7 +127,7 @@ class Userfinancesquestion extends Component {
           )}
         </View>
         <Button
-          title="NEXT"
+          title="Next"
           style={styles.BtnView}
           onPress={() => this.props.navigation.navigate('Conservative')}
           newButton

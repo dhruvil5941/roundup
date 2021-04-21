@@ -9,15 +9,19 @@ export default StyleSheet.create({
     fontSize: 20,
     fontWeight: '400',
     marginTop: '5%',
+  },
+  roundUpOpstion: {
+    fontSize: 20,
+    fontWeight: '400',
+    marginTop: '5%',
     marginStart: '5%',
   },
   buttonView: {
-    width: '33%',
-    height: 35,
-    borderRadius: 15,
+    width: '32%',
     justifyContent: 'center',
     alignSelf: 'center',
     overflow: 'hidden',
+    marginStart: '1%'
   },
   newbuttonView: {
     // backgroundColor: '#e0e0e0',

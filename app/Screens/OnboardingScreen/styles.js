@@ -27,6 +27,7 @@ export default StyleSheet.create({
     height: Dimensions.get('window').height / 2.8,
     alignSelf: 'center',
     marginTop: '15%',
+    bottom: '2%',
   },
   newimgView: {
     marginTop: '18%',
@@ -34,6 +35,7 @@ export default StyleSheet.create({
     height: Dimensions.get('window').height / 2.3,
     width: Dimensions.get('window').width - 35,
     alignSelf: 'center',
+    bottom: '2%',
   },
   bottomTray: {
     borderTopWidth: 0.3,
@@ -47,7 +49,7 @@ export default StyleSheet.create({
     shadowOpacity: 1.0,
     elevation: 2,
   },
-  bottomTrayBtn: {marginTop: '6%', alignSelf: 'center', height: 40},
+  bottomTrayBtn: {marginTop: '6%', alignSelf: 'center'},
   bottomTrayBtnText: {
     textAlign: 'center',
     fontWeight: '700',

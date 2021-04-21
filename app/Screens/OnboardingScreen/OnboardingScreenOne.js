@@ -37,20 +37,18 @@ class OnboardingScreenOne extends Component {
               style={{width: '100%', height: '100%'}}
             />
           </View>
-          <View
-            style={styles.bottomTray}
-          />
-          <View>
-            <Button
-              title="NEXT"
-              style={styles.bottomTrayBtn}
-              onPress={() =>
-                this.props.navigation.navigate('OnboardingScreenTwo')
-              }
-              newButton
-            />
-          </View>
         </ScrollView>
+        <View style={{marginBottom: '6%', position: 'relative'}}>
+          <View style={styles.bottomTray} />
+          <Button
+            title="Next"
+            style={styles.bottomTrayBtn}
+            onPress={() =>
+              this.props.navigation.navigate('OnboardingScreenTwo')
+            }
+            newButton
+          />
+        </View>
       </View>
     );
   }

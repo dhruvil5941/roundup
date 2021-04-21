@@ -29,17 +29,11 @@ export default StyleSheet.create({
     fontSize: 14,
   },
   buttonView: {
-    width: Dimensions.get('window').width / 1.2,
-    height: 35,
-    borderRadius: 15,
     justifyContent: 'center',
     alignSelf: 'center',
     marginTop: '5%',
   },
   newButtonView: {
-    width: Dimensions.get('window').width / 1.2,
-    height: 35,
-    borderRadius: 15,
     justifyContent: 'center',
     alignSelf: 'center',
     marginTop: '5%',

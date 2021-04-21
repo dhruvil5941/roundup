@@ -10,6 +10,5 @@ export default StyleSheet.create({
   },
   buttonText: {
     textAlign: 'center',
-    fontWeight: '700',
   },
 });
