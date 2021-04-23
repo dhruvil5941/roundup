@@ -7,6 +7,7 @@ import {
   StatusBar,
   FlatList,
   ActivityIndicator,
+  ScrollView,
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import styles from './styles';
@@ -62,70 +63,71 @@ class Userfinancesquestion extends Component {
           barStyle="light-content"
           hidden={false}
         />
-        {/*<ScrollView style={styles.scrollView}>*/}
-        <View>
-          <Text style={styles.mainHeadingText}>Your finances and goals</Text>
-          <View style={styles.discView}>
-            <Text style={styles.discText}>
-              Tell us a little about your current financial situation so we can
-              recommend the best investment portfolio for you.
-            </Text>
-          </View>
+        <ScrollView style={styles.scrollView}>
+          <View>
+            <Text style={styles.mainHeadingText}>Your finances and goals</Text>
+            <View style={styles.discView}>
+              <Text style={styles.discText}>
+                Tell us a little about your current financial situation so we
+                can recommend the best investment portfolio for you.
+              </Text>
+            </View>
 
-          {dropdownData.QuestionsList == undefined ? (
-            <View style={{marginTop: '30%'}}>
-              <ActivityIndicator size="large" color={colors.themeColor} />
-            </View>
-          ) : (
-            <View>
-              <FlatList
-                data={dropdownData.QuestionsList}
-                renderItem={({item}) => (
-                  <>
-                    <Text style={styles.queTitle}>{item.Question}</Text>
-                    <View style={styles.pickerView}>
-                      <RNPickerSelect
-                        placeholder={placeholder}
-                        items={item.Options.map(option => option)}
-                        onValueChange={itemValue =>
-                          this.setState({[item.id + '_str']: itemValue})
-                        }
-                        style={{
-                          ...pickerSelectStyles,
-                          iconContainer: {
-                            top: 20,
-                            right: 12,
-                          },
-                        }}
-                        value={this.state[item.id + '_str']}
-                        useNativeAndroidPickerStyle={false}
-                        textInputProps={{underlineColor: 'yellow'}}
-                        Icon={() => {
-                          return (
-                            <View
-                              style={{
-                                backgroundColor: 'transparent',
-                                borderTopWidth: 5,
-                                borderTopColor: 'gray',
-                                borderRightWidth: 5,
-                                borderRightColor: 'transparent',
-                                borderLeftWidth: 5,
-                                borderLeftColor: 'transparent',
-                                width: 0,
-                                height: 0,
-                              }}
-                            />
-                          );
-                        }}
-                      />
-                    </View>
-                  </>
-                )}
-                keyExtractor={item => item.id}
-              />
-            </View>
-          )}
-        </View>
+            {dropdownData.QuestionsList == undefined ? (
+              <View style={{marginTop: '30%'}}>
+                <ActivityIndicator size="large" color={colors.themeColor} />
+              </View>
+            ) : (
+              <View>
+                <FlatList
+                  data={dropdownData.QuestionsList}
+                  renderItem={({item}) => (
+                    <>
+                      <Text style={styles.queTitle}>{item.Question}</Text>
+                      <View style={styles.pickerView}>
+                        <RNPickerSelect
+                          placeholder={placeholder}
+                          items={item.Options.map(option => option)}
+                          onValueChange={itemValue =>
+                            this.setState({[item.id + '_str']: itemValue})
+                          }
+                          style={{
+                            ...pickerSelectStyles,
+                            iconContainer: {
+                              top: 20,
+                              right: 12,
+                            },
+                          }}
+                          value={this.state[item.id + '_str']}
+                          useNativeAndroidPickerStyle={false}
+                          textInputProps={{underlineColor: 'yellow'}}
+                          Icon={() => {
+                            return (
+                              <View
+                                style={{
+                                  backgroundColor: 'transparent',
+                                  borderTopWidth: 5,
+                                  borderTopColor: 'gray',
+                                  borderRightWidth: 5,
+                                  borderRightColor: 'transparent',
+                                  borderLeftWidth: 5,
+                                  borderLeftColor: 'transparent',
+                                  width: 0,
+                                  height: 0,
+                                }}
+                              />
+                            );
+                          }}
+                        />
+                      </View>
+                    </>
+                  )}
+                  keyExtractor={item => item.id}
+                />
+              </View>
+            )}
+          </View>
+        </ScrollView>
         <Button
           title="NEXT"
           style={styles.BtnView}
