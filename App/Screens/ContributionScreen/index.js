@@ -7,10 +7,12 @@ import {
   ScrollView,
   ActivityIndicator,
   FlatList,
+  Platform,
 } from 'react-native';
 import styles from './styles';
 import * as colors from '../../assets/colors';
 import Button from '../../Components/Button';
+import RNPickerSelect from 'react-native-picker-select';
 
 class ContributionsScreen extends Component {
   constructor(props) {
@@ -42,11 +44,10 @@ class ContributionsScreen extends Component {
     const {homeData} = this.state;
     return (
       <View style={styles.container}>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.roundUpView}>
             <Text style={styles.roundUpText}>Round Up Pool</Text>
-            <View
-              style={styles.monthView}>
+            <View style={styles.monthView}>
               <Text style={styles.monthText}>March 2021</Text>
             </View>
           </View>
@@ -75,25 +76,35 @@ class ContributionsScreen extends Component {
           <View
             style={{
               flexDirection: 'row',
-              width: Dimensions.get('window').width / 1.4,
-              alignSelf: 'center',
-              justifyContent: 'space-between',
+              width: Dimensions.get('window').width / 1.2,
+              alignSelf: 'flex-start',
+              marginStart: '5%',
               marginTop: '5%',
               alignItems: 'center',
               flex: 1,
+              justifyContent: 'space-between',
             }}>
             <Text style={{fontSize: 20, fontWeight: 'bold'}}>Contribution</Text>
             <View
               style={{
                 borderWidth: 0.5,
                 borderColor: '#BDBDBD',
-                width: '40%',
-                height: '100%',
+                width: 120,
+                height: 30,
                 justifyContent: 'center',
                 alignItems: 'center',
                 borderRadius: 25,
+                marginStart: '20%',
               }}>
-              <Text style={{fontSize: 13, color: '#9E9E9E'}}>March 2021</Text>
+              {/*<Text style={{fontSize: 13, color: '#9E9E9E'}}>March 2021</Text>*/}
+              <RNPickerSelect
+                onValueChange={value => console.log(value)}
+                items={[
+                  {label: 'Football', value: 'football'},
+                  {label: 'Baseball', value: 'baseball'},
+                  {label: 'Hockey', value: 'hockey'},
+                ]}
+              />
             </View>
           </View>
           {!homeData ? (
@@ -112,7 +123,7 @@ class ContributionsScreen extends Component {
               )}
             />
           )}
-          <View style={{marginTop: '5%'}}>
+          <View style={{marginTop: '5%', bottom: '2%'}}>
             <Button
               title="Make a one-time contribution"
               style={styles.buttonView}

@@ -6,7 +6,7 @@ export default StyleSheet.create({
     backgroundColor: '#FFF',
   },
   stepperView: {marginTop: '5%' },
-  swiperView: {position: 'absolute', flex: 1},
+  swiperView: { bottom: '2%' },
   titleText: {
     color: '#000',
     fontSize: 18,

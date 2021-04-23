@@ -3,6 +3,7 @@ import {
   TouchableOpacity,
   View,
   Text,
+  Dimensions,
   StatusBar,
   ScrollView,
   FlatList,
@@ -62,8 +63,9 @@ class Conservative extends Component {
     )
       .then(response => response.text())
       .then(result => {
-        this.setState({portfolioData: JSON.parse(result)});
-      })
+          this.setState({portfolioData: JSON.parse(result)});
+        },
+      )
       .catch(error => console.log('error', error));
   };
 
@@ -86,9 +88,11 @@ class Conservative extends Component {
                 loop={false}
                 index={this.state.currentPosition}
                 autoplay={false}
+                showsPagination={false}
                 onIndexChanged={page => {
                   this.setState({currentPosition: page});
                 }}>
+                {/*<ScrollView>*/}
                 {portfolioData.data &&
                   portfolioData.data.map(item => (
                     <View>
@@ -164,7 +168,7 @@ class Conservative extends Component {
                           />
                         </View>
                       ) : (
-                        <View style={{marginTop: '15%', flex: 1, bottom: '4%'}}>
+                        <View style={{marginTop: '15%', flex: 1}}>
                           <TouchableOpacity
                             style={styles.buttonView}
                             onPress={() =>
@@ -184,6 +188,7 @@ class Conservative extends Component {
                       )}
                     </View>
                   ))}
+                {/*</ScrollView>*/}
               </Swiper>
             </ScrollView>
           </View>

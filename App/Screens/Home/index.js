@@ -49,13 +49,6 @@ class Home extends Component {
     } else {
       return (
         <View style={styles.mainView}>
-          <StatusBar
-            animated={true}
-            backgroundColor="#1FAD9E"
-            translucent={true}
-            barStyle="light-content"
-            hidden={false}
-          />
           <ScrollView>
             <Text style={styles.accountValue}>Your Account Value</Text>
             <Text style={styles.totalAccountValue}>

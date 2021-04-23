@@ -16,8 +16,9 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: '5%',
-    width: Dimensions.get('window').width - 70,
-    alignSelf: 'center',
+    width: Dimensions.get('window').width / 1.4,
+    alignSelf: 'flex-start',
+    marginStart: '5%',
   },
   stockName: {
     color: '#000',

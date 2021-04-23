@@ -35,7 +35,7 @@ export default StyleSheet.create({
   monthView: {
     borderWidth: 0.5,
     borderColor: '#BDBDBD',
-    width: '40%',
+    width: '45%',
     height: 30,
     justifyContent: 'center',
     alignItems: 'center',
@@ -43,6 +43,18 @@ export default StyleSheet.create({
     marginTop: '5%',
     marginStart: '5%',
     flex: 1,
+  },
+  monthView2: {
+    borderWidth: 0.5,
+    borderColor: '#BDBDBD',
+    width: '35%',
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 25,
+    marginTop: '5%',
+    marginStart: '5%',
+    backgroundColor: '#f5f5f5',
   },
   monthText: {fontSize: 13, color: '#9E9E9E'},
 });

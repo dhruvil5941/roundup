@@ -144,20 +144,20 @@ const TabNavigation = () => {
         activeBackgroundColor: '#76d0e7a1',
         labelStyle: {
           fontSize: 11,
-          marginBottom: 10,
+            marginBottom: 10,
           marginTop: -10,
         },
         style: {
-          height: Platform.OS === 'ios' ? 85 : 60,
+          height: Platform.OS === 'ios' ? 90 : 60,
           paddingLeft: 8,
-          paddingTop: 0,
+          paddingTop: 1,
           marginBottom: 0,
           backgroundColor: '#FFF',
           borderTopWidth: 0,
           borderTopColor: '#FFF',
           elevation: 0,
         },
-        tabStyle: {borderRadius: 12},
+        tabStyle: {borderRadius: 12, height: '90%'},
       }}>
       <Tab.Screen
         name="Home"
