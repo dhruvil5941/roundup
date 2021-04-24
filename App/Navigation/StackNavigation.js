@@ -144,13 +144,11 @@ const TabNavigation = () => {
         activeBackgroundColor: '#76d0e7a1',
         labelStyle: {
           fontSize: 11,
-            marginBottom: 10,
-          marginTop: -10,
+          marginBottom: 5,
         },
         style: {
           height: Platform.OS === 'ios' ? 90 : 60,
           paddingLeft: 8,
-          paddingTop: 1,
           marginBottom: 0,
           backgroundColor: '#FFF',
           borderTopWidth: 0,
@@ -221,6 +219,7 @@ function NavigationStack(props) {
           headerStyle: {
             backgroundColor: '#1FAD9E',
           },
+          headerBackTitleVisible: false,
           headerTintColor: '#fff',
           headerTitleStyle: {
             fontWeight: 'bold',

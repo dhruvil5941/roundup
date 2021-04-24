@@ -11,7 +11,7 @@ export default StyleSheet.create({
     color: '#000',
     fontSize: 18,
     textAlign: 'center',
-    marginTop: '3%',
+    marginTop: '8%',
   },
   pieView: {alignItems: 'center', marginTop: '5%'},
   riskText: {

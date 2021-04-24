@@ -32,6 +32,7 @@ export default StyleSheet.create({
   newimgView: {
     marginTop: '18%',
     flex: 1,
+    paddingVertical: '5%',
     height: Dimensions.get('window').height / 2.3,
     width: Dimensions.get('window').width - 35,
     alignSelf: 'center',
@@ -39,11 +40,11 @@ export default StyleSheet.create({
   },
   bottomTray: {
     borderTopWidth: 0.3,
-    borderColor: colors.sparatorColor,
+    borderColor: colors.white,
     marginTop: '15%',
     shadowOffset: {
       width: 0,
-      height: 0,
+      height: 1,
     },
     shadowColor: colors.black,
     shadowOpacity: 1.0,
