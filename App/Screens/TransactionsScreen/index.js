@@ -5,11 +5,14 @@ import {
     ScrollView,
     Dimensions,
     TouchableOpacity, StyleSheet,
+    FlatList,
+    ActivityIndicator,
 } from 'react-native';
 import styles from './styles';
 import Button from '../../Components/Button';
 import {Switch} from 'react-native-switch';
 import RNPickerSelect from 'react-native-picker-select';
+import * as colors from '../../assets/colors';
 
 class TransactionsScreen extends Component {
   constructor(props) {
@@ -17,6 +20,7 @@ class TransactionsScreen extends Component {
     this.state = {
       isEnabled: false,
       isClicked: '1st',
+      transactionData: [],
     };
   }
 
@@ -25,9 +29,38 @@ class TransactionsScreen extends Component {
     this.setState({isClicked: value});
   };
 
+  componentDidMount() {
+    this.getTransactionData();
+  }
+
+  getTransactionData = () => {
+    var requestOptions = {
+      method: 'POST',
+    };
+    fetch(
+      'https://run.mocky.io/v3/89fa1568-0d3c-40e5-9c46-ac4de216cac6',
+      requestOptions,
+    )
+      .then(response => response.text())
+      .then(result => {
+        this.getNearestDollar(JSON.parse(result));
+      })
+      .catch(error => console.log('error', error));
+  };
+
+  getNearestDollar = transactionData => {
+    const data = transactionData.map(
+      (item, index) =>
+        (transactionData[index].round =
+          Math.round((Math.ceil(item.amount) - item.amount) * 100) / 100),
+    );
+    this.setState({transactionData: transactionData});
+  };
+
   toggleSwitch = () => this.setState({isEnabled: !this.state.isEnabled});
 
   render() {
+    const {transactionData} = this.state;
     return (
       <View style={styles.container}>
         <ScrollView>
@@ -190,6 +223,123 @@ class TransactionsScreen extends Component {
               }}
             />
           </View>
+          {transactionData.length > 0 ? (
+            <View
+              style={{
+                flex: 1,
+                alignItems: 'center',
+                margin: '5%',
+              }}>
+              <FlatList
+                data={transactionData}
+                renderItem={({item}) => (
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-around',
+                      alignItems: 'center',
+                      margin: '2%',
+                    }}>
+                    <Text style={{width: '35%'}}>{item.name}</Text>
+                    <Text style={{width: '35%', textAlign: 'center'}}>
+                      ${item.amount}
+                    </Text>
+                    {item.round === 0 ? (
+                      <Text
+                        style={{
+                          color: '#2FAE7B',
+                          width: '30%',
+                          textAlign: 'center',
+                        }}>
+                        -
+                      </Text>
+                    ) : (
+                      <Text
+                        style={{
+                          color: '#2FAE7B',
+                          width: '30%',
+                          textAlign: 'center',
+                        }}>
+                        +${item.round}
+                      </Text>
+                    )}
+                    {/*<Button*/}
+                    {/*  title="Nearest Dollar"*/}
+                    {/*  style={styles.buttonView}*/}
+                    {/*  backgroundColor={'#378B15'}*/}
+                    {/*  newButton*/}
+                    {/*/>*/}
+                  </View>
+                )}
+                keyExtractor={item => item.id}
+              />
+              {/*<View*/}
+              {/*  style={{*/}
+              {/*    flexDirection: 'row',*/}
+              {/*    justifyContent: 'space-around',*/}
+              {/*    alignItems: 'center',*/}
+              {/*  }}>*/}
+              {/*  <Text style={{width: '35%'}}>Nandos Chicken </Text>*/}
+              {/*  <Text style={{width: '35%', textAlign: 'center'}}>$22.60</Text>*/}
+              {/*  <Button*/}
+              {/*    title="Nearest Dollar"*/}
+              {/*    style={styles.buttonView}*/}
+              {/*    backgroundColor={'#378B15'}*/}
+              {/*    newButton*/}
+              {/*  />*/}
+              {/*</View>*/}
+              {/*<View*/}
+              {/*  style={{*/}
+              {/*    flexDirection: 'row',*/}
+              {/*    justifyContent: 'space-around',*/}
+              {/*    marginTop: '5%',*/}
+              {/*  }}>*/}
+              {/*  <Text style={{width: '35%'}}>Nandos Chicken</Text>*/}
+              {/*  <Text style={{width: '35%', textAlign: 'center'}}>$22.60</Text>*/}
+              {/*  <Text*/}
+              {/*    style={{color: '#2FAE7B', width: '30%', textAlign: 'center'}}>*/}
+              {/*    $0.70*/}
+              {/*  </Text>*/}
+              {/*</View>*/}
+              {/*<View*/}
+              {/*  style={{*/}
+              {/*    flexDirection: 'row',*/}
+              {/*    justifyContent: 'space-around',*/}
+              {/*    marginTop: '5%',*/}
+              {/*  }}>*/}
+              {/*  <Text style={{width: '35%'}}>Nandos Chicken</Text>*/}
+              {/*  <Text style={{width: '35%', textAlign: 'center'}}>$22.60</Text>*/}
+              {/*  <Text*/}
+              {/*    style={{color: '#2FAE7B', width: '30%', textAlign: 'center'}}>*/}
+              {/*    $0.70*/}
+              {/*  </Text>*/}
+              {/*</View>*/}
+              {/*<View*/}
+              {/*  style={{*/}
+              {/*    flexDirection: 'row',*/}
+              {/*    justifyContent: 'space-around',*/}
+              {/*    marginTop: '5%',*/}
+              {/*  }}>*/}
+              {/*  <Text style={{width: '35%'}}>Nandos Chicken</Text>*/}
+              {/*  <Text style={{width: '35%', textAlign: 'center'}}>$22.60</Text>*/}
+              {/*  <Text*/}
+              {/*    style={{color: '#2FAE7B', width: '30%', textAlign: 'center'}}>*/}
+              {/*    $0.70*/}
+              {/*  </Text>*/}
+              {/*</View>*/}
+              {/*<View*/}
+              {/*  style={{*/}
+              {/*    flexDirection: 'row',*/}
+              {/*    justifyContent: 'space-around',*/}
+              {/*    marginTop: '5%',*/}
+              {/*  }}>*/}
+              {/*  <Text style={{width: '35%'}}>Nandos Chicken</Text>*/}
+              {/*  <Text style={{width: '35%', textAlign: 'center'}}>$22.60</Text>*/}
+              {/*  <Text*/}
+              {/*    style={{color: '#2FAE7B', width: '30%', textAlign: 'center'}}>*/}
+              {/*    $0.70*/}
+              {/*  </Text>*/}
+              {/*</View>*/}
           <View
             style={{
               marginTop: '5%',
@@ -282,7 +432,11 @@ class TransactionsScreen extends Component {
                 $0.70
               </Text>
             </View>
-          </View>
+          ) : (
+            <View style={{marginTop: '30%'}}>
+              <ActivityIndicator size="large" color={colors.themeColor} />
+            </View>
+          )}
         </ScrollView>
       </View>
     );
