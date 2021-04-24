@@ -19,6 +19,7 @@ class ContributionsScreen extends Component {
     super(props);
     this.state = {
       homeData: '',
+        dropdownValue: 'Last 7 days',
     };
   }
 
@@ -89,21 +90,50 @@ class ContributionsScreen extends Component {
               style={{
                 borderWidth: 0.5,
                 borderColor: '#BDBDBD',
-                width: 120,
+                width: '50%',
+                  // paddingHorizontal: '10%',
                 height: 30,
                 justifyContent: 'center',
                 alignItems: 'center',
                 borderRadius: 25,
-                marginStart: '20%',
+                marginStart: '10%',
               }}>
               {/*<Text style={{fontSize: 13, color: '#9E9E9E'}}>March 2021</Text>*/}
               <RNPickerSelect
-                onValueChange={value => console.log(value)}
+                onValueChange={value => this.setState({dropdownValue: value})}
+                selectedValue={this.state.dropdownValue}
+                value={this.state.dropdownValue}
                 items={[
-                  {label: 'Football', value: 'football'},
-                  {label: 'Baseball', value: 'baseball'},
-                  {label: 'Hockey', value: 'hockey'},
+                  {label: 'Last 7 days', value: 'Last 7 days'},
+                  {label: 'Last 14 days', value: 'Last 14 days'},
+                  {label: 'Last month', value: 'Last month'},
                 ]}
+                style={{
+                  ...pickerSelectStyles,
+                  iconContainer: {
+                    top: Platform.OS === 'ios' ? 5 : 22,
+                    right: 5,
+                  },
+                }}
+                Icon={() => {
+                  return (
+                    <View
+                      style={{
+                        backgroundColor: 'transparent',
+                        borderTopWidth: 5,
+                        borderTopColor: 'gray',
+                        borderRightWidth: 5,
+                        borderRightColor: 'transparent',
+                        borderLeftWidth: 5,
+                        borderLeftColor: 'transparent',
+                        width: 0,
+                        height: 0,
+                        marginRight: '5%',
+                        top: '85%',
+                      }}
+                    />
+                  );
+                }}
               />
             </View>
           </View>
@@ -143,5 +173,26 @@ class ContributionsScreen extends Component {
     );
   }
 }
-
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 12,
+    paddingVertical: 5,
+    paddingHorizontal: 5,
+    // borderWidth: 0.5,
+    // borderColor: '#BDBDBD',
+    // borderRadius: 4,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+    fontSize: 12,
+    paddingHorizontal: 5,
+    paddingVertical: 5,
+    // borderWidth: 0.5,
+    // borderColor: '#BDBDBD',
+    // borderRadius: 8,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+});
 export default ContributionsScreen;

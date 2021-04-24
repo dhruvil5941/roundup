@@ -1,36 +1,48 @@
 import React, {Component} from 'react';
 import {
-    View,
-    Text,
-    ScrollView,
-    Dimensions,
-    TouchableOpacity, StyleSheet,
-    FlatList,
-    ActivityIndicator,
+  View,
+  Text,
+  ScrollView,
+  Dimensions,
+  TouchableOpacity,
+  StyleSheet,
+  FlatList,
+  ActivityIndicator,
+  Image,
+  Platform,
 } from 'react-native';
 import styles from './styles';
 import Button from '../../Components/Button';
 import {Switch} from 'react-native-switch';
 import RNPickerSelect from 'react-native-picker-select';
 import * as colors from '../../assets/colors';
-
+import {arrow} from '../../assets/images/arrow_up.png';
+import onboarding from '../../assets/images/onboarding_image1.jpg';
 class TransactionsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isEnabled: false,
       isClicked: '1st',
+      transactionApiData: [],
       transactionData: [],
+      selectedDollar: [],
+      cardValue: 'For card ending with 4328 ',
+      roundAllSelect: false,
     };
   }
 
   handleClicked = value => {
-    console.log(value);
+    if (value === '3d') {
+      this.setState({transactionData: []});
+    }
     this.setState({isClicked: value});
   };
 
   componentDidMount() {
     this.getTransactionData();
+    var num = 5.2;
+    console.log(num.toFixed(2));
   }
 
   getTransactionData = () => {
@@ -43,11 +55,20 @@ class TransactionsScreen extends Component {
     )
       .then(response => response.text())
       .then(result => {
+        this.setState({transactionApiData: JSON.parse(result)});
         this.getNearestDollar(JSON.parse(result));
       })
       .catch(error => console.log('error', error));
   };
-
+  selectDollar = item => {
+    this.setState({selectedDollar: [...this.state.selectedDollar, item]});
+  };
+  unSelectDollar = item => {
+    const data = this.state.selectedDollar.filter(
+      selected => selected.name !== item.name,
+    );
+    this.setState({selectedDollar: data});
+  };
   getNearestDollar = transactionData => {
     const data = transactionData.map(
       (item, index) =>
@@ -56,15 +77,47 @@ class TransactionsScreen extends Component {
     );
     this.setState({transactionData: transactionData});
   };
-
-  toggleSwitch = () => this.setState({isEnabled: !this.state.isEnabled});
+  getNearest3rdDollar = transactionData => {
+    const data = transactionData.map(
+      (item, index) =>
+        (transactionData[index].round =
+          Math.round((Math.ceil(item.amount / 3.0) * 3 - item.amount) * 100) /
+          100),
+    );
+    this.setState({transactionData: transactionData});
+  };
+  getNearest5thDollar = transactionData => {
+    const data = transactionData.map(
+      (item, index) =>
+        (transactionData[index].round =
+          Math.round((Math.ceil(item.amount / 5.0) * 5 - item.amount) * 100) /
+          100),
+    );
+    this.setState({transactionData: transactionData});
+  };
+  getAllSelected = () => {
+    this.setState({selectedDollar: this.state.transactionData});
+  };
+  getAllUnSelected = () => {
+    this.setState({selectedDollar: []});
+  };
+  toggleSwitch = () => {
+    if (this.state.isEnabled === false) {
+      this.getAllSelected();
+    }
+    if (this.state.isEnabled === true) {
+      this.getAllUnSelected();
+    }
+    this.setState({isEnabled: !this.state.isEnabled});
+  };
 
   render() {
-    const {transactionData} = this.state;
+    const {transactionData, selectedDollar, roundAllSelect} = this.state;
+    console.log(selectedDollar);
     return (
       <View style={styles.container}>
         <ScrollView>
-          <Text style={styles.roundUpOpstion}>Round Up Opstions</Text>
+          <Text style={styles.roundUpOpstion}>Round Up Options</Text>
           <View
             style={{
               flexDirection: 'row',
@@ -79,7 +132,7 @@ class TransactionsScreen extends Component {
               <Switch
                 value={this.state.isEnabled}
                 onValueChange={val => this.toggleSwitch()}
-                barHeight={30}
+                barHeight={25}
                 circleBorderWidth={0}
                 backgroundActive="#28abe3"
                 backgroundInactive="#999999"
@@ -89,7 +142,7 @@ class TransactionsScreen extends Component {
                 renderActiveText={false}
                 renderInActiveText={false}
                 circleSize={20}
-                switchWidthMultiplier={3}
+                switchWidthMultiplier={2.3}
               />
             </View>
           </View>
@@ -117,7 +170,10 @@ class TransactionsScreen extends Component {
                 borderRadius: 25,
                 alignItems: 'center',
               }}
-              onPress={() => this.handleClicked('1st')}>
+              onPress={() => {
+                this.handleClicked('1st');
+                this.getNearestDollar(this.state.transactionApiData);
+              }}>
               <Text
                 style={{
                   textAlign: 'center',
@@ -140,7 +196,10 @@ class TransactionsScreen extends Component {
                 borderRadius: 25,
                 alignItems: 'center',
               }}
-              onPress={() => this.handleClicked('3rd')}>
+              onPress={() => {
+                this.handleClicked('3rd');
+                this.getNearest3rdDollar(this.state.transactionApiData);
+              }}>
               <Text
                 style={{
                   textAlign: 'center',
@@ -163,7 +222,10 @@ class TransactionsScreen extends Component {
                 borderRadius: 25,
                 alignItems: 'center',
               }}
-              onPress={() => this.handleClicked('5th')}>
+              onPress={() => {
+                this.handleClicked('5th');
+                this.getNearest5thDollar(this.state.transactionApiData);
+              }}>
               <Text
                 style={{
                   textAlign: 'center',
@@ -183,23 +245,53 @@ class TransactionsScreen extends Component {
               flexDirection: 'row',
             }}>
             <Text style={styles.roundUpText}>Recent Transactions</Text>
-            <View style={styles.monthView2}>
-              <Text style={styles.monthText}>Round Up all</Text>
-            </View>
+            {!roundAllSelect ? (
+              <TouchableOpacity
+                style={styles.roundAllDisable}
+                onPress={() => {
+                  this.state.isEnabled === false &&
+                    (this.getAllSelected(),
+                    this.setState({roundAllSelect: true}));
+                }}>
+                <Text style={styles.monthTextDisable}>Round Up all</Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                style={styles.roundAllActive}
+                onPress={() => {
+                  this.state.isEnabled === false &&
+                    (this.getAllUnSelected(),
+                    this.setState({roundAllSelect: false}));
+                }}>
+                <Text style={styles.monthTextActive}>Round Up all</Text>
+              </TouchableOpacity>
+            )}
           </View>
           <View style={styles.monthView}>
             <RNPickerSelect
-              onValueChange={value => console.log(value)}
+              onValueChange={value => this.setState({cardValue: value})}
+              selectedValue={this.state.cardValue}
+              value={this.state.cardValue}
+              useNativeAndroidPickerStyle={false}
               items={[
-                {label: 'Football', value: 'football'},
-                {label: 'Baseball', value: 'baseball'},
-                {label: 'Hockey', value: 'hockey'},
+                {
+                  label: 'For card ending with 4328 ',
+                  value: 'For card ending with 4328 ',
+                },
+                {
+                  label: 'For card ending with 4390 ',
+                  value: 'For card ending with 4390 ',
+                },
+                {
+                  label: 'For card ending with 4217 ',
+                  value: 'For card ending with 4217 ',
+                },
               ]}
               style={{
                 ...pickerSelectStyles,
                 iconContainer: {
-                  top: 20,
-                  right: 12,
+                  top: 15,
+                  right: 5,
                 },
               }}
               Icon={() => {
@@ -239,9 +331,14 @@ class TransactionsScreen extends Component {
                       justifyContent: 'space-around',
                       alignItems: 'center',
                       margin: '2%',
+                      marginTop: '5%',
                     }}>
                     <Text style={{width: '35%'}}>{item.name}</Text>
-                    <Text style={{width: '35%', textAlign: 'center'}}>
+                    <Text
+                      style={{
+                        width: '35%',
+                        textAlign: 'center',
+                      }}>
                       ${item.amount}
                     </Text>
                     {item.round === 0 ? (
@@ -254,183 +351,61 @@ class TransactionsScreen extends Component {
                         -
                       </Text>
                     ) : (
-                      <Text
-                        style={{
-                          color: '#2FAE7B',
-                          width: '30%',
-                          textAlign: 'center',
-                        }}>
-                        +${item.round}
-                      </Text>
+                      <>
+                        {selectedDollar.length > 0 &&
+                        selectedDollar.filter(item1 => item1.name === item.name)
+                          .length > 0 ? (
+                          <TouchableOpacity
+                            style={{
+                              width: '30%',
+                              justifyContent: 'center',
+                              // marginStart: '1%',
+                              borderWidth: 0.3,
+                              borderColor: '#BDBDBD',
+                              backgroundColor: '#0E8B38',
+                              borderRadius: 25,
+                              padding: '2%',
+                              alignItems: 'center',
+                            }}
+                            onPress={() => {
+                              this.state.isEnabled === false &&
+                                this.unSelectDollar(item);
+                              this.setState({roundAllSelect: false});
+                            }}>
+                            <Text
+                              style={{
+                                textAlign: 'center',
+                                color: '#FFF',
+                                fontWeight: '700',
+                              }}>
+                             ^ ${item.round.toFixed(2)}
+                            </Text>
+                          </TouchableOpacity>
+                        ) : (
+                          <TouchableOpacity
+                            style={{
+                              width: '30%',
+                              justifyContent: 'center',
+                              // height: 50,
+                              alignItems: 'center',
+                              padding: '2%',
+                            }}
+                            onPress={() => this.selectDollar(item)}>
+                            <Text
+                              style={{
+                                color: '#2FAE7B',
+                                textAlign: 'center',
+                              }}>
+                              +${item.round.toFixed(2)}
+                            </Text>
+                          </TouchableOpacity>
+                        )}
+                      </>
                     )}
-                    {/*<Button*/}
-                    {/*  title="Nearest Dollar"*/}
-                    {/*  style={styles.buttonView}*/}
-                    {/*  backgroundColor={'#378B15'}*/}
-                    {/*  newButton*/}
-                    {/*/>*/}
                   </View>
                 )}
                 keyExtractor={item => item.id}
               />
-              {/*<View*/}
-              {/*  style={{*/}
-              {/*    flexDirection: 'row',*/}
-              {/*    justifyContent: 'space-around',*/}
-              {/*    alignItems: 'center',*/}
-              {/*  }}>*/}
-              {/*  <Text style={{width: '35%'}}>Nandos Chicken </Text>*/}
-              {/*  <Text style={{width: '35%', textAlign: 'center'}}>$22.60</Text>*/}
-              {/*  <Button*/}
-              {/*    title="Nearest Dollar"*/}
-              {/*    style={styles.buttonView}*/}
-              {/*    backgroundColor={'#378B15'}*/}
-              {/*    newButton*/}
-              {/*  />*/}
-              {/*</View>*/}
-              {/*<View*/}
-              {/*  style={{*/}
-              {/*    flexDirection: 'row',*/}
-              {/*    justifyContent: 'space-around',*/}
-              {/*    marginTop: '5%',*/}
-              {/*  }}>*/}
-              {/*  <Text style={{width: '35%'}}>Nandos Chicken</Text>*/}
-              {/*  <Text style={{width: '35%', textAlign: 'center'}}>$22.60</Text>*/}
-              {/*  <Text*/}
-              {/*    style={{color: '#2FAE7B', width: '30%', textAlign: 'center'}}>*/}
-              {/*    $0.70*/}
-              {/*  </Text>*/}
-              {/*</View>*/}
-              {/*<View*/}
-              {/*  style={{*/}
-              {/*    flexDirection: 'row',*/}
-              {/*    justifyContent: 'space-around',*/}
-              {/*    marginTop: '5%',*/}
-              {/*  }}>*/}
-              {/*  <Text style={{width: '35%'}}>Nandos Chicken</Text>*/}
-              {/*  <Text style={{width: '35%', textAlign: 'center'}}>$22.60</Text>*/}
-              {/*  <Text*/}
-              {/*    style={{color: '#2FAE7B', width: '30%', textAlign: 'center'}}>*/}
-              {/*    $0.70*/}
-              {/*  </Text>*/}
-              {/*</View>*/}
-              {/*<View*/}
-              {/*  style={{*/}
-              {/*    flexDirection: 'row',*/}
-              {/*    justifyContent: 'space-around',*/}
-              {/*    marginTop: '5%',*/}
-              {/*  }}>*/}
-              {/*  <Text style={{width: '35%'}}>Nandos Chicken</Text>*/}
-              {/*  <Text style={{width: '35%', textAlign: 'center'}}>$22.60</Text>*/}
-              {/*  <Text*/}
-              {/*    style={{color: '#2FAE7B', width: '30%', textAlign: 'center'}}>*/}
-              {/*    $0.70*/}
-              {/*  </Text>*/}
-              {/*</View>*/}
-              {/*<View*/}
-              {/*  style={{*/}
-              {/*    flexDirection: 'row',*/}
-              {/*    justifyContent: 'space-around',*/}
-              {/*    marginTop: '5%',*/}
-              {/*  }}>*/}
-              {/*  <Text style={{width: '35%'}}>Nandos Chicken</Text>*/}
-              {/*  <Text style={{width: '35%', textAlign: 'center'}}>$22.60</Text>*/}
-              {/*  <Text*/}
-              {/*    style={{color: '#2FAE7B', width: '30%', textAlign: 'center'}}>*/}
-              {/*    $0.70*/}
-              {/*  </Text>*/}
-              {/*</View>*/}
-          <View
-            style={{
-              marginTop: '5%',
-              width: Dimensions.get('window').width - 50,
-              alignItems: 'center',
-              marginStart: '5%',
-            }}>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                alignItems: 'center',
-              }}>
-              <Text style={{width: '35%'}}>Nandos Chicken </Text>
-              <Text style={{width: '35%', textAlign: 'center'}}>$22.60</Text>
-              <TouchableOpacity
-                style={{
-                  width: '32%',
-                  justifyContent: 'center',
-                  overflow: 'hidden',
-                  marginStart: '1%',
-                  borderWidth: 0.3,
-                  borderColor: '#BDBDBD',
-                  backgroundColor: '#0E8B38',
-                  height: 50,
-                  borderRadius: 25,
-                  alignItems: 'center',
-                }}
-                onPress={() => this.handleClicked('5th')}>
-                <Text
-                  style={{
-                    textAlign: 'center',
-                    color: '#FFF',
-                    fontWeight: '700',
-                  }}>
-                  ^ $0.70
-                </Text>
-              </TouchableOpacity>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                marginTop: '5%',
-              }}>
-              <Text style={{width: '35%'}}>Nandos Chicken</Text>
-              <Text style={{width: '35%', textAlign: 'center'}}>$22.60</Text>
-              <Text
-                style={{color: '#2FAE7B', width: '30%', textAlign: 'center'}}>
-                $0.70
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                marginTop: '5%',
-              }}>
-              <Text style={{width: '35%'}}>Nandos Chicken</Text>
-              <Text style={{width: '35%', textAlign: 'center'}}>$22.60</Text>
-              <Text
-                style={{color: '#2FAE7B', width: '30%', textAlign: 'center'}}>
-                $0.70
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                marginTop: '5%',
-              }}>
-              <Text style={{width: '35%'}}>Nandos Chicken</Text>
-              <Text style={{width: '35%', textAlign: 'center'}}>$22.60</Text>
-              <Text
-                style={{color: '#2FAE7B', width: '30%', textAlign: 'center'}}>
-                $0.70
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                marginTop: '10%',
-                bottom: '5%',
-              }}>
-              <Text style={{width: '35%'}}>Nandos Chicken</Text>
-              <Text style={{width: '35%', textAlign: 'center'}}>$22.60</Text>
-              <Text
-                style={{color: '#2FAE7B', width: '30%', textAlign: 'center'}}>
-                $0.70
-              </Text>
             </View>
           ) : (
             <View style={{marginTop: '30%'}}>
@@ -443,25 +418,25 @@ class TransactionsScreen extends Component {
   }
 }
 const pickerSelectStyles = StyleSheet.create({
-    inputIOS: {
-        fontSize: 16,
-        paddingVertical: 12,
-        paddingHorizontal: 10,
-        borderWidth: 0.5,
-        borderColor: '#BDBDBD',
-        borderRadius: 4,
-        color: 'black',
-        paddingRight: 30, // to ensure the text is never behind the icon
-    },
-    inputAndroid: {
-        fontSize: 16,
-        paddingHorizontal: 10,
-        paddingVertical: 8,
-        borderWidth: 0.5,
-        borderColor: '#BDBDBD',
-        borderRadius: 8,
-        color: 'black',
-        paddingRight: 30, // to ensure the text is never behind the icon
-    },
+  inputIOS: {
+    fontSize: 12,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    // borderWidth: 0.5,
+    // borderColor: '#BDBDBD',
+    // borderRadius: 4,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+    fontSize: 12,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    // borderWidth: 0.5,
+    // borderColor: '#BDBDBD',
+    // borderRadius: 8,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
 });
 export default TransactionsScreen;

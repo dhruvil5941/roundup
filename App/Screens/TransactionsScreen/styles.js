@@ -21,7 +21,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     overflow: 'hidden',
-    marginStart: '1%'
+    marginStart: '1%',
   },
   newbuttonView: {
     // backgroundColor: '#e0e0e0',
@@ -45,14 +45,17 @@ export default StyleSheet.create({
   //   flex: 1,
   // },
   monthView: {
-    width: '45%',
+    width: '50%',
     borderRadius: 25,
     alignItems: 'center',
     marginStart: '5%',
     marginTop: '5%',
-    flex: 1,
+    height: 40,
+    justifyContent: 'center',
+    borderWidth: 0.5,
+    borderColor: '#BDBDBD',
   },
-  monthView2: {
+  roundAllDisable: {
     borderWidth: 0.5,
     borderColor: '#BDBDBD',
     width: '35%',
@@ -61,8 +64,21 @@ export default StyleSheet.create({
     alignItems: 'center',
     borderRadius: 25,
     marginTop: '5%',
-    marginStart: '5%',
+    marginStart: '20%',
     backgroundColor: '#f5f5f5',
   },
-  monthText: {fontSize: 13, color: '#9E9E9E'},
+  roundAllActive: {
+    borderWidth: 0.5,
+    borderColor: '#BDBDBD',
+    width: '35%',
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 25,
+    marginTop: '5%',
+    marginStart: '20%',
+    backgroundColor: '#55AF74',
+  },
+  monthTextDisable: {fontSize: 13, color: '#9E9E9E'},
+  monthTextActive: {fontSize: 13, color: '#fff'},
 });

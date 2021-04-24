@@ -27,6 +27,7 @@ const SettingsStack = () => {
         headerStyle: {
           backgroundColor: '#1FAD9E',
         },
+          headerBackTitleVisible: false,
         headerTintColor: '#fff',
         headerTitleStyle: {
           fontWeight: 'bold',
@@ -50,6 +51,7 @@ const ContributionsStack = () => {
         headerStyle: {
           backgroundColor: '#1FAD9E',
         },
+          headerBackTitleVisible: false,
         headerTintColor: '#fff',
         headerTitleStyle: {
           fontWeight: 'bold',
@@ -73,6 +75,7 @@ const TransactionsStack = () => {
         headerStyle: {
           backgroundColor: '#1FAD9E',
         },
+          headerBackTitleVisible: false,
         headerTintColor: '#fff',
         headerTitleStyle: {
           fontWeight: 'bold',
@@ -96,6 +99,7 @@ const ResourcesStack = () => {
         headerStyle: {
           backgroundColor: '#1FAD9E',
         },
+          headerBackTitleVisible: false,
         headerTintColor: '#fff',
         headerTitleStyle: {
           fontWeight: 'bold',
@@ -119,6 +123,7 @@ const HomeStack = () => {
         headerStyle: {
           backgroundColor: '#1FAD9E',
         },
+          headerBackTitleVisible: false,
         headerTintColor: '#fff',
         headerTitleStyle: {
           fontWeight: 'bold',
@@ -155,6 +160,7 @@ const TabNavigation = () => {
           borderTopColor: '#FFF',
           elevation: 0,
         },
+
         tabStyle: {borderRadius: 12, height: '90%'},
       }}>
       <Tab.Screen
