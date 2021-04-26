@@ -1,19 +1,20 @@
 import {Dimensions, StyleSheet} from 'react-native';
+import Color from '../../theme/Color';
 
 export default StyleSheet.create({
   mainView: {
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: Color.white,
   },
   accountValue: {
-    color: '#1FAD9E',
+    color: Color.themeColor,
     fontSize: 13,
     fontWeight: '600',
     marginTop: '5%',
     textAlign: 'center',
   },
   totalAccountValue: {
-    color: '#3EA070',
+    color: Color.darkGreen,
     fontSize: 42,
     fontWeight: '800',
     marginTop: '3%',
@@ -45,7 +46,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   textModerately: {
-    color: '#1FAD9E',
+    color: Color.themeColor,
     fontSize: 16,
     fontWeight: '700',
     marginTop: '5%',
@@ -54,42 +55,42 @@ export default StyleSheet.create({
   portfolioIndicatorView: {
     width: '70%',
     height: 28,
-    backgroundColor: '#dadbdd',
+    backgroundColor: Color.darkGray,
     marginTop: '3%',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
   },
-  portfolioIndicatorText: {fontSize: 12, color: '#000'},
+  portfolioIndicatorText: {fontSize: 12, color: Color.black},
   divider: {
     width: Dimensions.get('window').width - 70,
     alignSelf: 'center',
     borderWidth: 0.3,
-    borderColor: '#808080',
+    borderColor: Color.sparatorColor,
     marginTop: '5%',
   },
   recurringView: {
-    color: '#000',
+    color: Color.black,
     fontSize: 14,
     fontWeight: 'bold',
     textAlign: 'center',
   },
   monthlyText: {
-    color: '#000',
+    color: Color.black,
     fontSize: 14,
   },
   settingsView: {
     width: Dimensions.get('window').width / 1.8,
     alignSelf: 'flex-start',
     height: 28,
-    backgroundColor: '#dadbdd',
+    backgroundColor: Color.darkGray,
     marginTop: '3%',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
     marginStart: '8%',
   },
-  settingsText: {fontSize: 12, color: '#000'},
+  settingsText: {fontSize: 12, color: Color.black},
   stockListView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -100,25 +101,25 @@ export default StyleSheet.create({
   },
   contributionText: {
     fontSize: 15,
-    color: '#000',
+    color: Color.black,
     fontWeight: 'bold',
     marginTop: '2%',
     marginStart: '9%',
   },
   stockName: {
-    color: '#000',
+    color: Color.black,
     fontSize: 14,
     textAlign: 'center',
   },
   stockPrice: {
-    color: '#000',
+    color: Color.black,
     fontSize: 14,
   },
   seeMore: {
     width: Dimensions.get('window').width / 1.8,
     alignSelf: 'flex-start',
     height: 28,
-    backgroundColor: '#dadbdd',
+    backgroundColor: Color.darkGray,
     marginTop: '8%',
     alignItems: 'center',
     justifyContent: 'center',
@@ -126,5 +127,6 @@ export default StyleSheet.create({
     marginStart: '8%',
     bottom: '2%',
   },
-  seeMoreText: {fontSize: 12, color: '#000'},
+  seeMoreText: {fontSize: 12, color: Color.black},
+  loader: {justifyContent: 'center', alignItems: 'center', flex: 1},
 });

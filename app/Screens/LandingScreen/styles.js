@@ -42,4 +42,10 @@ export default StyleSheet.create({
     fontWeight: '700',
     color: Color.white,
   },
+  login: {
+    marginTop: '20%',
+  },
+  create:{
+    marginTop: '5%',
+  },
 });

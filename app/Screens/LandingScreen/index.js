@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, StatusBar} from 'react-native';
 import styles from './styles';
-import * as colors from '../../assets/colors';
 import Button from '../../Components/Button';
 import Color from '../../theme/Color';
 
@@ -19,13 +18,13 @@ class Landing extends Component {
         <Text style={styles.mainHeadingText}>RoundUp</Text>
         <Button
           title="LOG IN"
-          style={{marginTop: '20%'}}
+          style={styles.login}
           onPress={() => this.props.navigation.navigate('OnboardingScreenOne')}
           solidButton
         />
         <Button
           title="CREATE AN ACCOUNT"
-          style={{marginTop: '5%'}}
+          style={styles.create}
           onPress={() => this.props.navigation.navigate('OnboardingScreenOne')}
           outlineButton
         />

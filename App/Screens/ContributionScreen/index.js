@@ -3,7 +3,6 @@ import {
   StyleSheet,
   View,
   Text,
-  Dimensions,
   ScrollView,
   ActivityIndicator,
   FlatList,
@@ -13,13 +12,15 @@ import styles from './styles';
 import * as colors from '../../assets/colors';
 import Button from '../../Components/Button';
 import RNPickerSelect from 'react-native-picker-select';
+import Color from '../../theme/Color';
+import Url from '../../utility/url';
 
 class ContributionsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       homeData: '',
-        dropdownValue: 'Last 7 days',
+      dropdownValue: 'Last 7 days',
     };
   }
 
@@ -31,7 +32,7 @@ class ContributionsScreen extends Component {
       method: 'POST',
     };
     fetch(
-      'https://run.mocky.io/v3/bc446207-813f-4c7a-9068-f9921c2c918c',
+        Url.url + 'bc446207-813f-4c7a-9068-f9921c2c918c',
       requestOptions,
     )
       .then(response => response.text())
@@ -53,52 +54,20 @@ class ContributionsScreen extends Component {
             </View>
           </View>
           <Text
-            style={{
-              textAlign: 'center',
-              fontSize: 24,
-              color: '#4DAA89',
-              marginTop: '5%',
-              fontWeight: '600',
-            }}>
+            style={styles.priceText}>
             $92.38
           </Text>
           <Text
-            style={{
-              textAlign: 'center',
-              fontSize: 12,
-              marginTop: '5%',
-              color: '#9E9E9E',
-              width: Dimensions.get('window').width - 50,
-            }}>
+            style={styles.decText}>
             Funds in pool will be invested into recommended portfolio on the end
             of each month, and we will charge this amount to your linked bank
             account.
           </Text>
           <View
-            style={{
-              flexDirection: 'row',
-              width: Dimensions.get('window').width / 1.2,
-              alignSelf: 'flex-start',
-              marginStart: '5%',
-              marginTop: '5%',
-              alignItems: 'center',
-              flex: 1,
-              justifyContent: 'space-between',
-            }}>
-            <Text style={{fontSize: 20, fontWeight: 'bold'}}>Contribution</Text>
+            style={styles.contributionView}>
+            <Text style={styles.contributionText}>Contribution</Text>
             <View
-              style={{
-                borderWidth: 0.5,
-                borderColor: '#BDBDBD',
-                width: '50%',
-                  // paddingHorizontal: '10%',
-                height: 30,
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: 25,
-                marginStart: '10%',
-              }}>
-              {/*<Text style={{fontSize: 13, color: '#9E9E9E'}}>March 2021</Text>*/}
+              style={styles.pickerView}>
               <RNPickerSelect
                 onValueChange={value => this.setState({dropdownValue: value})}
                 selectedValue={this.state.dropdownValue}
@@ -118,19 +87,7 @@ class ContributionsScreen extends Component {
                 Icon={() => {
                   return (
                     <View
-                      style={{
-                        backgroundColor: 'transparent',
-                        borderTopWidth: 5,
-                        borderTopColor: 'gray',
-                        borderRightWidth: 5,
-                        borderRightColor: 'transparent',
-                        borderLeftWidth: 5,
-                        borderLeftColor: 'transparent',
-                        width: 0,
-                        height: 0,
-                        marginRight: '5%',
-                        top: '85%',
-                      }}
+                      style={styles.pickerIcon}
                     />
                   );
                 }}
@@ -139,7 +96,7 @@ class ContributionsScreen extends Component {
           </View>
           {!homeData ? (
             <View
-              style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
+              style={styles.loader}>
               <ActivityIndicator size="large" color={colors.themeColor} />
             </View>
           ) : (
@@ -153,7 +110,7 @@ class ContributionsScreen extends Component {
               )}
             />
           )}
-          <View style={{marginTop: '5%', bottom: '2%'}}>
+          <View style={styles.btnView}>
             <Button
               title="Make a one-time contribution"
               style={styles.buttonView}
@@ -164,7 +121,7 @@ class ContributionsScreen extends Component {
               title="Setup Recurring contributions"
               style={styles.buttonView}
               onPress={() => this.props.navigation.navigate('Home')}
-              backgroundColor={'#378B15'}
+              backgroundColor={Color.greenFour}
               newButton
             />
           </View>

@@ -21,11 +21,11 @@ class OnboardingScreenTwo extends Component {
             <Image
               source={onboarding}
               resizemode={'contain'}
-              style={{width: '100%', height: '100%'}}
+              style={styles.imageStyle}
             />
           </View>
         </ScrollView>
-        <View style={{marginBottom: '6%', position: 'relative'}}>
+        <View style={styles.bottomView}>
           <View style={styles.bottomTray} />
           <View>
             <Button

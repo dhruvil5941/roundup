@@ -1,14 +1,15 @@
 import {Dimensions, StyleSheet} from 'react-native';
+import Color from '../../theme/Color';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Color.white,
   },
   text: {
-    color: '#101010',
+    color: Color.black,
     fontSize: 24,
     fontWeight: 'bold',
   },
@@ -21,12 +22,12 @@ export default StyleSheet.create({
     marginStart: '5%',
   },
   stockName: {
-    color: '#000',
+    color: Color.black,
     fontSize: 14,
     textAlign: 'center',
   },
   stockPrice: {
-    color: '#000',
+    color: Color.black,
     fontSize: 14,
   },
   buttonView: {
@@ -42,7 +43,7 @@ export default StyleSheet.create({
   buttonText: {
     textAlign: 'center',
     fontWeight: '700',
-    color: '#FFF',
+    color: Color.white,
     fontSize: 16,
   },
   roundUpView: {
@@ -57,12 +58,63 @@ export default StyleSheet.create({
   roundUpText: {fontSize: 20, fontWeight: '400'},
   monthView: {
     borderWidth: 0.5,
-    borderColor: '#BDBDBD',
+    borderColor: Color.lightGray,
     width: '40%',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 25,
   },
-  monthText: {fontSize: 13, color: '#9E9E9E'},
+  monthText: {fontSize: 13, color: Color.secondGray},
+  priceText: {
+    textAlign: 'center',
+    fontSize: 24,
+    color: Color.lighterGreen,
+    marginTop: '5%',
+    fontWeight: '600',
+  },
+  decText: {
+    textAlign: 'center',
+    fontSize: 12,
+    marginTop: '5%',
+    color: Color.secondGray,
+    width: Dimensions.get('window').width - 50,
+  },
+  contributionView: {
+    flexDirection: 'row',
+    width: Dimensions.get('window').width / 1.2,
+    alignSelf: 'flex-start',
+    marginStart: '5%',
+    marginTop: '5%',
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'space-between',
+  },
+  contributionText: {fontSize: 20, fontWeight: 'bold'},
+  pickerView: {
+    borderWidth: 0.5,
+    borderColor: Color.lightGray,
+    width: '50%',
+    // paddingHorizontal: '10%',
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 25,
+    marginStart: '10%',
+  },
+  pickerIcon: {
+    backgroundColor: 'transparent',
+    borderTopWidth: 5,
+    borderTopColor: 'gray',
+    borderRightWidth: 5,
+    borderRightColor: 'transparent',
+    borderLeftWidth: 5,
+    borderLeftColor: 'transparent',
+    width: 0,
+    height: 0,
+    marginRight: '5%',
+    top: '85%',
+  },
+  loader: {justifyContent: 'center', alignItems: 'center', flex: 1},
+  btnView: {marginTop: '5%', bottom: '2%'},
 });

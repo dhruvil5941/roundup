@@ -3,7 +3,6 @@ import {
   View,
   Text,
   Dimensions,
-  StatusBar,
   ScrollView,
   FlatList,
   ActivityIndicator,
@@ -11,6 +10,7 @@ import {
 import Pie from 'react-native-pie';
 import styles from './styles';
 import * as colors from '../../assets/colors';
+import Url from '../../utility/url';
 
 class Home extends Component {
   constructor(props) {
@@ -27,10 +27,7 @@ class Home extends Component {
     var requestOptions = {
       method: 'POST',
     };
-    fetch(
-      'https://run.mocky.io/v3/bc446207-813f-4c7a-9068-f9921c2c918c',
-      requestOptions,
-    )
+    fetch(Url.url + 'bc446207-813f-4c7a-9068-f9921c2c918c', requestOptions)
       .then(response => response.text())
       .then(result => {
         this.setState({homeData: JSON.parse(result)});
@@ -42,7 +39,7 @@ class Home extends Component {
     const {homeData} = this.state;
     if (!homeData) {
       return (
-        <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
+        <View style={styles.loader}>
           <ActivityIndicator size="large" color={colors.themeColor} />
         </View>
       );

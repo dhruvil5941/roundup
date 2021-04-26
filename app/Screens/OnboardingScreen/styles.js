@@ -57,4 +57,6 @@ export default StyleSheet.create({
     fontWeight: '700',
     color: Color.white,
   },
+  imageStyle: {width: '100%', height: '100%'},
+  bottomView: {marginBottom: '6%', position: 'relative'},
 });

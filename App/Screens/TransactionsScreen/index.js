@@ -3,21 +3,17 @@ import {
   View,
   Text,
   ScrollView,
-  Dimensions,
   TouchableOpacity,
   StyleSheet,
   FlatList,
   ActivityIndicator,
-  Image,
-  Platform,
 } from 'react-native';
 import styles from './styles';
-import Button from '../../Components/Button';
 import {Switch} from 'react-native-switch';
 import RNPickerSelect from 'react-native-picker-select';
 import * as colors from '../../assets/colors';
-import {arrow} from '../../assets/images/arrow_up.png';
-import onboarding from '../../assets/images/onboarding_image1.jpg';
+import Color from '../../theme/Color';
+import Url from '../../utility/url';
 class TransactionsScreen extends Component {
   constructor(props) {
     super(props);
@@ -42,7 +38,7 @@ class TransactionsScreen extends Component {
   componentDidMount() {
     this.getTransactionData();
     var num = 5.2;
-    console.log(num.toFixed(2));
+    // console.log(num.toFixed(2));
   }
 
   getTransactionData = () => {
@@ -50,7 +46,7 @@ class TransactionsScreen extends Component {
       method: 'POST',
     };
     fetch(
-      'https://run.mocky.io/v3/89fa1568-0d3c-40e5-9c46-ac4de216cac6',
+        Url.url + '89fa1568-0d3c-40e5-9c46-ac4de216cac6',
       requestOptions,
     )
       .then(response => response.text())
@@ -113,21 +109,12 @@ class TransactionsScreen extends Component {
 
   render() {
     const {transactionData, selectedDollar, roundAllSelect} = this.state;
-    console.log(selectedDollar);
     return (
       <View style={styles.container}>
         <ScrollView>
           <Text style={styles.roundUpOpstion}>Round Up Options</Text>
-          <View
-            style={{
-              flexDirection: 'row',
-              width: Dimensions.get('window').width - 50,
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              marginStart: '5%',
-              marginTop: '5%',
-            }}>
-            <Text style={{fontWeight: 'bold'}}>Enable Automatic Round Ups</Text>
+          <View style={styles.enableView}>
+            <Text style={styles.enableText}>Enable Automatic Round Ups</Text>
             <View>
               <Switch
                 value={this.state.isEnabled}
@@ -146,104 +133,90 @@ class TransactionsScreen extends Component {
               />
             </View>
           </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              marginStart: '5%',
-              marginTop: '5%',
-              width: Dimensions.get('window').width - 50,
-              alignItems: 'center',
-              justifyContent: 'center',
-              overflow: 'hidden',
-            }}>
+          <View style={styles.nearestView}>
             <TouchableOpacity
-              style={{
-                width: '32%',
-                justifyContent: 'center',
-                overflow: 'hidden',
-                marginStart: '1%',
-                borderWidth: 0.3,
-                borderColor: '#BDBDBD',
-                backgroundColor:
-                  this.state.isClicked === '1st' ? '#55AF74' : '#f5f5f5',
-                height: 45,
-                borderRadius: 25,
-                alignItems: 'center',
-              }}
+              style={[
+                styles.nearestPropOne,
+                {
+                  backgroundColor:
+                    this.state.isClicked === '1st'
+                      ? Color.lightGreen
+                      : Color.secondaryColor,
+                },
+              ]}
               onPress={() => {
                 this.handleClicked('1st');
                 this.getNearestDollar(this.state.transactionApiData);
               }}>
               <Text
-                style={{
-                  textAlign: 'center',
-                  color: this.state.isClicked === '1st' ? '#FFF' : '#000',
-                }}>
+                style={[
+                  styles.nearestText,
+                  {
+                    color:
+                      this.state.isClicked === '1st'
+                        ? Color.white
+                        : Color.black,
+                  },
+                ]}>
                 Nearest Dollar
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{
-                width: '32%',
-                justifyContent: 'center',
-                overflow: 'hidden',
-                marginStart: '1%',
-                borderWidth: 0.3,
-                borderColor: '#BDBDBD',
-                backgroundColor:
-                  this.state.isClicked === '3rd' ? '#55AF74' : '#f5f5f5',
-                height: 45,
-                borderRadius: 25,
-                alignItems: 'center',
-              }}
+              style={[
+                styles.nearestPropOne,
+                {
+                  backgroundColor:
+                    this.state.isClicked === '3rd'
+                      ? Color.lightGreen
+                      : Color.secondaryColor,
+                },
+              ]}
               onPress={() => {
                 this.handleClicked('3rd');
                 this.getNearest3rdDollar(this.state.transactionApiData);
               }}>
               <Text
-                style={{
-                  textAlign: 'center',
-                  color: this.state.isClicked === '3rd' ? '#FFF' : '#000',
-                }}>
+                style={[
+                  styles.nearestText,
+                  {
+                    color:
+                      this.state.isClicked === '3rd'
+                        ? Color.white
+                        : Color.black,
+                  },
+                ]}>
                 Nearest 3rd Dollar
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{
-                width: '32%',
-                justifyContent: 'center',
-                overflow: 'hidden',
-                marginStart: '1%',
-                borderWidth: 0.3,
-                borderColor: '#BDBDBD',
-                backgroundColor:
-                  this.state.isClicked === '5th' ? '#55AF74' : '#f5f5f5',
-                height: 45,
-                borderRadius: 25,
-                alignItems: 'center',
-              }}
+              style={[
+                styles.nearestPropOne,
+                {
+                  backgroundColor:
+                    this.state.isClicked === '5th'
+                      ? Color.lightGreen
+                      : Color.secondaryColor,
+                },
+              ]}
               onPress={() => {
                 this.handleClicked('5th');
                 this.getNearest5thDollar(this.state.transactionApiData);
               }}>
               <Text
-                style={{
-                  textAlign: 'center',
-                  color: this.state.isClicked === '5th' ? '#FFF' : '#000',
-                }}>
+                style={[
+                  styles.nearestText,
+                  {
+                    color:
+                      this.state.isClicked === '5th'
+                        ? Color.white
+                        : Color.black,
+                  },
+                ]}>
                 Nearest 5th Dollar
               </Text>
             </TouchableOpacity>
           </View>
-          <View
-            style={{
-              marginTop: '5%',
-              width: Dimensions.get('window').width - 50,
-              alignItems: 'center',
-              marginStart: '5%',
-              justifyContent: 'space-around',
-              flexDirection: 'row',
-            }}>
+          <View style={styles.tranjectionView}>
             <Text style={styles.roundUpText}>Recent Transactions</Text>
             {!roundAllSelect ? (
               <TouchableOpacity
@@ -295,107 +268,41 @@ class TransactionsScreen extends Component {
                 },
               }}
               Icon={() => {
-                return (
-                  <View
-                    style={{
-                      backgroundColor: 'transparent',
-                      borderTopWidth: 5,
-                      borderTopColor: 'gray',
-                      borderRightWidth: 5,
-                      borderRightColor: 'transparent',
-                      borderLeftWidth: 5,
-                      borderLeftColor: 'transparent',
-                      width: 0,
-                      height: 0,
-                      marginRight: '5%',
-                      top: '85%',
-                    }}
-                  />
-                );
+                return <View style={styles.picker} />;
               }}
             />
           </View>
           {transactionData.length > 0 ? (
-            <View
-              style={{
-                flex: 1,
-                alignItems: 'center',
-                margin: '5%',
-              }}>
+            <View style={styles.listView}>
               <FlatList
                 data={transactionData}
                 renderItem={({item}) => (
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'space-around',
-                      alignItems: 'center',
-                      margin: '2%',
-                      marginTop: '5%',
-                    }}>
+                  <View style={styles.listDataView}>
                     <Text style={{width: '35%'}}>{item.name}</Text>
-                    <Text
-                      style={{
-                        width: '35%',
-                        textAlign: 'center',
-                      }}>
-                      ${item.amount}
-                    </Text>
+                    <Text style={styles.listAmount}>${item.amount}</Text>
                     {item.round === 0 ? (
-                      <Text
-                        style={{
-                          color: '#2FAE7B',
-                          width: '30%',
-                          textAlign: 'center',
-                        }}>
-                        -
-                      </Text>
+                      <Text style={styles.amountView}>-</Text>
                     ) : (
                       <>
                         {selectedDollar.length > 0 &&
                         selectedDollar.filter(item1 => item1.name === item.name)
                           .length > 0 ? (
                           <TouchableOpacity
-                            style={{
-                              width: '30%',
-                              justifyContent: 'center',
-                              // marginStart: '1%',
-                              borderWidth: 0.3,
-                              borderColor: '#BDBDBD',
-                              backgroundColor: '#0E8B38',
-                              borderRadius: 25,
-                              padding: '2%',
-                              alignItems: 'center',
-                            }}
+                            style={styles.amountRound}
                             onPress={() => {
                               this.state.isEnabled === false &&
                                 this.unSelectDollar(item);
                               this.setState({roundAllSelect: false});
                             }}>
-                            <Text
-                              style={{
-                                textAlign: 'center',
-                                color: '#FFF',
-                                fontWeight: '700',
-                              }}>
-                             ^ ${item.round.toFixed(2)}
+                            <Text style={styles.roundText}>
+                              ^ ${item.round.toFixed(2)}
                             </Text>
                           </TouchableOpacity>
                         ) : (
                           <TouchableOpacity
-                            style={{
-                              width: '30%',
-                              justifyContent: 'center',
-                              // height: 50,
-                              alignItems: 'center',
-                              padding: '2%',
-                            }}
+                            style={styles.selectDollar}
                             onPress={() => this.selectDollar(item)}>
-                            <Text
-                              style={{
-                                color: '#2FAE7B',
-                                textAlign: 'center',
-                              }}>
+                            <Text style={styles.selectDollarText}>
                               +${item.round.toFixed(2)}
                             </Text>
                           </TouchableOpacity>
@@ -408,7 +315,7 @@ class TransactionsScreen extends Component {
               />
             </View>
           ) : (
-            <View style={{marginTop: '30%'}}>
+            <View style={styles.loader}>
               <ActivityIndicator size="large" color={colors.themeColor} />
             </View>
           )}
@@ -422,20 +329,14 @@ const pickerSelectStyles = StyleSheet.create({
     fontSize: 12,
     paddingVertical: 12,
     paddingHorizontal: 10,
-    // borderWidth: 0.5,
-    // borderColor: '#BDBDBD',
-    // borderRadius: 4,
-    color: 'black',
+    color: Color.black,
     paddingRight: 30, // to ensure the text is never behind the icon
   },
   inputAndroid: {
     fontSize: 12,
     paddingHorizontal: 10,
     paddingVertical: 8,
-    // borderWidth: 0.5,
-    // borderColor: '#BDBDBD',
-    // borderRadius: 8,
-    color: 'black',
+    color: Color.black,
     paddingRight: 30, // to ensure the text is never behind the icon
   },
 });

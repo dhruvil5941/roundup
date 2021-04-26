@@ -15,7 +15,6 @@ const Button = props => {
     style,
     newButton,
   } = props;
-  console.log(props);
   return (
     <TouchableOpacity
       style={[

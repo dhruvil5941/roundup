@@ -3,12 +3,9 @@ import {
   Image,
   View,
   Text,
-  StatusBar,
   ScrollView,
-  Dimensions,
 } from 'react-native';
 import styles from './styles';
-import * as colors from '../../assets/colors';
 import onboarding from '../../assets/images/onboarding_image1.jpg';
 import Button from '../../Components/Button';
 
@@ -34,11 +31,11 @@ class OnboardingScreenOne extends Component {
             <Image
               source={onboarding}
               resizemode={'contain'}
-              style={{width: '100%', height: '100%'}}
+              style={styles.imageStyle}
             />
           </View>
         </ScrollView>
-        <View style={{marginBottom: '6%', position: 'relative'}}>
+        <View style={styles.bottomView}>
           <View style={styles.bottomTray} />
           <Button
             title="Next"

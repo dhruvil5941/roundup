@@ -3,8 +3,6 @@ import {
   TouchableOpacity,
   View,
   Text,
-  Dimensions,
-  StatusBar,
   ScrollView,
   FlatList,
   ActivityIndicator,
@@ -15,29 +13,30 @@ import Swiper from 'react-native-swiper';
 import styles from './styles';
 import * as colors from '../../../assets/colors';
 import Button from '../../../Components/Button';
+import Color from '../../../theme/Color';
+import Url from '../../../utility/url';
 
 const indicatorStyles = {
   stepIndicatorSize: 25,
   currentStepIndicatorSize: 45,
   separatorStrokeWidth: 2,
   currentStepStrokeWidth: 3,
-  stepStrokeCurrentColor: '#1FAD9E',
+  stepStrokeCurrentColor: Color.themeColor,
   stepStrokeWidth: 3,
-  stepStrokeFinishedColor: '#7eaec4',
-  stepStrokeUnFinishedColor: '#dedede',
-  separatorFinishedColor: '#7eaec4',
-  separatorUnFinishedColor: '#dedede',
-  stepIndicatorFinishedColor: '#7eaec4',
-  stepIndicatorUnFinishedColor: '#ffffff',
-  stepIndicatorCurrentColor: '#1FAD9E',
+  stepStrokeFinishedColor: Color.lightBlue,
+  stepStrokeUnFinishedColor: Color.whiteGray,
+  separatorFinishedColor: Color.lightBlue,
+  separatorUnFinishedColor: Color.whiteGray,
+  stepIndicatorFinishedColor: Color.lightBlue,
+  stepIndicatorUnFinishedColor: Color.white,
+  stepIndicatorCurrentColor: Color.themeColor,
   stepIndicatorLabelFontSize: 0,
   currentStepIndicatorLabelFontSize: 0,
   stepIndicatorLabelCurrentColor: 'transparent',
   stepIndicatorLabelFinishedColor: 'transparent',
   stepIndicatorLabelUnFinishedColor: 'transparent',
-  labelColor: '#999999',
   labelSize: 13,
-  currentStepLabelColor: '#7eaec4',
+  currentStepLabelColor: Color.lightBlue,
 };
 
 class Conservative extends Component {
@@ -57,15 +56,11 @@ class Conservative extends Component {
     var requestOptions = {
       method: 'POST',
     };
-    fetch(
-      'https://run.mocky.io/v3/377d7f52-58b8-4281-8e69-f0ca796bb377',
-      requestOptions,
-    )
+    fetch(Url.url + '377d7f52-58b8-4281-8e69-f0ca796bb377', requestOptions)
       .then(response => response.text())
       .then(result => {
-          this.setState({portfolioData: JSON.parse(result)});
-        },
-      )
+        this.setState({portfolioData: JSON.parse(result)});
+      })
       .catch(error => console.log('error', error));
   };
 
@@ -74,7 +69,7 @@ class Conservative extends Component {
     const count = portfolioData.data && portfolioData.data.length;
     if (!portfolioData.data) {
       return (
-        <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
+        <View style={styles.loader}>
           <ActivityIndicator size="large" color={colors.themeColor} />
         </View>
       );
@@ -84,7 +79,7 @@ class Conservative extends Component {
           <View style={styles.swiperView}>
             <ScrollView>
               <Swiper
-                style={{flexGrow: 1}}
+                style={styles.swiper}
                 loop={false}
                 index={this.state.currentPosition}
                 autoplay={false}
@@ -92,7 +87,6 @@ class Conservative extends Component {
                 onIndexChanged={page => {
                   this.setState({currentPosition: page});
                 }}>
-                {/*<ScrollView>*/}
                 {portfolioData.data &&
                   portfolioData.data.map(item => (
                     <View>
@@ -112,7 +106,7 @@ class Conservative extends Component {
                           strokeCap={'butt'}
                         />
                       </View>
-                      <View style={{marginStart: '5%', marginTop: '4%'}}>
+                      <View style={styles.riskLableText}>
                         <Text style={styles.riskText}>Risk Level</Text>
                       </View>
                       <View style={styles.stepperView}>
@@ -122,7 +116,7 @@ class Conservative extends Component {
                           currentPosition={this.state.currentPosition}
                         />
                       </View>
-                      <View style={{marginStart: '5%', marginTop: '3%'}}>
+                      <View style={styles.portfolioText}>
                         <Text style={styles.middleText}>
                           {item.portfolioName}
                         </Text>
@@ -136,7 +130,7 @@ class Conservative extends Component {
                           renderItem={({item}) => (
                             <View style={styles.portfolioTypesList}>
                               <Text style={styles.listName}>{item.name}</Text>
-                              <Text style={{fontSize: 16}}>
+                              <Text style={styles.percentageText}>
                                 {item.percentage}
                               </Text>
                             </View>
@@ -144,12 +138,7 @@ class Conservative extends Component {
                         />
                       </View>
                       {item.isOtherPortfolio === true ? (
-                        <View
-                          style={{
-                            marginTop: '10%',
-                            flex: 1,
-                            bottom: '4%'
-                          }}>
+                        <View style={styles.portfolioTextStyle}>
                           <Button
                             title="Choose recommended portfolio"
                             style={styles.buttonView}
@@ -168,7 +157,7 @@ class Conservative extends Component {
                           />
                         </View>
                       ) : (
-                        <View style={{marginTop: '15%', flex: 1}}>
+                        <View style={styles.buttonStyle}>
                           <TouchableOpacity
                             style={styles.buttonView}
                             onPress={() =>
@@ -188,7 +177,6 @@ class Conservative extends Component {
                       )}
                     </View>
                   ))}
-                {/*</ScrollView>*/}
               </Swiper>
             </ScrollView>
           </View>

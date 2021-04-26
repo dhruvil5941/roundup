@@ -1,33 +1,34 @@
 import {Dimensions, StyleSheet} from 'react-native';
+import Color from '../../../theme/Color';
 
 export default StyleSheet.create({
   mainView: {
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: Color.white,
   },
-  stepperView: {marginTop: '5%' },
-  swiperView: { bottom: '2%' },
+  stepperView: {marginTop: '5%'},
+  swiperView: {bottom: '2%'},
   titleText: {
-    color: '#000',
+    color: Color.black,
     fontSize: 18,
     textAlign: 'center',
     marginTop: '8%',
   },
   pieView: {alignItems: 'center', marginTop: '5%'},
   riskText: {
-    color: '#000',
+    color: Color.black,
     fontSize: 15,
     fontWeight: '600',
   },
   middleText: {
-    color: '#1FAD9E',
+    color: Color.themeColor,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
     marginTop: '3%',
   },
   portfolioName: {
-    color: '#1FAD9E',
+    color: Color.themeColor,
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -51,7 +52,7 @@ export default StyleSheet.create({
   buttonView: {
     width: Dimensions.get('window').width / 1.2,
     height: 45,
-    backgroundColor: '#1FAD9E',
+    backgroundColor: Color.themeColor,
     borderRadius: 15,
     justifyContent: 'center',
     alignSelf: 'center',
@@ -60,7 +61,18 @@ export default StyleSheet.create({
   buttonText: {
     textAlign: 'center',
     fontWeight: '700',
-    color: '#FFF',
+    color: Color.white,
     fontSize: 16,
   },
+  swiper: {flexGrow: 1},
+  riskLableText: {marginStart: '5%', marginTop: '4%'},
+  portfolioText: {marginStart: '5%', marginTop: '3%'},
+  percentageText: {fontSize: 16},
+  portfolioTextStyle: {
+    marginTop: '10%',
+    flex: 1,
+    bottom: '4%',
+  },
+  buttonStyle: {marginTop: '15%', flex: 1},
+  loader: {justifyContent: 'center', alignItems: 'center', flex: 1},
 });

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {
   View,
   Text,
-  TouchableOpacity,
   StyleSheet,
   StatusBar,
   FlatList,
@@ -13,6 +12,8 @@ import RNPickerSelect from 'react-native-picker-select';
 import styles from './styles';
 import * as colors from '../../assets/colors';
 import Button from '../../Components/Button';
+import Color from '../../theme/Color';
+import Url from '../../utility/url';
 
 class Userfinancesquestion extends Component {
   constructor(props) {
@@ -20,8 +21,6 @@ class Userfinancesquestion extends Component {
     this.state = {
       selectedStatus: '',
       selectedIncome: '',
-      // selectedGoal: '',
-      // selectedPeriod: '',
       dropdownData: '',
     };
   }
@@ -34,19 +33,15 @@ class Userfinancesquestion extends Component {
     };
 
     fetch(
-      'https://run.mocky.io/v3/1c5dd4f7-8b4e-40b2-84c7-d7d6ab447808',
+        Url.url + '1c5dd4f7-8b4e-40b2-84c7-d7d6ab447808',
       requestOptions,
     )
       .then(response => response.text())
       .then(result => {
-        // if (result.status === 200) {
         this.setState({dropdownData: JSON.parse(result)});
-        // }
       })
       .catch(error => console.log('error', error));
   };
-
-  SetSelectedValue = () => {};
 
   render() {
     const {dropdownData} = this.state;
@@ -74,7 +69,7 @@ class Userfinancesquestion extends Component {
             </View>
 
             {dropdownData.QuestionsList == undefined ? (
-              <View style={{marginTop: '30%'}}>
+              <View style={styles.questionStyle}>
                 <ActivityIndicator size="large" color={colors.themeColor} />
               </View>
             ) : (
@@ -100,23 +95,9 @@ class Userfinancesquestion extends Component {
                           }}
                           value={this.state[item.id + '_str']}
                           useNativeAndroidPickerStyle={false}
-                          textInputProps={{underlineColor: 'yellow'}}
+                          textInputProps={{underlineColor: Color.yellow}}
                           Icon={() => {
-                            return (
-                              <View
-                                style={{
-                                  backgroundColor: 'transparent',
-                                  borderTopWidth: 5,
-                                  borderTopColor: 'gray',
-                                  borderRightWidth: 5,
-                                  borderRightColor: 'transparent',
-                                  borderLeftWidth: 5,
-                                  borderLeftColor: 'transparent',
-                                  width: 0,
-                                  height: 0,
-                                }}
-                              />
-                            );
+                            return <View style={styles.dropdownIconStyle} />;
                           }}
                         />
                       </View>
@@ -145,9 +126,9 @@ const pickerSelectStyles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 10,
     borderWidth: 0.5,
-    borderColor: '#BDBDBD',
+    borderColor: Color.lightGray,
     borderRadius: 4,
-    color: 'black',
+    color: Color.black,
     paddingRight: 30, // to ensure the text is never behind the icon
   },
   inputAndroid: {
@@ -155,9 +136,9 @@ const pickerSelectStyles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 8,
     borderWidth: 0.5,
-    borderColor: '#BDBDBD',
+    borderColor: Color.lightGray,
     borderRadius: 8,
-    color: 'black',
+    color: Color.black,
     paddingRight: 30, // to ensure the text is never behind the icon
   },
 });

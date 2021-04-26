@@ -1,5 +1,4 @@
-import {StyleSheet, Platform, Dimensions} from 'react-native';
-import * as colors from '../../assets/colors';
+import {StyleSheet, Dimensions} from 'react-native';
 import Color from '../../theme/Color';
 
 export default StyleSheet.create({
@@ -46,5 +45,17 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontWeight: '700',
     color: Color.white,
+  },
+  questionStyle: {marginTop: '30%'},
+  dropdownIconStyle: {
+    backgroundColor: 'transparent',
+    borderTopWidth: 5,
+    borderTopColor: Color.lightGray,
+    borderRightWidth: 5,
+    borderRightColor: 'transparent',
+    borderLeftWidth: 5,
+    borderLeftColor: 'transparent',
+    width: 0,
+    height: 0,
   },
 });
