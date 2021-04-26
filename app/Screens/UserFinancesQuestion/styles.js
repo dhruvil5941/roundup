@@ -1,10 +1,11 @@
 import {StyleSheet, Platform, Dimensions} from 'react-native';
 import * as colors from '../../assets/colors';
+import Color from '../../theme/Color';
 
 export default StyleSheet.create({
   mainView: {
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: Color.white,
   },
   scrollView: {
     marginBottom: '20%',
@@ -15,20 +16,20 @@ export default StyleSheet.create({
     fontSize: 18,
     marginTop: '8%',
     textAlign: 'center',
-    color: '#424242',
+    color: Color.defaultTextColor,
   },
   discView: {
     width: Dimensions.get('window').width / 1.2,
     marginTop: '5%',
     alignSelf: 'center',
   },
-  discText: {fontSize: 14, color: '#808080', textAlign: 'center'},
+  discText: {fontSize: 14, color: Color.sparatorColor, textAlign: 'center'},
   queTitle: {
     fontWeight: '700',
     fontSize: 14,
     marginTop: '6%',
     marginStart: '4%',
-    color: '#424242',
+    color: Color.defaultTextColor,
   },
   pickerView: {
     width: Dimensions.get('window').width - 35,
@@ -44,6 +45,6 @@ export default StyleSheet.create({
   BtnText: {
     textAlign: 'center',
     fontWeight: '700',
-    color: '#FFF',
+    color: Color.white,
   },
 });

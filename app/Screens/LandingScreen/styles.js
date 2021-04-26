@@ -1,15 +1,15 @@
 import {StyleSheet, Platform, Dimensions} from 'react-native';
-import * as colors from '../../assets/colors';
+import Color from '../../theme/Color';
 
 export default StyleSheet.create({
   mainView: {
     flex: 1,
-    backgroundColor: colors.themeColor,
+    backgroundColor: Color.themeColor,
     justifyContent: 'center',
     alignItems: 'center',
   },
   mainHeadingText: {
-    color: colors.titleTextColor,
+    color: Color.titleTextColor,
     fontSize: 22,
     fontWeight: 'bold',
     // fontFamily: 'SFProText',
@@ -17,7 +17,7 @@ export default StyleSheet.create({
   logInBtn: {
     width: Dimensions.get('window').width / 1.2,
     height: '5%',
-    backgroundColor: colors.secondaryColor,
+    backgroundColor: Color.secondaryColor,
     borderRadius: 25,
     marginTop: '20%',
     justifyContent: 'center',
@@ -30,16 +30,16 @@ export default StyleSheet.create({
   signUpBtn: {
     width: Dimensions.get('window').width / 1.2,
     height: '5%',
-    backgroundColor: '#1FAD9E',
+    backgroundColor: Color.themeColor,
     borderRadius: 25,
     marginTop: '5%',
     justifyContent: 'center',
     borderWidth: 0.3,
-    borderColor: colors.white,
+    borderColor: Color.white,
   },
   signUpBtnText: {
     textAlign: 'center',
     fontWeight: '700',
-    color: colors.white,
+    color: Color.white,
   },
 });

@@ -1,15 +1,16 @@
 import {StyleSheet, Dimensions} from 'react-native';
 import * as colors from '../../assets/colors';
+import Color from '../../theme/Color';
 
 export default StyleSheet.create({
   mainView: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: Color.white,
   },
   mainHeadingText: {
     fontWeight: 'bold',
     fontSize: 22,
-    color: colors.themeColor,
+    color: Color.themeColor,
     marginTop: '20%',
     textAlign: 'center',
   },
@@ -40,13 +41,13 @@ export default StyleSheet.create({
   },
   bottomTray: {
     borderTopWidth: 0.3,
-    borderColor: colors.white,
+    borderColor: Color.white,
     marginTop: '15%',
     shadowOffset: {
       width: 0,
       height: 1,
     },
-    shadowColor: colors.black,
+    shadowColor: Color.black,
     shadowOpacity: 1.0,
     elevation: 2,
   },
@@ -54,6 +55,6 @@ export default StyleSheet.create({
   bottomTrayBtnText: {
     textAlign: 'center',
     fontWeight: '700',
-    color: colors.white,
+    color: Color.white,
   },
 });
