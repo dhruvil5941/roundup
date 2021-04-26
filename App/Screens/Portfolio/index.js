@@ -11,10 +11,10 @@ import Pie from 'react-native-pie';
 import StepIndicator from 'react-native-step-indicator';
 import Swiper from 'react-native-swiper';
 import styles from './styles';
-import * as colors from '../../../assets/colors';
-import Button from '../../../Components/Button';
-import Color from '../../../theme/Color';
-import Url from '../../../utility/url';
+import * as colors from '../../assets/colors';
+import Button from '../../Components/Button';
+import Color from '../../theme/Color';
+import Url from '../../utility/url';
 
 const indicatorStyles = {
   stepIndicatorSize: 25,

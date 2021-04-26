@@ -2,7 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Userfinancesquestion from '../Screens/UserFinancesQuestion';
-import Conservative from '../Screens/Portfolio/Conservative';
+import Conservative from '../Screens/Portfolio';
 import Landing from '../Screens/LandingScreen';
 import OnboardingScreenOne from '../Screens/OnboardingScreen/OnboardingScreenOne';
 import OnboardingScreenTwo from '../Screens/OnboardingScreen/OnboardingScreenTwo';
