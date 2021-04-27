@@ -10,9 +10,9 @@ import {
 } from 'react-native';
 import styles from './styles';
 import * as colors from '../../assets/colors';
-import Button from '../../Components/Button';
+import Button from '../../components/button';
 import RNPickerSelect from 'react-native-picker-select';
-import Color from '../../theme/Color';
+import Color from '../../theme/color';
 import {connect} from 'react-redux';
 
 class ContributionsScreen extends Component {
@@ -84,13 +84,13 @@ class ContributionsScreen extends Component {
             <Button
               title="Make a one-time contribution"
               style={styles.buttonView}
-              onPress={() => this.props.navigation.navigate('Home')}
+              onPress={() => this.props.navigation.navigate('home')}
               newButton
             />
             <Button
               title="Setup Recurring contributions"
               style={styles.buttonView}
-              onPress={() => this.props.navigation.navigate('Home')}
+              onPress={() => this.props.navigation.navigate('home')}
               backgroundColor={Color.greenFour}
               newButton
             />

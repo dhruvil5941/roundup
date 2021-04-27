@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import NavigatorStack from './Navigation/StackNavigation';
+import NavigatorStack from './navigation/stackNavigation';
 import {LogBox} from 'react-native';
 import {store} from './redux/store';
 import {Provider} from 'react-redux';

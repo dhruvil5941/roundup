@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import StackNavigation from './App/Navigation/StackNavigation';
+import StackNavigation from './app/navigation/stackNavigation';
 
 export default function App() {
   return (
@@ -11,4 +11,4 @@ export default function App() {
   );
 }
 
-// export default App;
+// export default app;

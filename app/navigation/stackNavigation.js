@@ -1,12 +1,12 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import Userfinancesquestion from '../Screens/UserFinancesQuestion';
-import Conservative from '../Screens/Portfolio';
-import Landing from '../Screens/LandingScreen';
-import OnboardingScreenOne from '../Screens/OnboardingScreen/OnboardingScreenOne';
-import OnboardingScreenTwo from '../Screens/OnboardingScreen/OnboardingScreenTwo';
-import NavigationTab from './TabNavigation';
+import Userfinancesquestion from '../screens/userfinancesquestion';
+import Conservative from '../screens/portfolio';
+import Landing from '../screens/landingscreen';
+import OnboardingScreenOne from '../screens/onboardingscreen/OnboardingScreenOne';
+import OnboardingScreenTwo from '../screens/onboardingscreen/OnboardingScreenTwo';
+import NavigationTab from './tabNavigation';
 
 const Stack = createStackNavigator();
 

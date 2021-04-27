@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, Image, ScrollView, Dimensions} from 'react-native';
 import styles from './styles';
 import onboarding from '../../assets/images/onboarding_image2.jpg';
-import Button from '../../Components/Button';
+import Button from '../../components/button';
 
 class OnboardingScreenTwo extends Component {
   render() {

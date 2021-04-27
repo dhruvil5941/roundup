@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {View, Text, StatusBar} from 'react-native';
 import styles from './styles';
-import Button from '../../Components/Button';
-import Color from '../../theme/Color';
+import Button from '../../components/button';
+import Color from '../../theme/color';
 
 class Landing extends Component {
   render() {

@@ -5,7 +5,7 @@ import {createLogger} from 'redux-logger';
 import questionListReducer from './userfinancesquestion';
 import portfolioReducer from './portfolio';
 import homeReducer from './home';
-import transactionReducer from './Transactions';
+import transactionReducer from './transactions';
 
 let initialState = {};
 

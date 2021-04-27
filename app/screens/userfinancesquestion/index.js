@@ -11,8 +11,8 @@ import {
 import RNPickerSelect from 'react-native-picker-select';
 import styles from './styles';
 import * as colors from '../../assets/colors';
-import Button from '../../Components/Button';
-import Color from '../../theme/Color';
+import Button from '../../components/button';
+import Color from '../../theme/color';
 import {connect} from 'react-redux';
 import {questionListRequest} from '../../redux/userfinancesquestion/actions';
 

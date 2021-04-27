@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 import onboarding from '../../assets/images/onboarding_image1.jpg';
-import Button from '../../Components/Button';
+import Button from '../../components/button';
 
 class OnboardingScreenOne extends Component {
   render() {

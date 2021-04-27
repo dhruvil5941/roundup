@@ -12,9 +12,9 @@ import styles from './styles';
 import {Switch} from 'react-native-switch';
 import RNPickerSelect from 'react-native-picker-select';
 import * as colors from '../../assets/colors';
-import Color from '../../theme/Color';
+import Color from '../../theme/color';
 import {connect} from 'react-redux';
-import {transactionDataRequest} from '../../redux/Transactions/actions';
+import {transactionDataRequest} from '../../redux/transactions/actions';
 
 class TransactionsScreen extends Component {
   constructor(props) {
