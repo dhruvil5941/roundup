@@ -8,7 +8,6 @@ import {
   FlatList,
 } from 'react-native';
 import styles from './styles';
-import {Switch} from 'react-native-switch';
 import RNPickerSelect from 'react-native-picker-select';
 import * as colors from '../../assets/colors';
 import Color from '../../theme/color';
@@ -16,6 +15,7 @@ import {connect} from 'react-redux';
 import {transactionDataRequest} from '../../redux/transactions/actions';
 import Stocks from '../../components/stocklistprice';
 import Loader from '../../components/loader';
+import SwitchView from '../../components/switch';
 
 class TransactionsScreen extends Component {
   constructor(props) {
@@ -107,7 +107,7 @@ class TransactionsScreen extends Component {
           <View style={styles.enableView}>
             <Text style={styles.enableText}>Enable Automatic Round Ups</Text>
             <View>
-              <Switch
+              <SwitchView
                 value={this.state.isEnabled}
                 onValueChange={val => this.toggleSwitch()}
                 barHeight={25}
