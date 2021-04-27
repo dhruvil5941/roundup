@@ -182,4 +182,5 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
   loader: {marginTop: '30%'},
+  stockName: {width: '35%'},
 });

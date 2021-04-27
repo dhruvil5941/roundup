@@ -15,6 +15,7 @@ import * as colors from '../../assets/colors';
 import Color from '../../theme/color';
 import {connect} from 'react-redux';
 import {transactionDataRequest} from '../../redux/transactions/actions';
+import Stocks from '../../components/stocklistprice';
 
 class TransactionsScreen extends Component {
   constructor(props) {
@@ -268,8 +269,12 @@ class TransactionsScreen extends Component {
                 data={transactionData}
                 renderItem={({item}) => (
                   <View style={styles.listDataView}>
-                    <Text style={{width: '35%'}}>{item.name}</Text>
-                    <Text style={styles.listAmount}>${item.amount}</Text>
+                    <Stocks
+                      name={item.name}
+                      percentage={item.amount}
+                      nameStyle={styles.stockName}
+                      percentageStyle={styles.listAmount}
+                    />
                     {item.round === 0 ? (
                       <Text style={styles.amountView}>-</Text>
                     ) : (

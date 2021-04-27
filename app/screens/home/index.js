@@ -12,6 +12,7 @@ import * as colors from '../../assets/colors';
 import {connect} from 'react-redux';
 import {homeDataRequest} from '../../redux/home/actions';
 import PieChart from '../../components/piechart';
+import Stocks from '../../components/stocklistprice';
 
 class Home extends Component {
   constructor(props) {
@@ -101,8 +102,12 @@ class Home extends Component {
               data={homeData.contributions}
               renderItem={({item}) => (
                 <View style={styles.stockListView}>
-                  <Text style={styles.stockName}>{item.name}</Text>
-                  <Text style={styles.stockPrice}>+{item.amount}</Text>
+                  <Stocks
+                    name={item.name}
+                    percentage={item.amount}
+                    nameStyle={styles.stockName}
+                    percentageStyle={styles.stockPrice}
+                  />
                 </View>
               )}
             />

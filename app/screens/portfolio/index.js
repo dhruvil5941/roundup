@@ -16,6 +16,7 @@ import Color from '../../theme/color';
 import {connect} from 'react-redux';
 import {portfolioRequest} from '../../redux/portfolio/actions';
 import PieChart from '../../components/piechart';
+import Stocks from '../../components/stocklistprice';
 
 const indicatorStyles = {
   stepIndicatorSize: 25,
@@ -117,10 +118,12 @@ class Conservative extends Component {
                           }
                           renderItem={({item}) => (
                             <View style={styles.portfolioTypesList}>
-                              <Text style={styles.listName}>{item.name}</Text>
-                              <Text style={styles.percentageText}>
-                                {item.percentage}
-                              </Text>
+                              <Stocks
+                                name={item.name}
+                                percentage={item.percentage}
+                                nameStyle={styles.listName}
+                                percentageStyle={styles.percentageText}
+                              />
                             </View>
                           )}
                         />

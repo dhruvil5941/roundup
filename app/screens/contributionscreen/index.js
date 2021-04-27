@@ -14,6 +14,7 @@ import Button from '../../components/button';
 import RNPickerSelect from 'react-native-picker-select';
 import Color from '../../theme/color';
 import {connect} from 'react-redux';
+import Stocks from '../../components/stocklistprice';
 
 class ContributionsScreen extends Component {
   constructor(props) {
@@ -74,8 +75,12 @@ class ContributionsScreen extends Component {
               data={homeData.contributions}
               renderItem={({item}) => (
                 <View style={styles.stockListView}>
-                  <Text style={styles.stockName}>{item.name}</Text>
-                  <Text style={styles.stockPrice}>+{item.amount}</Text>
+                  <Stocks
+                    name={item.name}
+                    percentage={item.amount}
+                    nameStyle={styles.stockName}
+                    percentageStyle={styles.stockPrice}
+                  />
                 </View>
               )}
             />
