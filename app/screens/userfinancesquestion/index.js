@@ -5,7 +5,6 @@ import {
   StyleSheet,
   StatusBar,
   FlatList,
-  ActivityIndicator,
   ScrollView,
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
@@ -15,6 +14,7 @@ import Button from '../../components/button';
 import Color from '../../theme/color';
 import {connect} from 'react-redux';
 import {questionListRequest} from '../../redux/userfinancesquestion/actions';
+import Loader from '../../components/loader';
 
 class Userfinancesquestion extends Component {
   constructor(props) {
@@ -56,7 +56,7 @@ class Userfinancesquestion extends Component {
 
             {questionList.QuestionsList === undefined ? (
               <View style={styles.questionStyle}>
-                <ActivityIndicator size="large" color={colors.themeColor} />
+                <Loader size="large" color={colors.themeColor} />
               </View>
             ) : (
               <View>

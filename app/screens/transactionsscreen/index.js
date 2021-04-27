@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   StyleSheet,
   FlatList,
-  ActivityIndicator,
 } from 'react-native';
 import styles from './styles';
 import {Switch} from 'react-native-switch';
@@ -16,6 +15,7 @@ import Color from '../../theme/color';
 import {connect} from 'react-redux';
 import {transactionDataRequest} from '../../redux/transactions/actions';
 import Stocks from '../../components/stocklistprice';
+import Loader from '../../components/loader';
 
 class TransactionsScreen extends Component {
   constructor(props) {
@@ -311,7 +311,7 @@ class TransactionsScreen extends Component {
             </View>
           ) : (
             <View style={styles.loader}>
-              <ActivityIndicator size="large" color={colors.themeColor} />
+              <Loader size="large" color={colors.themeColor} />
             </View>
           )}
         </ScrollView>

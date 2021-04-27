@@ -5,7 +5,6 @@ import {
   Dimensions,
   ScrollView,
   FlatList,
-  ActivityIndicator,
 } from 'react-native';
 import styles from './styles';
 import * as colors from '../../assets/colors';
@@ -13,6 +12,7 @@ import {connect} from 'react-redux';
 import {homeDataRequest} from '../../redux/home/actions';
 import PieChart from '../../components/piechart';
 import Stocks from '../../components/stocklistprice';
+import Loader from '../../components/loader';
 
 class Home extends Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class Home extends Component {
     if (!homeData) {
       return (
         <View style={styles.loader}>
-          <ActivityIndicator size="large" color={colors.themeColor} />
+          <Loader size="large" color={colors.themeColor} />
         </View>
       );
     } else {

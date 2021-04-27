@@ -5,7 +5,6 @@ import {
   Text,
   ScrollView,
   FlatList,
-  ActivityIndicator,
 } from 'react-native';
 import StepIndicator from 'react-native-step-indicator';
 import Swiper from 'react-native-swiper';
@@ -17,6 +16,7 @@ import {connect} from 'react-redux';
 import {portfolioRequest} from '../../redux/portfolio/actions';
 import PieChart from '../../components/piechart';
 import Stocks from '../../components/stocklistprice';
+import Loader from '../../components/loader';
 
 const indicatorStyles = {
   stepIndicatorSize: 25,
@@ -59,7 +59,7 @@ class Conservative extends Component {
     if (!portfolioList.data) {
       return (
         <View style={styles.loader}>
-          <ActivityIndicator size="large" color={colors.themeColor} />
+          <Loader size="large" color={colors.themeColor} />
         </View>
       );
     } else {
