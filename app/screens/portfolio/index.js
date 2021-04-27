@@ -7,17 +7,15 @@ import {
   FlatList,
   ActivityIndicator,
 } from 'react-native';
-import Pie from 'react-native-pie';
 import StepIndicator from 'react-native-step-indicator';
 import Swiper from 'react-native-swiper';
 import styles from './styles';
 import * as colors from '../../assets/colors';
 import Button from '../../components/button';
 import Color from '../../theme/color';
-import Url from '../../utility/url';
 import {connect} from 'react-redux';
 import {portfolioRequest} from '../../redux/portfolio/actions';
-import portfolioReducer from '../../redux/portfolio';
+import PieChart from '../../components/piechart';
 
 const indicatorStyles = {
   stepIndicatorSize: 25,
@@ -89,7 +87,7 @@ class Conservative extends Component {
                       )}
 
                       <View style={styles.pieView}>
-                        <Pie
+                        <PieChart
                           radius={50}
                           sections={item.chartData}
                           dividerSize={5}

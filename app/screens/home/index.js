@@ -7,12 +7,11 @@ import {
   FlatList,
   ActivityIndicator,
 } from 'react-native';
-import Pie from 'react-native-pie';
 import styles from './styles';
 import * as colors from '../../assets/colors';
-import Url from '../../utility/url';
 import {connect} from 'react-redux';
 import {homeDataRequest} from '../../redux/home/actions';
+import PieChart from '../../components/piechart';
 
 class Home extends Component {
   constructor(props) {
@@ -54,7 +53,7 @@ class Home extends Component {
                 </View>
               </View>
               <View>
-                <Pie
+                <PieChart
                   radius={32}
                   sections={[
                     {
