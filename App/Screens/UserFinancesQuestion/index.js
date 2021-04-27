@@ -14,10 +14,7 @@ import * as colors from '../../assets/colors';
 import Button from '../../Components/Button';
 import Color from '../../theme/Color';
 import {connect} from 'react-redux';
-import {
-  questionListFail,
-  questionListRequest,
-} from '../../redux/userfinancesquestion/actions';
+import {questionListRequest} from '../../redux/userfinancesquestion/actions';
 
 class Userfinancesquestion extends Component {
   constructor(props) {
@@ -57,7 +54,7 @@ class Userfinancesquestion extends Component {
               </Text>
             </View>
 
-            {questionList.QuestionsList == undefined ? (
+            {questionList.QuestionsList === undefined ? (
               <View style={styles.questionStyle}>
                 <ActivityIndicator size="large" color={colors.themeColor} />
               </View>
@@ -142,7 +139,6 @@ const mapStateToProps = state => {
 function mapDispatchToProps(dispatch) {
   return {
     questionListRequest: () => dispatch(questionListRequest()),
-    questionListFail: () => dispatch(questionListFail()),
   };
 }
 
@@ -150,4 +146,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Userfinancesquestion);
-// export default Userfinancesquestion;

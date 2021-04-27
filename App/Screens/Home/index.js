@@ -11,32 +11,20 @@ import Pie from 'react-native-pie';
 import styles from './styles';
 import * as colors from '../../assets/colors';
 import Url from '../../utility/url';
+import {connect} from 'react-redux';
+import {homeDataRequest} from '../../redux/home/actions';
 
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      homeData: '',
-    };
   }
 
   componentDidMount() {
-    this.getPortfolioData();
+    this.props.homeDataRequest();
   }
-  getPortfolioData = () => {
-    var requestOptions = {
-      method: 'POST',
-    };
-    fetch(Url.url + 'bc446207-813f-4c7a-9068-f9921c2c918c', requestOptions)
-      .then(response => response.text())
-      .then(result => {
-        this.setState({homeData: JSON.parse(result)});
-      })
-      .catch(error => console.log('error', error));
-  };
 
   render() {
-    const {homeData} = this.state;
+    const {homeData} = this.props;
     if (!homeData) {
       return (
         <View style={styles.loader}>
@@ -129,4 +117,17 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = state => {
+  return {
+    homeData: state.homeReducer.homeData,
+    homeDataError: state.homeReducer.homeDataError,
+  };
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    homeDataRequest: () => dispatch(homeDataRequest()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

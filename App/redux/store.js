@@ -3,6 +3,9 @@ import createSagaMiddleware from 'redux-saga';
 import {rootSaga} from './saga';
 import {createLogger} from 'redux-logger';
 import questionListReducer from './userfinancesquestion';
+import portfolioReducer from './portfolio';
+import homeReducer from './home';
+import transactionReducer from './Transactions';
 
 let initialState = {};
 
@@ -12,6 +15,9 @@ const middleware = [sagaMiddleware, createLogger()];
 
 const appReducer = combineReducers({
   questionListReducer,
+  portfolioReducer,
+  homeReducer,
+  transactionReducer,
 });
 
 const rootReducer = (state, action) => {

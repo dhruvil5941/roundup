@@ -13,37 +13,18 @@ import * as colors from '../../assets/colors';
 import Button from '../../Components/Button';
 import RNPickerSelect from 'react-native-picker-select';
 import Color from '../../theme/Color';
-import Url from '../../utility/url';
+import {connect} from 'react-redux';
 
 class ContributionsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      homeData: '',
       dropdownValue: 'Last 7 days',
     };
   }
 
-  componentDidMount() {
-    this.getPortfolioData();
-  }
-  getPortfolioData = () => {
-    var requestOptions = {
-      method: 'POST',
-    };
-    fetch(
-        Url.url + 'bc446207-813f-4c7a-9068-f9921c2c918c',
-      requestOptions,
-    )
-      .then(response => response.text())
-      .then(result => {
-        this.setState({homeData: JSON.parse(result)});
-      })
-      .catch(error => console.log('error', error));
-  };
-
   render() {
-    const {homeData} = this.state;
+    const {homeData} = this.props;
     return (
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -53,21 +34,15 @@ class ContributionsScreen extends Component {
               <Text style={styles.monthText}>March 2021</Text>
             </View>
           </View>
-          <Text
-            style={styles.priceText}>
-            $92.38
-          </Text>
-          <Text
-            style={styles.decText}>
+          <Text style={styles.priceText}>$92.38</Text>
+          <Text style={styles.decText}>
             Funds in pool will be invested into recommended portfolio on the end
             of each month, and we will charge this amount to your linked bank
             account.
           </Text>
-          <View
-            style={styles.contributionView}>
+          <View style={styles.contributionView}>
             <Text style={styles.contributionText}>Contribution</Text>
-            <View
-              style={styles.pickerView}>
+            <View style={styles.pickerView}>
               <RNPickerSelect
                 onValueChange={value => this.setState({dropdownValue: value})}
                 selectedValue={this.state.dropdownValue}
@@ -85,18 +60,13 @@ class ContributionsScreen extends Component {
                   },
                 }}
                 Icon={() => {
-                  return (
-                    <View
-                      style={styles.pickerIcon}
-                    />
-                  );
+                  return <View style={styles.pickerIcon} />;
                 }}
               />
             </View>
           </View>
           {!homeData ? (
-            <View
-              style={styles.loader}>
+            <View style={styles.loader}>
               <ActivityIndicator size="large" color={colors.themeColor} />
             </View>
           ) : (
@@ -152,4 +122,12 @@ const pickerSelectStyles = StyleSheet.create({
     paddingRight: 30, // to ensure the text is never behind the icon
   },
 });
-export default ContributionsScreen;
+
+const mapStateToProps = state => {
+  return {
+    homeData: state.homeReducer.homeData,
+    homeDataError: state.homeReducer.homeDataError,
+  };
+};
+
+export default connect(mapStateToProps)(ContributionsScreen);

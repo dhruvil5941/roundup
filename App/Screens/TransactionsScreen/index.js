@@ -13,14 +13,15 @@ import {Switch} from 'react-native-switch';
 import RNPickerSelect from 'react-native-picker-select';
 import * as colors from '../../assets/colors';
 import Color from '../../theme/Color';
-import Url from '../../utility/url';
+import {connect} from 'react-redux';
+import {transactionDataRequest} from '../../redux/Transactions/actions';
+
 class TransactionsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isEnabled: false,
       isClicked: '1st',
-      transactionApiData: [],
       transactionData: [],
       selectedDollar: [],
       cardValue: 'For card ending with 4328 ',
@@ -36,26 +37,13 @@ class TransactionsScreen extends Component {
   };
 
   componentDidMount() {
-    this.getTransactionData();
+    this.props.transactionDataRequest();
+    if (this.props.transactionData2 !== undefined) {
+      this.getNearestDollar(this.props.transactionData2);
+    }
     var num = 5.2;
-    // console.log(num.toFixed(2));
   }
 
-  getTransactionData = () => {
-    var requestOptions = {
-      method: 'POST',
-    };
-    fetch(
-        Url.url + '89fa1568-0d3c-40e5-9c46-ac4de216cac6',
-      requestOptions,
-    )
-      .then(response => response.text())
-      .then(result => {
-        this.setState({transactionApiData: JSON.parse(result)});
-        this.getNearestDollar(JSON.parse(result));
-      })
-      .catch(error => console.log('error', error));
-  };
   selectDollar = item => {
     this.setState({selectedDollar: [...this.state.selectedDollar, item]});
   };
@@ -109,6 +97,8 @@ class TransactionsScreen extends Component {
 
   render() {
     const {transactionData, selectedDollar, roundAllSelect} = this.state;
+    const {transactionData2} = this.props;
+    console.log('transactionData2', transactionData2);
     return (
       <View style={styles.container}>
         <ScrollView>
@@ -146,7 +136,7 @@ class TransactionsScreen extends Component {
               ]}
               onPress={() => {
                 this.handleClicked('1st');
-                this.getNearestDollar(this.state.transactionApiData);
+                this.getNearestDollar(transactionData2);
               }}>
               <Text
                 style={[
@@ -173,7 +163,7 @@ class TransactionsScreen extends Component {
               ]}
               onPress={() => {
                 this.handleClicked('3rd');
-                this.getNearest3rdDollar(this.state.transactionApiData);
+                this.getNearest3rdDollar(transactionData2);
               }}>
               <Text
                 style={[
@@ -200,7 +190,7 @@ class TransactionsScreen extends Component {
               ]}
               onPress={() => {
                 this.handleClicked('5th');
-                this.getNearest5thDollar(this.state.transactionApiData);
+                this.getNearest5thDollar(transactionData2);
               }}>
               <Text
                 style={[
@@ -340,4 +330,18 @@ const pickerSelectStyles = StyleSheet.create({
     paddingRight: 30, // to ensure the text is never behind the icon
   },
 });
-export default TransactionsScreen;
+
+const mapStateToProps = state => {
+  return {
+    transactionData2: state.transactionReducer.transactionData,
+    transactionDataError: state.transactionReducer.transactionDataError,
+  };
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    transactionDataRequest: () => dispatch(transactionDataRequest()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TransactionsScreen);

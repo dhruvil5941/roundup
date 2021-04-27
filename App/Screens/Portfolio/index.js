@@ -15,6 +15,9 @@ import * as colors from '../../assets/colors';
 import Button from '../../Components/Button';
 import Color from '../../theme/Color';
 import Url from '../../utility/url';
+import {connect} from 'react-redux';
+import {portfolioRequest} from '../../redux/portfolio/actions';
+import portfolioReducer from '../../redux/portfolio';
 
 const indicatorStyles = {
   stepIndicatorSize: 25,
@@ -44,30 +47,17 @@ class Conservative extends Component {
     super(props);
     this.state = {
       currentPosition: 0,
-      portfolioData: [],
     };
   }
 
   componentDidMount() {
-    this.getPortfolioData();
+    this.props.portfolioRequest();
   }
 
-  getPortfolioData = () => {
-    var requestOptions = {
-      method: 'POST',
-    };
-    fetch(Url.url + '377d7f52-58b8-4281-8e69-f0ca796bb377', requestOptions)
-      .then(response => response.text())
-      .then(result => {
-        this.setState({portfolioData: JSON.parse(result)});
-      })
-      .catch(error => console.log('error', error));
-  };
-
   render() {
-    const {portfolioData} = this.state;
-    const count = portfolioData.data && portfolioData.data.length;
-    if (!portfolioData.data) {
+    const {portfolioList} = this.props;
+    const count = portfolioList.data && portfolioList.data.length;
+    if (!portfolioList.data) {
       return (
         <View style={styles.loader}>
           <ActivityIndicator size="large" color={colors.themeColor} />
@@ -87,8 +77,8 @@ class Conservative extends Component {
                 onIndexChanged={page => {
                   this.setState({currentPosition: page});
                 }}>
-                {portfolioData.data &&
-                  portfolioData.data.map(item => (
+                {portfolioList.data &&
+                  portfolioList.data.map(item => (
                     <View>
                       {item.isOtherPortfolio === true ? (
                         <Text style={styles.titleText}>
@@ -124,7 +114,7 @@ class Conservative extends Component {
                       <View style={styles.portfolioTypes}>
                         <FlatList
                           data={
-                            portfolioData.data[this.state.currentPosition]
+                            portfolioList.data[this.state.currentPosition]
                               .portfolioType
                           }
                           renderItem={({item}) => (
@@ -186,4 +176,17 @@ class Conservative extends Component {
   }
 }
 
-export default Conservative;
+const mapStateToProps = state => {
+  return {
+    portfolioList: state.portfolioReducer.portfolioList,
+    portfolioError: state.portfolioReducer.portfolioError,
+  };
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    portfolioRequest: () => dispatch(portfolioRequest()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Conservative);
