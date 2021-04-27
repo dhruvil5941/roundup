@@ -13,7 +13,11 @@ import styles from './styles';
 import * as colors from '../../assets/colors';
 import Button from '../../Components/Button';
 import Color from '../../theme/Color';
-import Url from '../../utility/url';
+import {connect} from 'react-redux';
+import {
+  questionListFail,
+  questionListRequest,
+} from '../../redux/userfinancesquestion/actions';
 
 class Userfinancesquestion extends Component {
   constructor(props) {
@@ -25,26 +29,11 @@ class Userfinancesquestion extends Component {
     };
   }
   componentDidMount() {
-    this.getDropdownData();
+    this.props.questionListRequest();
   }
-  getDropdownData = () => {
-    var requestOptions = {
-      method: 'POST',
-    };
-
-    fetch(
-        Url.url + '1c5dd4f7-8b4e-40b2-84c7-d7d6ab447808',
-      requestOptions,
-    )
-      .then(response => response.text())
-      .then(result => {
-        this.setState({dropdownData: JSON.parse(result)});
-      })
-      .catch(error => console.log('error', error));
-  };
 
   render() {
-    const {dropdownData} = this.state;
+    const {questionList} = this.props;
     const placeholder = {
       label: 'Select...',
       value: null,
@@ -68,14 +57,14 @@ class Userfinancesquestion extends Component {
               </Text>
             </View>
 
-            {dropdownData.QuestionsList == undefined ? (
+            {questionList.QuestionsList == undefined ? (
               <View style={styles.questionStyle}>
                 <ActivityIndicator size="large" color={colors.themeColor} />
               </View>
             ) : (
               <View>
                 <FlatList
-                  data={dropdownData.QuestionsList}
+                  data={questionList.QuestionsList}
                   renderItem={({item}) => (
                     <>
                       <Text style={styles.queTitle}>{item.Question}</Text>
@@ -142,4 +131,23 @@ const pickerSelectStyles = StyleSheet.create({
     paddingRight: 30, // to ensure the text is never behind the icon
   },
 });
-export default Userfinancesquestion;
+
+const mapStateToProps = state => {
+  return {
+    questionList: state.questionListReducer.questionList,
+    questionListError: state.questionListReducer.questionListError,
+  };
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    questionListRequest: () => dispatch(questionListRequest()),
+    questionListFail: () => dispatch(questionListFail()),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Userfinancesquestion);
+// export default Userfinancesquestion;
